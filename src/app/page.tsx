@@ -6,6 +6,7 @@ import { SlideWrapper } from "@/components/SlideWrapper";
 import { SiteNavSlide } from "@/components/slides/SiteNavSlide";
 import { VisionSlide } from "@/components/slides/VisionSlide";
 import { FlywheelSlide } from "@/components/slides/FlywheelSlide";
+import { WhyExpertsSlide } from "@/components/slides/WhyExpertsSlide";
 import { ExpertsSlide } from "@/components/slides/ExpertsSlide";
 import { MarketplaceSlide } from "@/components/slides/MarketplaceSlide";
 import { CommunitySlide } from "@/components/slides/CommunitySlide";
@@ -19,6 +20,7 @@ const slideComponents = [
   SiteNavSlide,
   VisionSlide,
   FlywheelSlide,
+  WhyExpertsSlide,
   ExpertsSlide,
   MarketplaceSlide,
   CommunitySlide,

@@ -3,25 +3,25 @@
 import { Blocks, ArrowRight, Plug, Package, Code, Search } from "lucide-react";
 import { BrowserMockup } from "@/components/BrowserMockup";
 
-const apps = [
-  { name: "Clay", cat: "GTM", status: "Live", color: "#418B5C" },
-  { name: "Gong", cat: "Sales", status: "Live", color: "#418B5C" },
+const integrations = [
   { name: "Slack", cat: "Comms", status: "Native", color: "#1C91FF" },
   { name: "Notion", cat: "Docs", status: "Native", color: "#1C91FF" },
   { name: "Google Drive", cat: "Storage", status: "Native", color: "#1C91FF" },
   { name: "GitHub", cat: "Dev", status: "Native", color: "#1C91FF" },
+  { name: "Zendesk", cat: "Support", status: "Native", color: "#1C91FF" },
+  { name: "Confluence", cat: "Docs", status: "Native", color: "#1C91FF" },
+  { name: "Clay", cat: "GTM", status: "Partner", color: "#418B5C" },
+  { name: "Gong", cat: "Sales", status: "Partner", color: "#418B5C" },
   { name: "HubSpot", cat: "CRM", status: "Roadmap", color: "#6B7280" },
   { name: "Salesforce", cat: "CRM", status: "Roadmap", color: "#6B7280" },
   { name: "Linear", cat: "Eng", status: "Roadmap", color: "#6B7280" },
   { name: "Intercom", cat: "Support", status: "Roadmap", color: "#6B7280" },
-  { name: "Zendesk", cat: "Support", status: "Native", color: "#1C91FF" },
-  { name: "Confluence", cat: "Docs", status: "Native", color: "#1C91FF" },
 ];
 
 const pipeline = [
-  { icon: Code, label: "API Builders", desc: "Grassroots developers push boundaries", color: "#8B5CF6", bg: "#F3F0FF" },
-  { icon: Package, label: "Templates", desc: "Best creations become shared templates", color: "#FE9C1A", bg: "#FFF8E1" },
-  { icon: Plug, label: "Native Integrations", desc: "Top demand becomes first-party", color: "#1C91FF", bg: "#E9F7FF" },
+  { icon: Code, label: "API & Connectors", desc: "Community and partners build connectors via Dust API", color: "#8B5CF6", bg: "#F3F0FF" },
+  { icon: Package, label: "Templates", desc: "Best integrations become shared templates", color: "#FE9C1A", bg: "#FFF8E1" },
+  { icon: Plug, label: "Native", desc: "Top demand graduates to first-party support", color: "#1C91FF", bg: "#E9F7FF" },
 ];
 
 export function MarketplaceSlide() {
@@ -32,20 +32,15 @@ export function MarketplaceSlide() {
         <div className="flex items-center justify-center gap-3 mb-2">
           <span className="dust-badge">
             <Blocks className="h-3.5 w-3.5 text-[#1C91FF]" />
-            dust.tt/apps
-          </span>
-          <span className="dust-badge">
-            <Plug className="h-3.5 w-3.5 text-[#8B5CF6]" />
             dust.tt/integrations
           </span>
         </div>
         <h2 className="text-2xl sm:text-3xl font-medium tracking-tight">
-          <span className="gradient-text">App Marketplace</span>
+          <span className="gradient-text">Integrations</span>
         </h2>
         <p className="mt-2 text-sm text-muted-foreground max-w-lg mx-auto">
-          Two PMM projects: the <span className="text-foreground font-medium">App Marketplace</span> (browse all) and
-          the <span className="text-foreground font-medium">Integrations page</span> (native connectors).
-          From grassroots API builders to first-party.
+          One unified hub for native connectors, partner-built integrations, and community templates.
+          From grassroots API builders to first-party — all in one place.
         </p>
       </div>
 
@@ -70,23 +65,23 @@ export function MarketplaceSlide() {
         })}
       </div>
 
-      {/* Marketplace mockup */}
-      <BrowserMockup url="dust.tt/apps">
+      {/* Integrations mockup */}
+      <BrowserMockup url="dust.tt/integrations">
         <div className="p-4 border-b border-border">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="font-medium text-sm">Dust App Marketplace</h3>
+              <h3 className="font-medium text-sm">Dust Integrations</h3>
               <p className="text-xs text-muted-foreground mt-0.5">
-                Integrations, templates, and agents built by Dust and the community.
+                Connect Dust to the tools your team already uses — native, partner-built, and community.
               </p>
             </div>
             <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-border text-xs text-muted-foreground bg-muted">
               <Search className="h-3 w-3" />
-              Search apps...
+              Search integrations...
             </div>
           </div>
           <div className="mt-3 flex gap-1.5">
-            {["All", "Native", "Templates", "Community"].map((f) => (
+            {["All", "Native", "Partner", "Community", "Roadmap"].map((f) => (
               <span
                 key={f}
                 className={`text-[11px] px-2 py-0.5 rounded-md border ${
@@ -101,9 +96,9 @@ export function MarketplaceSlide() {
           </div>
         </div>
 
-        {/* App grid */}
+        {/* Integration grid */}
         <div className="p-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-          {apps.map((app) => (
+          {integrations.map((app) => (
             <div
               key={app.name}
               className="flex items-center gap-2.5 px-3 py-2.5 rounded-lg border border-border hover:border-dust-blue/30 transition-colors"
@@ -119,7 +114,7 @@ export function MarketplaceSlide() {
                     className="text-[9px] font-medium px-1 py-px rounded"
                     style={{
                       color: app.color,
-                      background: app.status === "Live" ? "#E8F5E9" : app.status === "Native" ? "#E9F7FF" : "#F7F7F7",
+                      background: app.status === "Partner" ? "#E8F5E9" : app.status === "Native" ? "#E9F7FF" : "#F7F7F7",
                     }}
                   >
                     {app.status}

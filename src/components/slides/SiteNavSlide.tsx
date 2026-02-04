@@ -24,7 +24,7 @@ const navSections = [
     items: [
       { icon: Award, name: "Find Dust Experts", desc: "Certified partners to help you get the most out of Dust", url: "/experts", color: "#418B5C" },
       { icon: GraduationCap, name: "Dust Academy", desc: "Courses, certifications, and hands-on training", url: "/academy", color: "#1C91FF" },
-      { icon: Blocks, name: "App Marketplace", desc: "Integrations, templates, and community agents", url: "/apps", color: "#8B5CF6" },
+      { icon: Blocks, name: "Integrations", desc: "Native connectors, partner-built, and community apps", url: "/integrations", color: "#8B5CF6" },
       { icon: Calendar, name: "Events & Meetups", desc: "Local gatherings and expert workshops", url: "/events", color: "#FE9C1A" },
     ],
   },
@@ -32,7 +32,7 @@ const navSections = [
     label: "BUILD WITH DUST",
     items: [
       { icon: Package, name: "Templates", desc: "Pre-built agents and workflows, ready to use", url: "/templates", color: "#FE9C1A" },
-      { icon: Plug, name: "Integrations", desc: "Native connectors and API reference", url: "/integrations", color: "#1C91FF" },
+      { icon: Plug, name: "API & Connectors", desc: "Developer docs and API reference", url: "/developers", color: "#1C91FF" },
       { icon: Lightbulb, name: "Use Case Gallery", desc: "Real stories from users and partners", url: "/stories", color: "#418B5C" },
       { icon: MessageSquare, name: "Community Slack", desc: "Join 5K+ builders for support and ideas", url: "/slack", color: "#8B5CF6" },
     ],

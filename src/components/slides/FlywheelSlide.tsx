@@ -14,8 +14,8 @@ const segments = [
   {
     icon: Puzzle,
     title: "Integrations",
-    desc: "Native integrations drive retention, co-marketing with SaaS partners, and brand credibility.",
-    output: "Retention + brand",
+    desc: "Supporting integrations into the stacks partners specialize in compounds our value — partners invest more when we fit their ecosystem.",
+    output: "Retention + partner lock-in",
     color: "#418B5C",
     colorLight: "#E8F5E9",
   },

@@ -25,15 +25,21 @@ export const slides: SlideConfig[] = [
     icon: "RefreshCcw",
   },
   {
+    id: "why-experts",
+    title: "Why Us",
+    subtitle: "Why Experts Join",
+    icon: "Magnet",
+  },
+  {
     id: "experts",
     title: "Experts",
     subtitle: "Program & Directory",
     icon: "Award",
   },
   {
-    id: "apps",
-    title: "Apps",
-    subtitle: "Integrations & Marketplace",
+    id: "integrations",
+    title: "Integrations",
+    subtitle: "Connectors & Apps",
     icon: "Blocks",
   },
   {
