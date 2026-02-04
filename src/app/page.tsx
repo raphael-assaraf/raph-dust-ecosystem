@@ -9,6 +9,7 @@ import { PillarsSlide } from "@/components/slides/PillarsSlide";
 import { ExpertsSlide } from "@/components/slides/ExpertsSlide";
 import { MarketplaceSlide } from "@/components/slides/MarketplaceSlide";
 import { CommunitySlide } from "@/components/slides/CommunitySlide";
+import { ExecutionLoopSlide } from "@/components/slides/ExecutionLoopSlide";
 import { TeamSlide } from "@/components/slides/TeamSlide";
 import { EnterpriseSlide } from "@/components/slides/EnterpriseSlide";
 import { RoadmapSlide } from "@/components/slides/RoadmapSlide";
@@ -21,6 +22,7 @@ const slideComponents = [
   ExpertsSlide,
   MarketplaceSlide,
   CommunitySlide,
+  ExecutionLoopSlide,
   TeamSlide,
   EnterpriseSlide,
   RoadmapSlide,

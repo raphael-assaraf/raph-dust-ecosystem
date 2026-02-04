@@ -4,19 +4,17 @@ import {
   Map,
   CheckCircle2,
   Circle,
-  ArrowRight,
   Rocket,
   Clock,
+  Repeat,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 const phases = [
   {
     name: "Phase 1 — Foundation",
     timeframe: "Now",
-    color: "text-emerald-400",
-    border: "border-emerald-400/20",
-    bg: "bg-emerald-400/5",
+    color: "#418B5C",
+    bg: "#E8F5E9",
     icon: CheckCircle2,
     items: [
       { text: "Define Experts program structure (tiers, badges, benefits)", done: false },
@@ -30,9 +28,8 @@ const phases = [
   {
     name: "Phase 2 — Launch",
     timeframe: "Next",
-    color: "text-blue-400",
-    border: "border-blue-400/20",
-    bg: "bg-blue-400/5",
+    color: "#1C91FF",
+    bg: "#E9F7FF",
     icon: Clock,
     items: [
       { text: "Launch Experts program publicly with first cohort", done: false },
@@ -46,9 +43,8 @@ const phases = [
   {
     name: "Phase 3 — Scale",
     timeframe: "Later",
-    color: "text-violet-400",
-    border: "border-violet-400/20",
-    bg: "bg-violet-400/5",
+    color: "#8B5CF6",
+    bg: "#F3F0FF",
     icon: Rocket,
     items: [
       { text: "Scale Expert directory to 50+ certified partners", done: false },
@@ -63,16 +59,14 @@ const phases = [
 
 export function RoadmapSlide() {
   return (
-    <div className="flex min-h-[calc(100dvh-8rem)] flex-col justify-center py-8">
+    <div className="flex min-h-[calc(100dvh-6rem)] flex-col justify-center py-8">
       {/* Header */}
-      <div className="text-center mb-8">
-        <div className="inline-flex items-center gap-2 mb-3 text-muted-foreground">
-          <Map className="h-5 w-5" />
-          <span className="text-sm font-medium uppercase tracking-wider">
-            What Comes Next
-          </span>
-        </div>
-        <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+      <div className="text-center mb-6">
+        <span className="dust-badge mb-3">
+          <Map className="h-3.5 w-3.5" />
+          What Comes Next
+        </span>
+        <h2 className="text-3xl sm:text-4xl font-medium tracking-tight">
           <span className="gradient-text">Roadmap</span>
         </h2>
         <p className="mt-3 text-muted-foreground max-w-lg mx-auto">
@@ -88,23 +82,21 @@ export function RoadmapSlide() {
           return (
             <div
               key={phase.name}
-              className={cn(
-                "rounded-xl border p-5 transition-all",
-                phase.border,
-                phase.bg
-              )}
+              className="dust-card"
             >
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
-                  <PhaseIcon className={cn("h-5 w-5", phase.color)} />
-                  <h3 className="font-semibold">{phase.name}</h3>
+                  <div
+                    className="flex h-7 w-7 items-center justify-center rounded-md"
+                    style={{ background: phase.bg }}
+                  >
+                    <PhaseIcon className="h-3.5 w-3.5" style={{ color: phase.color }} />
+                  </div>
+                  <h3 className="font-medium">{phase.name}</h3>
                 </div>
                 <span
-                  className={cn(
-                    "text-xs font-medium px-2 py-0.5 rounded-full border",
-                    phase.border,
-                    phase.color
-                  )}
+                  className="text-[11px] font-medium px-2 py-0.5 rounded-full"
+                  style={{ background: phase.bg, color: phase.color }}
                 >
                   {phase.timeframe}
                 </span>
@@ -117,16 +109,16 @@ export function RoadmapSlide() {
                     className="flex items-start gap-2 text-sm"
                   >
                     {item.done ? (
-                      <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0 mt-0.5" />
+                      <CheckCircle2 className="h-4 w-4 shrink-0 mt-0.5" style={{ color: phase.color }} />
                     ) : (
-                      <Circle className="h-4 w-4 text-muted-foreground/30 shrink-0 mt-0.5" />
+                      <Circle className="h-4 w-4 text-gray-200 shrink-0 mt-0.5" />
                     )}
                     <span
-                      className={cn(
+                      className={
                         item.done
-                          ? "text-muted-foreground line-through"
-                          : "text-muted-foreground"
-                      )}
+                          ? "text-muted-foreground line-through text-xs"
+                          : "text-muted-foreground text-xs"
+                      }
                     >
                       {item.text}
                     </span>
@@ -139,11 +131,10 @@ export function RoadmapSlide() {
       </div>
 
       {/* Bottom CTA */}
-      <div className="mt-8 text-center">
-        <div className="inline-flex items-center gap-2 rounded-full border border-dust-primary/20 bg-dust-primary/5 px-4 py-2 text-sm text-dust-primary">
-          <Rocket className="h-4 w-4" />
-          <span>This is a living document — navigate back to dive deeper into any section</span>
-          <ArrowRight className="h-3.5 w-3.5" />
+      <div className="mt-6 text-center">
+        <div className="inline-flex items-center gap-2 text-xs text-dust-blue font-medium px-3 py-1.5 rounded-full border border-dust-blue/20 bg-[#E9F7FF]">
+          <Repeat className="h-3 w-3" />
+          <span>This is a living document — navigate back to dive deeper</span>
         </div>
       </div>
     </div>

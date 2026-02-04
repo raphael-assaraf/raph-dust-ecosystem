@@ -9,127 +9,152 @@ import {
   Trophy,
   BookOpen,
   Users,
+  Check,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { BrowserMockup } from "@/components/BrowserMockup";
 
 const tiers = [
   {
     name: "Registered",
-    color: "text-zinc-400",
-    border: "border-zinc-700",
-    bg: "bg-zinc-900",
-    badge: Shield,
+    icon: Shield,
+    color: "#6B7280",
+    bg: "#F7F7F7",
     perks: ["Partner portal access", "Basic training materials", "Community Slack channel"],
   },
   {
     name: "Certified",
-    color: "text-blue-400",
-    border: "border-blue-500/30",
-    bg: "bg-blue-500/5",
-    badge: Star,
-    perks: ["Listed in Expert directory", "Co-marketing eligibility", "Deal registration", "Dust Academy certified badge"],
+    icon: Star,
+    color: "#1C91FF",
+    bg: "#E9F7FF",
+    perks: ["Listed in Expert directory", "Co-marketing eligibility", "Deal registration", "Dust Academy badge"],
   },
   {
     name: "Premier",
-    color: "text-dust-primary",
-    border: "border-dust-primary/30",
-    bg: "bg-dust-primary/5",
-    badge: Trophy,
-    perks: ["Priority referrals", "Joint go-to-market", "Early product access", "Revenue share program", "Case study spotlight"],
+    icon: Trophy,
+    color: "#418B5C",
+    bg: "#E8F5E9",
+    perks: ["Priority referrals", "Joint go-to-market", "Early product access", "Revenue share", "Case study spotlight"],
   },
 ];
 
-const components = [
-  {
-    icon: BookOpen,
-    title: "Dust Academy",
-    desc: "Certification program with hands-on labs, product deep-dives, and use case workshops. The path from registered to premier.",
-  },
-  {
-    icon: Search,
-    title: "Expert Directory",
-    desc: "Public-facing directory where customers find verified Dust experts. Filterable by industry, region, and specialization.",
-  },
-  {
-    icon: Users,
-    title: "Local Meetups",
-    desc: 'Notion-style community meetups. Experts host local events, share use cases, and build the local Dust community.',
-  },
-  {
-    icon: GraduationCap,
-    title: "Enablement",
-    desc: "Flexible enablement resources — from pitch decks to technical guides — so partners can sell and implement Dust with confidence.",
-  },
+const mockPartners = [
+  { name: "Owkin", specialty: "Healthcare AI", tier: "Premier", location: "Paris" },
+  { name: "Acme Consulting", specialty: "Enterprise Ops", tier: "Certified", location: "New York" },
+  { name: "DataFlow Studio", specialty: "Data Engineering", tier: "Certified", location: "London" },
+  { name: "NextWave AI", specialty: "Sales Automation", tier: "Premier", location: "San Francisco" },
 ];
 
 export function ExpertsSlide() {
   return (
-    <div className="flex min-h-[calc(100dvh-8rem)] flex-col justify-center py-8">
+    <div className="flex min-h-[calc(100dvh-6rem)] flex-col justify-center py-8">
       {/* Header */}
-      <div className="text-center mb-8">
-        <div className="inline-flex items-center gap-2 mb-3 text-emerald-400">
-          <Award className="h-5 w-5" />
-          <span className="text-sm font-medium uppercase tracking-wider">
-            Service Partner Track
-          </span>
-        </div>
-        <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+      <div className="text-center mb-6">
+        <span className="dust-badge mb-3">
+          <Award className="h-3.5 w-3.5 text-[#418B5C]" />
+          Service Partner Track
+        </span>
+        <h2 className="text-3xl sm:text-4xl font-medium tracking-tight">
           <span className="gradient-text">Dust Experts</span> Program
         </h2>
         <p className="mt-3 text-muted-foreground max-w-lg mx-auto">
-          A tiered partner program that builds expertise, community belonging,
-          and mutual revenue — with badges, certification, and a public directory.
+          A tiered partner program — badges, certification, directory, and
+          a shared academy that builds expertise and community.
         </p>
       </div>
 
-      {/* Tiers */}
-      <div className="grid gap-3 md:grid-cols-3 mb-8">
-        {tiers.map((tier) => {
-          const Badge = tier.badge;
-          return (
-            <div
-              key={tier.name}
-              className={cn(
-                "rounded-xl border p-4 transition-all hover:scale-[1.02]",
-                tier.border,
-                tier.bg
-              )}
-            >
-              <div className="flex items-center gap-2 mb-3">
-                <Badge className={cn("h-5 w-5", tier.color)} />
-                <h3 className={cn("font-semibold", tier.color)}>{tier.name}</h3>
+      {/* Two-column layout: mockup + tiers */}
+      <div className="grid gap-6 lg:grid-cols-5">
+        {/* Expert Directory Mockup (3 cols) */}
+        <div className="lg:col-span-3">
+          <BrowserMockup url="dust.tt/experts">
+            {/* Directory header */}
+            <div className="p-4 border-b border-border">
+              <h3 className="font-medium text-sm">Find a Dust Expert</h3>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                Browse certified partners by specialty, region, and tier.
+              </p>
+              <div className="mt-3 flex gap-2">
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-border text-xs text-muted-foreground bg-muted">
+                  <Search className="h-3 w-3" />
+                  Search partners...
+                </div>
+                <div className="px-2 py-1 rounded-md border border-border text-xs text-muted-foreground">All Tiers</div>
+                <div className="px-2 py-1 rounded-md border border-border text-xs text-muted-foreground">Region</div>
               </div>
-              <ul className="space-y-1.5">
-                {tier.perks.map((perk) => (
-                  <li
-                    key={perk}
-                    className="text-sm text-muted-foreground flex items-start gap-1.5"
-                  >
-                    <span className={cn("mt-1.5 h-1 w-1 rounded-full shrink-0", tier.color.replace("text-", "bg-"))} />
-                    {perk}
-                  </li>
-                ))}
-              </ul>
             </div>
-          );
-        })}
+            {/* Partner list */}
+            <div className="divide-y divide-border">
+              {mockPartners.map((p) => (
+                <div key={p.name} className="px-4 py-3 flex items-center justify-between hover:bg-muted/50 transition-colors">
+                  <div className="flex items-center gap-3">
+                    <div className="h-8 w-8 rounded-lg bg-muted flex items-center justify-center text-xs font-medium text-muted-foreground">
+                      {p.name[0]}
+                    </div>
+                    <div>
+                      <div className="text-sm font-medium">{p.name}</div>
+                      <div className="text-[11px] text-muted-foreground">{p.specialty} · {p.location}</div>
+                    </div>
+                  </div>
+                  <span
+                    className="text-[10px] font-medium px-2 py-0.5 rounded-full"
+                    style={{
+                      background: p.tier === "Premier" ? "#E8F5E9" : "#E9F7FF",
+                      color: p.tier === "Premier" ? "#418B5C" : "#1C91FF",
+                    }}
+                  >
+                    {p.tier}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </BrowserMockup>
+        </div>
+
+        {/* Tiers (2 cols) */}
+        <div className="lg:col-span-2 flex flex-col gap-3">
+          {tiers.map((tier) => {
+            const Icon = tier.icon;
+            return (
+              <div key={tier.name} className="dust-card">
+                <div className="flex items-center gap-2 mb-2.5">
+                  <div
+                    className="flex h-7 w-7 items-center justify-center rounded-md"
+                    style={{ background: tier.bg }}
+                  >
+                    <Icon className="h-3.5 w-3.5" style={{ color: tier.color }} />
+                  </div>
+                  <h3 className="font-medium text-sm" style={{ color: tier.color }}>
+                    {tier.name}
+                  </h3>
+                </div>
+                <ul className="space-y-1">
+                  {tier.perks.map((perk) => (
+                    <li key={perk} className="flex items-start gap-1.5 text-xs text-muted-foreground">
+                      <Check className="h-3 w-3 mt-0.5 shrink-0" style={{ color: tier.color }} />
+                      {perk}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </div>
       </div>
 
-      {/* Key components */}
-      <div className="grid gap-3 sm:grid-cols-2">
-        {components.map((comp) => {
-          const Icon = comp.icon;
+      {/* Bottom cards: Academy + Meetups + Enablement */}
+      <div className="mt-6 grid gap-3 sm:grid-cols-3">
+        {[
+          { icon: BookOpen, title: "Dust Academy", desc: "Certification with hands-on labs, product deep-dives, and use case workshops.", color: "#1C91FF" },
+          { icon: Users, title: "Local Meetups", desc: "Notion-style community gatherings. Experts host, share use cases, build community.", color: "#FE9C1A" },
+          { icon: GraduationCap, title: "Enablement", desc: "Pitch decks, technical guides, sales enablement — everything partners need.", color: "#418B5C" },
+        ].map((item) => {
+          const Icon = item.icon;
           return (
-            <div
-              key={comp.title}
-              className="rounded-lg border border-dust-border bg-dust-surface/50 p-4 flex gap-3"
-            >
-              <Icon className="h-5 w-5 text-dust-primary shrink-0 mt-0.5" />
+            <div key={item.title} className="dust-card-flat flex gap-3">
+              <Icon className="h-4 w-4 shrink-0 mt-0.5" style={{ color: item.color }} />
               <div>
-                <h4 className="font-medium text-sm">{comp.title}</h4>
-                <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
-                  {comp.desc}
-                </p>
+                <h4 className="font-medium text-xs">{item.title}</h4>
+                <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed">{item.desc}</p>
               </div>
             </div>
           );

@@ -1,59 +1,40 @@
 "use client";
 
-import { Store, Package, Code, Blocks, ArrowRight, Plug } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { Blocks, ArrowRight, Plug, Package, Code, Search } from "lucide-react";
+import { BrowserMockup } from "@/components/BrowserMockup";
 
-const integrations = [
-  { name: "Clay", category: "GTM", status: "Live" },
-  { name: "Gong", category: "Sales", status: "Live" },
-  { name: "Slack", category: "Comms", status: "Native" },
-  { name: "Notion", category: "Docs", status: "Native" },
-  { name: "HubSpot", category: "CRM", status: "Roadmap" },
-  { name: "Salesforce", category: "CRM", status: "Roadmap" },
-  { name: "Linear", category: "Eng", status: "Roadmap" },
-  { name: "Intercom", category: "Support", status: "Roadmap" },
+const apps = [
+  { name: "Clay", cat: "GTM", status: "Live", color: "#418B5C" },
+  { name: "Gong", cat: "Sales", status: "Live", color: "#418B5C" },
+  { name: "Slack", cat: "Comms", status: "Native", color: "#1C91FF" },
+  { name: "Notion", cat: "Docs", status: "Native", color: "#1C91FF" },
+  { name: "Google Drive", cat: "Storage", status: "Native", color: "#1C91FF" },
+  { name: "GitHub", cat: "Dev", status: "Native", color: "#1C91FF" },
+  { name: "HubSpot", cat: "CRM", status: "Roadmap", color: "#6B7280" },
+  { name: "Salesforce", cat: "CRM", status: "Roadmap", color: "#6B7280" },
+  { name: "Linear", cat: "Eng", status: "Roadmap", color: "#6B7280" },
+  { name: "Intercom", cat: "Support", status: "Roadmap", color: "#6B7280" },
+  { name: "Zendesk", cat: "Support", status: "Native", color: "#1C91FF" },
+  { name: "Confluence", cat: "Docs", status: "Native", color: "#1C91FF" },
 ];
 
-const layers = [
-  {
-    icon: Plug,
-    title: "Native Integrations",
-    desc: "First-party connectors built by Dust. Deep product integrations that drive retention and unlock co-marketing with SaaS partners.",
-    color: "text-dust-primary",
-  },
-  {
-    icon: Package,
-    title: "Product Templates",
-    desc: "Pre-built agent configurations and workflows. Users share what they built; the best get promoted to official templates.",
-    color: "text-amber-400",
-  },
-  {
-    icon: Code,
-    title: "API & Builder Ecosystem",
-    desc: "Grassroots builders push boundaries with the Dust API. Their innovations signal what to integrate natively next.",
-    color: "text-violet-400",
-  },
-  {
-    icon: Blocks,
-    title: "Marketplace Listing",
-    desc: "A central place to discover integrations, templates, and partner-built solutions. Think Zapier meets the AI app store.",
-    color: "text-emerald-400",
-  },
+const pipeline = [
+  { icon: Code, label: "API Builders", desc: "Grassroots developers push boundaries", color: "#8B5CF6", bg: "#F3F0FF" },
+  { icon: Package, label: "Templates", desc: "Best creations become shared templates", color: "#FE9C1A", bg: "#FFF8E1" },
+  { icon: Plug, label: "Native Integrations", desc: "Top demand becomes first-party", color: "#1C91FF", bg: "#E9F7FF" },
 ];
 
 export function MarketplaceSlide() {
   return (
-    <div className="flex min-h-[calc(100dvh-8rem)] flex-col justify-center py-8">
+    <div className="flex min-h-[calc(100dvh-6rem)] flex-col justify-center py-8">
       {/* Header */}
-      <div className="text-center mb-8">
-        <div className="inline-flex items-center gap-2 mb-3 text-dust-primary">
-          <Store className="h-5 w-5" />
-          <span className="text-sm font-medium uppercase tracking-wider">
-            Integrations Track
-          </span>
-        </div>
-        <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-          <span className="gradient-text">Marketplace</span> & Integrations
+      <div className="text-center mb-6">
+        <span className="dust-badge mb-3">
+          <Blocks className="h-3.5 w-3.5 text-[#1C91FF]" />
+          Integrations Track
+        </span>
+        <h2 className="text-3xl sm:text-4xl font-medium tracking-tight">
+          <span className="gradient-text">App Marketplace</span>
         </h2>
         <p className="mt-3 text-muted-foreground max-w-lg mx-auto">
           From grassroots API builders to native integrations — a lego-like
@@ -61,74 +42,102 @@ export function MarketplaceSlide() {
         </p>
       </div>
 
-      {/* The pipeline: builders → templates → native */}
-      <div className="mb-8 flex items-center justify-center gap-2 text-xs text-muted-foreground flex-wrap">
-        <span className="px-2 py-1 rounded-md bg-violet-400/10 text-violet-400 border border-violet-400/20">
-          API Builders
-        </span>
-        <ArrowRight className="h-3 w-3" />
-        <span className="px-2 py-1 rounded-md bg-amber-400/10 text-amber-400 border border-amber-400/20">
-          Templates
-        </span>
-        <ArrowRight className="h-3 w-3" />
-        <span className="px-2 py-1 rounded-md bg-dust-primary/10 text-dust-primary border border-dust-primary/20">
-          Native Integrations
-        </span>
-      </div>
-
-      {/* Layers */}
-      <div className="grid gap-3 sm:grid-cols-2 mb-8">
-        {layers.map((layer) => {
-          const Icon = layer.icon;
+      {/* Integration pipeline */}
+      <div className="flex items-center justify-center gap-2 mb-6 flex-wrap">
+        {pipeline.map((p, i) => {
+          const Icon = p.icon;
           return (
-            <div
-              key={layer.title}
-              className="rounded-xl border border-dust-border bg-dust-surface/50 p-4 flex gap-3 transition-all hover:border-dust-primary/20"
-            >
-              <Icon className={cn("h-5 w-5 shrink-0 mt-0.5", layer.color)} />
-              <div>
-                <h4 className="font-medium">{layer.title}</h4>
-                <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
-                  {layer.desc}
-                </p>
+            <div key={p.label} className="flex items-center gap-2">
+              <div
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border border-border"
+                style={{ background: p.bg, color: p.color }}
+              >
+                <Icon className="h-3.5 w-3.5" />
+                {p.label}
               </div>
+              {i < pipeline.length - 1 && (
+                <ArrowRight className="h-3 w-3 text-gray-200" />
+              )}
             </div>
           );
         })}
       </div>
 
-      {/* Integration grid */}
-      <div>
-        <h4 className="text-sm font-medium text-muted-foreground mb-3">
-          Integration Landscape
-        </h4>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-          {integrations.map((int) => (
-            <div
-              key={int.name}
-              className="rounded-lg border border-dust-border bg-dust-surface/30 px-3 py-2.5 flex items-center justify-between"
-            >
-              <div>
-                <span className="text-sm font-medium">{int.name}</span>
-                <span className="block text-[10px] text-muted-foreground">
-                  {int.category}
-                </span>
-              </div>
+      {/* Marketplace mockup */}
+      <BrowserMockup url="dust.tt/apps">
+        <div className="p-4 border-b border-border">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="font-medium text-sm">Dust App Marketplace</h3>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                Integrations, templates, and agents built by Dust and the community.
+              </p>
+            </div>
+            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-border text-xs text-muted-foreground bg-muted">
+              <Search className="h-3 w-3" />
+              Search apps...
+            </div>
+          </div>
+          <div className="mt-3 flex gap-1.5">
+            {["All", "Native", "Templates", "Community"].map((f) => (
               <span
-                className={cn(
-                  "text-[10px] font-medium px-1.5 py-0.5 rounded-full",
-                  int.status === "Live"
-                    ? "bg-emerald-400/10 text-emerald-400"
-                    : int.status === "Native"
-                    ? "bg-blue-400/10 text-blue-400"
-                    : "bg-zinc-700 text-zinc-400"
-                )}
+                key={f}
+                className={`text-[11px] px-2 py-0.5 rounded-md border ${
+                  f === "All"
+                    ? "border-dust-blue bg-[#E9F7FF] text-dust-blue font-medium"
+                    : "border-border text-muted-foreground"
+                }`}
               >
-                {int.status}
+                {f}
               </span>
+            ))}
+          </div>
+        </div>
+
+        {/* App grid */}
+        <div className="p-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+          {apps.map((app) => (
+            <div
+              key={app.name}
+              className="flex items-center gap-2.5 px-3 py-2.5 rounded-lg border border-border hover:border-dust-blue/30 transition-colors"
+            >
+              <div className="h-8 w-8 rounded-lg bg-muted flex items-center justify-center text-xs font-bold text-muted-foreground shrink-0">
+                {app.name[0]}
+              </div>
+              <div className="min-w-0">
+                <div className="text-xs font-medium truncate">{app.name}</div>
+                <div className="flex items-center gap-1">
+                  <span className="text-[10px] text-muted-foreground">{app.cat}</span>
+                  <span
+                    className="text-[9px] font-medium px-1 py-px rounded"
+                    style={{
+                      color: app.color,
+                      background: app.status === "Live" ? "#E8F5E9" : app.status === "Native" ? "#E9F7FF" : "#F7F7F7",
+                    }}
+                  >
+                    {app.status}
+                  </span>
+                </div>
+              </div>
             </div>
           ))}
         </div>
+      </BrowserMockup>
+
+      {/* Pipeline explanation */}
+      <div className="mt-6 grid gap-3 sm:grid-cols-3">
+        {pipeline.map((p) => {
+          const Icon = p.icon;
+          return (
+            <div key={p.label} className="dust-card-flat flex gap-3">
+              <Icon className="h-4 w-4 shrink-0 mt-0.5" style={{ color: p.color }} />
+              <div>
+                <h4 className="font-medium text-xs">{p.label}</h4>
+                <p className="text-[11px] text-muted-foreground mt-0.5">{p.desc}</p>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

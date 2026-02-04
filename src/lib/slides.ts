@@ -31,16 +31,22 @@ export const slides: SlideConfig[] = [
     icon: "Award",
   },
   {
-    id: "marketplace",
-    title: "Marketplace",
-    subtitle: "Integrations & Templates",
-    icon: "Store",
+    id: "apps",
+    title: "Apps",
+    subtitle: "Integrations & Marketplace",
+    icon: "Blocks",
   },
   {
     id: "community",
     title: "Community",
     subtitle: "DevRel & User Stories",
     icon: "Users",
+  },
+  {
+    id: "loop",
+    title: "In Action",
+    subtitle: "Execution Loop",
+    icon: "Repeat",
   },
   {
     id: "team",
