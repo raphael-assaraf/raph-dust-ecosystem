@@ -1,9 +1,9 @@
 "use client";
 
 import {
+  LayoutGrid,
   Sparkles,
   RefreshCcw,
-  Layers,
   Award,
   Blocks,
   Users,
@@ -18,9 +18,9 @@ import { cn } from "@/lib/utils";
 import { slides } from "@/lib/slides";
 
 const iconMap: Record<string, React.ElementType> = {
+  LayoutGrid,
   Sparkles,
   RefreshCcw,
-  Layers,
   Award,
   Blocks,
   Users,

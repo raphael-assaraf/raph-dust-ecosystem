@@ -48,17 +48,28 @@ export function ExpertsSlide() {
   return (
     <div className="flex min-h-[calc(100dvh-6rem)] flex-col justify-center py-8">
       {/* Header */}
-      <div className="text-center mb-6">
-        <span className="dust-badge mb-3">
-          <Award className="h-3.5 w-3.5 text-[#418B5C]" />
-          Service Partner Track
-        </span>
-        <h2 className="text-3xl sm:text-4xl font-medium tracking-tight">
-          <span className="gradient-text">Dust Experts</span> Program
+      <div className="text-center mb-4">
+        <div className="flex items-center justify-center gap-3 mb-2">
+          <span className="dust-badge">
+            <Award className="h-3.5 w-3.5 text-[#418B5C]" />
+            dust.tt/experts
+          </span>
+          <span className="dust-badge">
+            <BookOpen className="h-3.5 w-3.5 text-[#1C91FF]" />
+            dust.tt/academy
+          </span>
+          <span className="dust-badge">
+            <Award className="h-3.5 w-3.5 text-[#FE9C1A]" />
+            dust.tt/partner
+          </span>
+        </div>
+        <h2 className="text-2xl sm:text-3xl font-medium tracking-tight">
+          <span className="gradient-text">Dust Experts</span> — Program & Directory
         </h2>
-        <p className="mt-3 text-muted-foreground max-w-lg mx-auto">
-          A tiered partner program — badges, certification, directory, and
-          a shared academy that builds expertise and community.
+        <p className="mt-2 text-sm text-muted-foreground max-w-lg mx-auto">
+          Three PMM projects: the <span className="text-foreground font-medium">Expert directory</span> (find a partner),
+          the <span className="text-foreground font-medium">Partner program</span> (apply & earn badges), and
+          the <span className="text-foreground font-medium">Academy</span> (certification & training).
         </p>
       </div>
 

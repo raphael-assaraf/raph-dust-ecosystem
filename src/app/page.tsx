@@ -3,9 +3,9 @@
 import { useState, useCallback, useEffect } from "react";
 import { BottomNav } from "@/components/BottomNav";
 import { SlideWrapper } from "@/components/SlideWrapper";
+import { SiteNavSlide } from "@/components/slides/SiteNavSlide";
 import { VisionSlide } from "@/components/slides/VisionSlide";
 import { FlywheelSlide } from "@/components/slides/FlywheelSlide";
-import { PillarsSlide } from "@/components/slides/PillarsSlide";
 import { ExpertsSlide } from "@/components/slides/ExpertsSlide";
 import { MarketplaceSlide } from "@/components/slides/MarketplaceSlide";
 import { CommunitySlide } from "@/components/slides/CommunitySlide";
@@ -16,9 +16,9 @@ import { RoadmapSlide } from "@/components/slides/RoadmapSlide";
 import { slides } from "@/lib/slides";
 
 const slideComponents = [
+  SiteNavSlide,
   VisionSlide,
   FlywheelSlide,
-  PillarsSlide,
   ExpertsSlide,
   MarketplaceSlide,
   CommunitySlide,

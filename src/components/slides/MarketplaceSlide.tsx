@@ -28,17 +28,24 @@ export function MarketplaceSlide() {
   return (
     <div className="flex min-h-[calc(100dvh-6rem)] flex-col justify-center py-8">
       {/* Header */}
-      <div className="text-center mb-6">
-        <span className="dust-badge mb-3">
-          <Blocks className="h-3.5 w-3.5 text-[#1C91FF]" />
-          Integrations Track
-        </span>
-        <h2 className="text-3xl sm:text-4xl font-medium tracking-tight">
+      <div className="text-center mb-4">
+        <div className="flex items-center justify-center gap-3 mb-2">
+          <span className="dust-badge">
+            <Blocks className="h-3.5 w-3.5 text-[#1C91FF]" />
+            dust.tt/apps
+          </span>
+          <span className="dust-badge">
+            <Plug className="h-3.5 w-3.5 text-[#8B5CF6]" />
+            dust.tt/integrations
+          </span>
+        </div>
+        <h2 className="text-2xl sm:text-3xl font-medium tracking-tight">
           <span className="gradient-text">App Marketplace</span>
         </h2>
-        <p className="mt-3 text-muted-foreground max-w-lg mx-auto">
-          From grassroots API builders to native integrations — a lego-like
-          ecosystem where everything connects.
+        <p className="mt-2 text-sm text-muted-foreground max-w-lg mx-auto">
+          Two PMM projects: the <span className="text-foreground font-medium">App Marketplace</span> (browse all) and
+          the <span className="text-foreground font-medium">Integrations page</span> (native connectors).
+          From grassroots API builders to first-party.
         </p>
       </div>
 

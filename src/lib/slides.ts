@@ -7,6 +7,12 @@ export interface SlideConfig {
 
 export const slides: SlideConfig[] = [
   {
+    id: "sitenav",
+    title: "Site Map",
+    subtitle: "The Ecosystem Blueprint",
+    icon: "LayoutGrid",
+  },
+  {
     id: "vision",
     title: "Vision",
     subtitle: "The Dust Partner Ecosystem",
@@ -19,15 +25,9 @@ export const slides: SlideConfig[] = [
     icon: "RefreshCcw",
   },
   {
-    id: "pillars",
-    title: "Pillars",
-    subtitle: "Three Ecosystem Tracks",
-    icon: "Layers",
-  },
-  {
     id: "experts",
     title: "Experts",
-    subtitle: "Service Partner Program",
+    subtitle: "Program & Directory",
     icon: "Award",
   },
   {
@@ -38,8 +38,8 @@ export const slides: SlideConfig[] = [
   },
   {
     id: "community",
-    title: "Community",
-    subtitle: "DevRel & User Stories",
+    title: "Templates",
+    subtitle: "UGC & Community",
     icon: "Users",
   },
   {
