@@ -66,4 +66,10 @@ export const slides: SlideConfig[] = [
     subtitle: "What Comes Next",
     icon: "Map",
   },
+  {
+    id: "anti-roadmap",
+    title: "Won't Do",
+    subtitle: "Strategic Discipline",
+    icon: "ShieldOff",
+  },
 ];

@@ -13,6 +13,7 @@ import { CommunitySlide } from "@/components/slides/CommunitySlide";
 import { ExecutionLoopSlide } from "@/components/slides/ExecutionLoopSlide";
 import { TeamSlide } from "@/components/slides/TeamSlide";
 import { RoadmapSlide } from "@/components/slides/RoadmapSlide";
+import { AntiRoadmapSlide } from "@/components/slides/AntiRoadmapSlide";
 import { slides } from "@/lib/slides";
 
 const slideComponents = [
@@ -26,6 +27,7 @@ const slideComponents = [
   ExecutionLoopSlide,
   TeamSlide,
   RoadmapSlide,
+  AntiRoadmapSlide,
 ];
 
 export default function Home() {

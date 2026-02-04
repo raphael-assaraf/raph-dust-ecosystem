@@ -11,6 +11,7 @@ import {
   Repeat,
   Building2,
   Map,
+  ShieldOff,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
@@ -28,6 +29,7 @@ const iconMap: Record<string, React.ElementType> = {
   Repeat,
   Building2,
   Map,
+  ShieldOff,
 };
 
 interface BottomNavProps {
