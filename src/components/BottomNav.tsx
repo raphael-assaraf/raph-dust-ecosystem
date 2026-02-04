@@ -39,18 +39,20 @@ interface BottomNavProps {
 
 export function BottomNav({ currentSlide, onNavigate }: BottomNavProps) {
   return (
-    <nav className="fixed bottom-3 left-4 right-4 z-50 mx-auto max-w-3xl rounded-2xl border border-border bg-background/90 backdrop-blur-md shadow-lg shadow-black/5">
-      {/* Progress bar */}
-      <div className="h-[2px] w-full bg-gray-100 rounded-t-2xl overflow-hidden">
+    <div className="fixed bottom-3 left-4 right-4 z-50 mx-auto max-w-3xl flex flex-col items-center gap-1.5">
+      {/* Progress bar — floating above the nav */}
+      <div className="h-[3px] w-3/4 bg-gray-100 rounded-full overflow-hidden">
         <div
-          className="h-full bg-dust-blue transition-all duration-500 ease-out"
+          className="h-full bg-dust-blue rounded-full transition-all duration-500 ease-out"
           style={{
             width: `${((currentSlide + 1) / slides.length) * 100}%`,
           }}
         />
       </div>
 
-      <div className="flex items-center justify-between px-2 py-1.5">
+      {/* Nav pill */}
+      <nav className="w-full rounded-2xl border border-border bg-background/90 backdrop-blur-md shadow-lg shadow-black/5">
+        <div className="flex items-center justify-between px-2 py-1.5">
         {/* Prev */}
         <button
           onClick={() => onNavigate(Math.max(0, currentSlide - 1))}
@@ -110,7 +112,8 @@ export function BottomNav({ currentSlide, onNavigate }: BottomNavProps) {
         >
           <ChevronRight className="h-4 w-4" />
         </button>
-      </div>
-    </nav>
+        </div>
+      </nav>
+    </div>
   );
 }
