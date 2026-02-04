@@ -71,8 +71,8 @@ export function CommunitySlide() {
             dust.tt/templates
           </span>
         </div>
-        <h2 className="text-2xl sm:text-3xl font-medium tracking-tight">
-          <span className="gradient-text">Templates, UGC</span> & Community
+        <h2 className="text-2xl sm:text-3xl font-mono font-medium tracking-tight">
+          <span className="kw-golden">Templates</span>, <span className="kw-red">UGC</span> & <span className="kw-blue">Community</span>
         </h2>
         <p className="mt-2 text-sm text-muted-foreground max-w-lg mx-auto">
           The connective tissue. Templates are the core — anyone can create, Dust can feature.

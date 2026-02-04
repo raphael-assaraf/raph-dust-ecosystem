@@ -9,7 +9,7 @@
   --color-separator: var(--separator);
   --color-highlight: var(--highlight);
 
-  /* Dust brand palette */
+  /* Dust brand palette — from Sparkle design system + dust.tt homepage */
   --color-dust-blue: #1C91FF;
   --color-dust-green: #418B5C;
   --color-dust-tea: #E2F78C;
@@ -18,6 +18,8 @@
   --color-dust-rose: #F2AD9F;
   --color-dust-golden: #FE9C1A;
   --color-dust-sunshine: #FFE262;
+  --color-dust-pink: #D97AB0;
+  --color-dust-olive: #A3B558;
 
   /* Gray scale from Sparkle */
   --color-gray-950: #111418;
@@ -126,7 +128,15 @@ body {
   border-radius: 2px;
 }
 
-/* ─── Gradient text ─── */
+/* ─── Keyword color accents (Lego / Dust brand feel) ─── */
+.kw-blue { color: #1C91FF; }
+.kw-green { color: #418B5C; }
+.kw-golden { color: #FE9C1A; }
+.kw-red { color: #E14322; }
+.kw-pink { color: #D97AB0; }
+.kw-olive { color: #A3B558; }
+
+/* Legacy — keep for any remaining usage */
 .gradient-text {
   background: linear-gradient(135deg, #1C91FF, #418B5C);
   -webkit-background-clip: text;

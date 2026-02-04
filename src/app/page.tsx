@@ -17,8 +17,8 @@ import { RoadmapSlide } from "@/components/slides/RoadmapSlide";
 import { slides } from "@/lib/slides";
 
 const slideComponents = [
-  SiteNavSlide,
   VisionSlide,
+  SiteNavSlide,
   FlywheelSlide,
   WhyExpertsSlide,
   ExpertsSlide,

@@ -121,8 +121,8 @@ export function SiteNavSlide() {
 
       {/* Caption */}
       <div className="text-center max-w-2xl mx-auto">
-        <h2 className="text-2xl sm:text-3xl font-medium tracking-tight mb-3">
-          The <span className="gradient-text">Ecosystem</span> Dust Will Build
+        <h2 className="text-2xl sm:text-3xl font-mono font-medium tracking-tight mb-3">
+          The <span className="kw-blue">Ecosystem</span> <span className="kw-golden">Dust</span> Will Build
         </h2>
         <p className="text-sm text-muted-foreground leading-relaxed mb-4">
           Inspired by how Clay, Notion, and Zapier organize their partner ecosystems —

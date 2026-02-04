@@ -81,8 +81,8 @@ export function EnterpriseSlide() {
           <Handshake className="h-3.5 w-3.5 text-[#FE9C1A]" />
           Strategic Track
         </span>
-        <h2 className="text-3xl sm:text-4xl font-medium tracking-tight">
-          <span className="gradient-text">Enterprise</span> Partnerships
+        <h2 className="text-3xl sm:text-4xl font-mono font-medium tracking-tight">
+          <span className="kw-golden">Enterprise</span> <span className="kw-green">Partnerships</span>
         </h2>
         <p className="mt-3 text-muted-foreground max-w-lg mx-auto">
           High-touch, leadership-initiated partnerships that require relationship

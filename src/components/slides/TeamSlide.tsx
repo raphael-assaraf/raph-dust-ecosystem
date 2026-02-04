@@ -87,8 +87,8 @@ export function TeamSlide() {
           <Building2 className="h-3.5 w-3.5" />
           Team Organization
         </span>
-        <h2 className="text-3xl sm:text-4xl font-medium tracking-tight">
-          <span className="gradient-text">Team</span> & Roles
+        <h2 className="text-3xl sm:text-4xl font-mono font-medium tracking-tight">
+          <span className="kw-blue">Team</span> & <span className="kw-green">Roles</span>
         </h2>
         <p className="mt-3 text-muted-foreground max-w-lg mx-auto">
           Reproducing the Dust team structure, centered on the partner ecosystem.

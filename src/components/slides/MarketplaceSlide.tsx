@@ -35,8 +35,8 @@ export function MarketplaceSlide() {
             dust.tt/integrations
           </span>
         </div>
-        <h2 className="text-2xl sm:text-3xl font-medium tracking-tight">
-          <span className="gradient-text">Integrations</span>
+        <h2 className="text-2xl sm:text-3xl font-mono font-medium tracking-tight">
+          <span className="kw-blue">Integrations</span>
         </h2>
         <p className="mt-2 text-sm text-muted-foreground max-w-lg mx-auto">
           One unified hub for native connectors, partner-built integrations, and community templates.

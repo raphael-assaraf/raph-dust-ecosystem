@@ -38,7 +38,7 @@ const tiers = [
 ];
 
 const mockPartners = [
-  { name: "Owkin", specialty: "Healthcare AI", tier: "Premier", location: "Paris" },
+  { name: "Kyma Consulting", specialty: "AI Strategy", tier: "Premier", location: "Paris" },
   { name: "Acme Consulting", specialty: "Enterprise Ops", tier: "Certified", location: "New York" },
   { name: "DataFlow Studio", specialty: "Data Engineering", tier: "Certified", location: "London" },
   { name: "NextWave AI", specialty: "Sales Automation", tier: "Premier", location: "San Francisco" },
@@ -63,8 +63,8 @@ export function ExpertsSlide() {
             dust.tt/partner
           </span>
         </div>
-        <h2 className="text-2xl sm:text-3xl font-medium tracking-tight">
-          <span className="gradient-text">Dust Experts</span> — Program & Directory
+        <h2 className="text-2xl sm:text-3xl font-mono font-medium tracking-tight">
+          <span className="kw-green">Dust Experts</span> — <span className="kw-blue">Program</span> & <span className="kw-golden">Directory</span>
         </h2>
         <p className="mt-2 text-sm text-muted-foreground max-w-lg mx-auto">
           Three PMM projects: the <span className="text-foreground font-medium">Expert directory</span> (find a partner),

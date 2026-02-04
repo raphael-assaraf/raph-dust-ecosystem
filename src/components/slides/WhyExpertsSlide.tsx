@@ -57,8 +57,8 @@ export function WhyExpertsSlide() {
     <div className="flex min-h-[calc(100dvh-6rem)] flex-col justify-center py-6">
       {/* Header */}
       <div className="text-center mb-5">
-        <h2 className="text-2xl sm:text-3xl font-medium tracking-tight">
-          Why Experts Will <span className="gradient-text">Work With Us</span>
+        <h2 className="text-2xl sm:text-3xl font-mono font-medium tracking-tight">
+          Why <span className="kw-golden">Experts</span> Will <span className="kw-blue">Work</span> With <span className="kw-pink">Us</span>
         </h2>
         <p className="mt-2 text-sm text-muted-foreground max-w-lg mx-auto">
           Three reinforcing reasons service partners will invest in Dust —

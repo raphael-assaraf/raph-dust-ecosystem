@@ -34,8 +34,8 @@ export function FlywheelSlide() {
     <div className="flex min-h-[calc(100dvh-6rem)] flex-col items-center justify-center py-6">
       {/* Header */}
       <div className="text-center mb-4">
-        <h2 className="text-2xl sm:text-3xl font-medium tracking-tight">
-          The <span className="gradient-text">Growth Flywheel</span>
+        <h2 className="text-2xl sm:text-3xl font-mono font-medium tracking-tight">
+          The <span className="kw-green">Growth</span> <span className="kw-golden">Flywheel</span>
         </h2>
         <p className="mt-2 text-sm text-muted-foreground max-w-md mx-auto">
           A self-reinforcing loop — like Zapier and Clay — but AI-native.

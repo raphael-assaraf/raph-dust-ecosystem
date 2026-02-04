@@ -78,8 +78,8 @@ export function ExecutionLoopSlide() {
           <Repeat className="h-3.5 w-3.5 text-[#1C91FF]" />
           Execution Loop
         </span>
-        <h2 className="text-3xl sm:text-4xl font-medium tracking-tight">
-          The Flywheel <span className="gradient-text">In Action</span>
+        <h2 className="text-3xl sm:text-4xl font-mono font-medium tracking-tight">
+          The <span className="kw-golden">Flywheel</span> <span className="kw-green">In Action</span>
         </h2>
         <p className="mt-3 text-muted-foreground max-w-lg mx-auto">
           A concrete example of how one partnership activates

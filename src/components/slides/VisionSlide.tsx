@@ -13,10 +13,10 @@ const previews = [
   },
   {
     icon: Blocks,
-    title: "App Marketplace",
-    desc: "Integrations, templates, and community-built agents — all in one place.",
+    title: "Integrations",
+    desc: "Native connectors, partner-built apps, and community templates — all in one place.",
     color: "bg-[#1C91FF]/10 text-[#1C91FF]",
-    mockLabel: "dust.tt/apps",
+    mockLabel: "dust.tt/integrations",
   },
   {
     icon: Users,
@@ -39,11 +39,11 @@ export function VisionSlide() {
       </div>
 
       {/* Title */}
-      <h1 className="text-center text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight leading-[1.1]">
+      <h1 className="text-center text-4xl sm:text-5xl md:text-6xl font-mono font-medium tracking-tight leading-[1.1]">
         The{" "}
-        <span className="gradient-text">Dust</span>
+        <span className="kw-pink">Dust</span>
         <br />
-        Partner Ecosystem
+        <span className="kw-blue">Partner</span> <span className="kw-green">Ecosystem</span>
       </h1>
 
       <p className="text-center mt-5 max-w-xl mx-auto text-lg text-muted-foreground leading-relaxed">

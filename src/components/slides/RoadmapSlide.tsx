@@ -66,8 +66,8 @@ export function RoadmapSlide() {
           <Map className="h-3.5 w-3.5" />
           What Comes Next
         </span>
-        <h2 className="text-3xl sm:text-4xl font-medium tracking-tight">
-          <span className="gradient-text">Roadmap</span>
+        <h2 className="text-3xl sm:text-4xl font-mono font-medium tracking-tight">
+          <span className="kw-blue">Road</span><span className="kw-golden">map</span>
         </h2>
         <p className="mt-3 text-muted-foreground max-w-lg mx-auto">
           Sequencing matters. Build the foundation, launch with early wins,

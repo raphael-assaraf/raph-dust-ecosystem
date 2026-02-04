@@ -7,16 +7,16 @@ export interface SlideConfig {
 
 export const slides: SlideConfig[] = [
   {
-    id: "sitenav",
-    title: "Site Map",
-    subtitle: "The Ecosystem Blueprint",
-    icon: "LayoutGrid",
-  },
-  {
     id: "vision",
     title: "Vision",
     subtitle: "The Dust Partner Ecosystem",
     icon: "Sparkles",
+  },
+  {
+    id: "sitenav",
+    title: "Site Map",
+    subtitle: "The Ecosystem Blueprint",
+    icon: "LayoutGrid",
   },
   {
     id: "flywheel",
