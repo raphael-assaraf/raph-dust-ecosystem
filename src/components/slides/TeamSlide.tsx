@@ -5,9 +5,9 @@ import {
   UserCircle,
   Wrench,
   Target,
-  Lightbulb,
   Megaphone,
   ArrowRight,
+  Handshake,
 } from "lucide-react";
 
 const roles = [
@@ -59,24 +59,39 @@ const roles = [
     ],
     note: "Leverages US marketing strength. Long-term: dedicated team.",
   },
-];
-
-const adjacentRoles = [
   {
-    icon: UserCircle,
-    title: "Your Role (Raphael)",
-    desc: "Strategic advisory — team design, program architecture, GTM sequencing, connecting the dots between all three pillars.",
-    color: "#1C91FF",
-    bg: "#E9F7FF",
-  },
-  {
-    icon: Lightbulb,
-    title: "Leadership / Sales BD",
-    desc: "Enterprise partnership initiation at leadership level. Wine & dine, strategic BD, then hand off to partner team.",
+    icon: Handshake,
+    title: "Strategic BD / Enterprise",
+    scope: "Wine & Dine",
     color: "#8B5CF6",
     bg: "#F3F0FF",
+    responsibilities: [
+      "Identify strategic partners (SaaS co-sell, SI, platform)",
+      "Executive-level relationship building & trust",
+      "Co-design joint roadmaps and GTM plans",
+      "Negotiate partnership frameworks & commitments",
+      "Initiate at leadership level, hand off to partner team",
+      "Cover three tracks: SaaS Co-Sell, SI/Consulting, Platform Ecosystem",
+    ],
+    note: "Enterprise partnerships are top-down but succeed when the partner team executes bottom-up.",
   },
 ];
+
+const raphaelRole = {
+  icon: UserCircle,
+  title: "Raphael",
+  color: "#1C91FF",
+  bg: "#E9F7FF",
+  strengths: [
+    "Ecosystem positioning & strategy (this doc)",
+    "Kick off key actions — website, tooling, programs",
+    "Define themes, sequencing & roadmap",
+    "Hunt partner apps & integrations (stronger on apps than service firms)",
+    "Product-oriented: templates, integration roadmap, customer interviews",
+    "Content writing & website co-design (e.g. co-design each section)",
+  ],
+  notStrong: "Field marketing (community meetups, local events)",
+};
 
 export function TeamSlide() {
   return (
@@ -140,27 +155,28 @@ export function TeamSlide() {
         })}
       </div>
 
-      {/* Adjacent roles */}
-      <div className="grid sm:grid-cols-2 gap-3">
-        {adjacentRoles.map((role) => {
-          const Icon = role.icon;
-          return (
-            <div key={role.title} className="dust-card-flat flex gap-3">
-              <div
-                className="flex h-8 w-8 items-center justify-center rounded-lg shrink-0"
-                style={{ background: role.bg }}
-              >
-                <Icon className="h-4 w-4" style={{ color: role.color }} />
+      {/* Raphael's role */}
+      <div className="dust-card-flat flex gap-3">
+        <div
+          className="flex h-8 w-8 items-center justify-center rounded-lg shrink-0"
+          style={{ background: raphaelRole.bg }}
+        >
+          <UserCircle className="h-4 w-4" style={{ color: raphaelRole.color }} />
+        </div>
+        <div className="flex-1">
+          <h4 className="font-medium text-sm">{raphaelRole.title}</h4>
+          <div className="grid sm:grid-cols-2 gap-x-4 gap-y-1 mt-2">
+            {raphaelRole.strengths.map((s) => (
+              <div key={s} className="flex items-start gap-1.5 text-xs text-muted-foreground">
+                <ArrowRight className="h-3 w-3 mt-0.5 shrink-0 text-dust-blue" />
+                {s}
               </div>
-              <div>
-                <h4 className="font-medium text-sm">{role.title}</h4>
-                <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
-                  {role.desc}
-                </p>
-              </div>
-            </div>
-          );
-        })}
+            ))}
+          </div>
+          <p className="text-[11px] text-muted-foreground/70 italic mt-2">
+            Not strongest at: {raphaelRole.notStrong}
+          </p>
+        </div>
       </div>
     </div>
   );

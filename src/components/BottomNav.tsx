@@ -10,7 +10,6 @@ import {
   Users,
   Repeat,
   Building2,
-  Handshake,
   Map,
   ChevronLeft,
   ChevronRight,
@@ -28,7 +27,6 @@ const iconMap: Record<string, React.ElementType> = {
   Users,
   Repeat,
   Building2,
-  Handshake,
   Map,
 };
 

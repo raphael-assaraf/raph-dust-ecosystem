@@ -61,12 +61,6 @@ export const slides: SlideConfig[] = [
     icon: "Building2",
   },
   {
-    id: "enterprise",
-    title: "Enterprise",
-    subtitle: "Strategic Partnerships",
-    icon: "Handshake",
-  },
-  {
     id: "roadmap",
     title: "Roadmap",
     subtitle: "What Comes Next",
