@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# Internal docs (SOW, partner data, etc.) — never commit
+Docs/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
