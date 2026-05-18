@@ -9,6 +9,8 @@ import {
   Lock,
   Sparkles,
 } from "lucide-react";
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata: Metadata = {
   title: "AI Sales Assistant for Attio | Dust",
@@ -53,40 +55,7 @@ const RELATED = [
 export default function AttioIntegrationPage() {
   return (
     <div className="h-dvh overflow-y-auto bg-background text-foreground">
-      {/* ─────────── Top nav ─────────── */}
-      <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
-        <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6">
-          <div className="flex items-center gap-8">
-            <Link href="/" className="font-mono text-base font-semibold tracking-tight">
-              Dust
-            </Link>
-            <nav className="hidden items-center gap-6 text-sm text-muted-foreground md:flex">
-              <a className="hover:text-foreground transition-colors" href="#">Product</a>
-              <a className="hover:text-foreground transition-colors" href="#">Solutions</a>
-              <a className="hover:text-foreground transition-colors" href="#">Resources</a>
-              <a className="hover:text-foreground transition-colors" href="#">Security</a>
-              <a className="hover:text-foreground transition-colors" href="#">Pricing</a>
-            </nav>
-          </div>
-          <div className="flex items-center gap-2">
-            <a className="hidden text-sm text-muted-foreground hover:text-foreground transition-colors md:inline-block" href="#">
-              Sign in
-            </a>
-            <a
-              className="hidden rounded-md border border-border px-3 py-1.5 text-sm font-medium text-foreground transition-colors hover:border-[color:var(--color-dust-blue)] sm:inline-block"
-              href="#"
-            >
-              Contact sales
-            </a>
-            <a
-              className="rounded-md bg-foreground px-3 py-1.5 text-sm font-medium text-background transition-opacity hover:opacity-90"
-              href="#"
-            >
-              Try for free
-            </a>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
 
       {/* ─────────── Hero ─────────── */}
       <section className="border-b border-border">
@@ -315,58 +284,7 @@ export default function AttioIntegrationPage() {
         </div>
       </section>
 
-      {/* ─────────── Footer ─────────── */}
-      <footer className="bg-background">
-        <div className="mx-auto max-w-7xl px-6 py-14">
-          <div className="grid gap-10 md:grid-cols-5">
-            <div className="md:col-span-1">
-              <div className="font-mono text-base font-semibold">Dust</div>
-              <p className="mt-2 text-xs text-muted-foreground">
-                AI agents for the enterprise.
-              </p>
-            </div>
-            {[
-              { title: "Product", items: ["Product", "Chrome Extension", "Pricing", "Security"] },
-              {
-                title: "Developers",
-                items: ["Developer Platform", "Dust for Engineers", "Platform Documentation", "Github Repo"],
-              },
-              {
-                title: "Company",
-                items: ["About Us", "Jobs", "Brand resources", "Support", "Become a Partner"],
-              },
-              {
-                title: "Connect",
-                items: ["Slack Community", "X", "LinkedIn", "YouTube"],
-              },
-            ].map((col) => (
-              <div key={col.title}>
-                <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                  {col.title}
-                </div>
-                <ul className="mt-4 space-y-2.5">
-                  {col.items.map((item) => (
-                    <li key={item}>
-                      <a className="text-sm text-foreground/80 hover:text-foreground transition-colors" href="#">
-                        {item}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-border pt-8 text-xs text-muted-foreground sm:flex-row sm:items-center">
-            <div>© Dust Tt SAS</div>
-            <div className="flex flex-wrap gap-x-6 gap-y-2">
-              <a href="#" className="hover:text-foreground transition-colors">Terms &amp; Policies</a>
-              <a href="#" className="hover:text-foreground transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-foreground transition-colors">Trust Center</a>
-              <a href="#" className="hover:text-foreground transition-colors">Vulnerability Disclosure</a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
