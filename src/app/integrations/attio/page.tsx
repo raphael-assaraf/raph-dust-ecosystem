@@ -148,15 +148,13 @@ export default function AttioIntegrationPage() {
       </section>
 
       {/* ─────────── Jobs to be done (3 use cases) ─────────── */}
-      <section className="relative overflow-hidden border-t border-border bg-blue-50/60 py-14 md:py-16">
+      <section className="relative overflow-hidden border-t border-border bg-muted/40 py-14 md:py-16">
         <DustDecoration position="top-left" />
         <DustDecoration position="bottom-right" />
         <div className="relative z-10 mx-auto max-w-5xl px-6">
-          <div className="mb-10 text-center">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-background px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-blue-600">
-              Use cases
-            </span>
-          </div>
+          <H2 className="mb-10 text-center text-2xl font-semibold text-foreground md:text-3xl">
+            What you can do with Attio
+          </H2>
 
           <UseCaseGrid
             useCases={[
@@ -189,11 +187,14 @@ export default function AttioIntegrationPage() {
         </div>
       </section>
 
-      {/* ─────────── Tools (Read & Search / Create & Update) ─────────── */}
+      {/* ─────────── Supported actions (technical reference) ─────────── */}
       <section className="py-12 md:py-16">
-        <H2 className="mb-8 text-center text-2xl font-semibold text-foreground md:text-3xl">
-          What you can do with Attio
+        <H2 className="mb-3 text-center text-2xl font-semibold text-foreground md:text-3xl">
+          Supported actions
         </H2>
+        <P size="sm" className="mb-8 text-center text-muted-foreground">
+          Every MCP tool Dust can call on Attio.
+        </P>
         <div className="mx-auto max-w-4xl px-6">
           <div className="grid gap-8 md:grid-cols-2">
             {/* Read Actions */}
