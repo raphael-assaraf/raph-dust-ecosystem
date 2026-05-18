@@ -7,7 +7,6 @@ import {
   Handshake,
   Crown,
   Sparkles,
-  Lightbulb,
   Info,
 } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -31,7 +30,6 @@ type Tier = {
   partnerGets: string[];
   dustGets: string;
   cadence: string;
-  ideas: string[];
 };
 
 const TIERS: Tier[] = [
@@ -51,14 +49,6 @@ const TIERS: Tier[] = [
     ],
     dustGets: "Marketplace breadth, devrel surface area, retention moat.",
     cadence: "Async / batched",
-    ideas: [
-      "Featured slot in a Raphael-recorded 2-min demo video (part of the 30-day MCP series)",
-      "Inclusion in a Dust-curated \"best of [category]\" round-up post",
-      "Co-branded starter frame — a Dust template that uses their MCP, distributed to all users",
-      "Logo placement on launch-day hero collateral or marketplace screenshots",
-      "Founder cameo / quote in a Dust product release note",
-      "Small Dust API credit grant for the partner's internal team to dogfood",
-    ],
   },
   {
     name: "Growth",
@@ -76,15 +66,6 @@ const TIERS: Tier[] = [
     ],
     dustGets: "Mutual deal flow + lightweight co-marketing + vertical market validation.",
     cadence: "Recurring check-ins (e.g. monthly)",
-    ideas: [
-      "A custom Dust skill built for the partner's workflow — one well-defined agent template that chains their tools end-to-end and ships in Dust",
-      "Co-authored playbook (e.g. \"How [partner]'s customers automate X with Dust\")",
-      "Live demo slot at a Dust customer webinar or community event",
-      "Founder ↔ founder content swap (interview, podcast, joint LinkedIn post)",
-      "Inclusion in Dust's vertical starter pack (\"if you're a fintech, start with these 5 integrations\")",
-      "Partner's employees get complimentary Dust Pro accounts (drives organic adoption)",
-      "Joint POC kicked off with a mutual high-priority prospect",
-    ],
   },
   {
     name: "Alliance",
@@ -102,16 +83,6 @@ const TIERS: Tier[] = [
     ],
     dustGets: "Predictable deal volume, named champion accounts, category presence.",
     cadence: "Monthly+ planning, quarterly QBR",
-    ideas: [
-      "Joint annual planning offsite",
-      "Embedded Dust SE working alongside the partner's enterprise team on select deals",
-      "Featured breakout session at the partner's annual user conference (and vice versa)",
-      "Custom partner-branded surface in Dust (e.g. dedicated landing or onboarding flow)",
-      "Joint research / industry white paper",
-      "Co-funded paid campaign budget for a target vertical or region",
-      "Joint customer council — a handful of mutual customers meeting regularly",
-      "Multi-quarter shared OKRs",
-    ],
   },
   {
     name: "Strategic",
@@ -129,15 +100,6 @@ const TIERS: Tier[] = [
     ],
     dustGets: "Category-defining partnership outcomes.",
     cadence: "Continuous",
-    ideas: [
-      "Equity or convertible commercial relationship",
-      "Co-developed new product surface (e.g. embedded Dust UI inside the partner's product, or vice versa)",
-      "Reseller or OEM arrangement",
-      "Exclusive period on a category of integrations",
-      "Co-funded dedicated engineering FTE",
-      "Joint go-to-market in a new geography",
-      "Executive cross-pollination (board observer, advisor swap)",
-    ],
   },
 ];
 
@@ -164,10 +126,10 @@ export default function PartnersPage() {
             <Sparkles className="h-3 w-3 text-[color:var(--color-dust-blue)]" />
             Dust Partner Program
           </span>
-          <h1 className="mt-6 font-mono text-4xl font-medium leading-tight tracking-tight sm:text-5xl">
-            Build, launch, and grow with <span className="kw-blue">Dust</span>
+          <h1 className="heading-mono-4xl sm:heading-mono-5xl mt-6">
+            Build, launch, and grow with Dust
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+          <p className="copy-lg mx-auto mt-6 max-w-2xl text-muted-foreground">
             Any tool with an MCP server can become a one-click Dust integration. Get discovered by
             thousands of agent users — and grow into a deeper relationship as your traction proves out.
           </p>
@@ -191,8 +153,8 @@ export default function PartnersPage() {
             { stat: "4 tiers", label: "Clear graduation path with shared upside" },
           ].map((s) => (
             <div key={s.label} className="text-center">
-              <div className="font-mono text-3xl font-medium text-foreground">{s.stat}</div>
-              <div className="mt-2 text-sm text-muted-foreground">{s.label}</div>
+              <div className="heading-mono-3xl text-foreground">{s.stat}</div>
+              <div className="copy-sm mt-2 text-muted-foreground">{s.label}</div>
             </div>
           ))}
         </div>
@@ -201,11 +163,9 @@ export default function PartnersPage() {
       {/* ─────────── The four tiers ─────────── */}
       <section className="border-b border-border">
         <div className="mx-auto max-w-5xl px-6 py-20">
-          <div className="mb-12 max-w-3xl">
-            <h2 className="font-mono text-3xl font-medium tracking-tight">
-              Four tiers. <span className="kw-blue">One path.</span>
-            </h2>
-            <p className="mt-3 text-base text-muted-foreground">
+          <div className="mb-12 max-w-3xl text-center mx-auto">
+            <h2 className="heading-mono-3xl">Four tiers. One path.</h2>
+            <p className="copy-base mt-4 text-muted-foreground">
               Every partner starts in Community. The deeper your traction with Dust customers,
               the more we invest in your growth — together.
             </p>
@@ -227,10 +187,10 @@ export default function PartnersPage() {
                       <div className="mt-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
                         Tier {i + 1}
                       </div>
-                      <h3 className="mt-1 font-mono text-xl font-medium" style={{ color: t.accent }}>
+                      <h3 className="heading-mono-xl mt-1" style={{ color: t.accent }}>
                         {t.name}
                       </h3>
-                      <p className="mt-1.5 text-sm text-muted-foreground">{t.tagline}</p>
+                      <p className="copy-sm mt-1.5 text-muted-foreground">{t.tagline}</p>
                     </div>
 
                     <div className="grid gap-5 md:grid-cols-2">
@@ -271,28 +231,6 @@ export default function PartnersPage() {
                     </div>
                   </div>
 
-                  {/* Ideas to explore */}
-                  <div
-                    className="mt-6 rounded-xl border border-dashed border-border bg-muted/40 p-5"
-                  >
-                    <div className="flex items-center gap-2">
-                      <Lightbulb className="h-4 w-4" style={{ color: t.accent }} />
-                      <h4 className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                        Ideas to explore — open for brainstorm
-                      </h4>
-                    </div>
-                    <ul className="mt-3 grid gap-1.5 sm:grid-cols-2">
-                      {t.ideas.map((idea) => (
-                        <li key={idea} className="flex gap-2 text-sm text-foreground/80">
-                          <span
-                            className="mt-2 h-1 w-1 shrink-0 rounded-full"
-                            style={{ background: t.accent }}
-                          />
-                          <span>{idea}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
                 </div>
               );
             })}
@@ -303,11 +241,9 @@ export default function PartnersPage() {
       {/* ─────────── How it works ─────────── */}
       <section id="how-it-works" className="border-b border-border bg-muted/40">
         <div className="mx-auto max-w-5xl px-6 py-20">
-          <div className="mb-12 max-w-3xl">
-            <h2 className="font-mono text-3xl font-medium tracking-tight">
-              How it works
-            </h2>
-            <p className="mt-3 text-base text-muted-foreground">
+          <div className="mb-12 max-w-3xl text-center mx-auto">
+            <h2 className="heading-mono-3xl">How it works</h2>
+            <p className="copy-base mt-4 text-muted-foreground">
               From submission to a featured launch — typically 1 to 3 weeks.
             </p>
           </div>
@@ -337,15 +273,15 @@ export default function PartnersPage() {
             ].map((s) => (
               <div key={s.step} className="dust-card-flat">
                 <div className="font-mono text-xs text-muted-foreground">{s.step}</div>
-                <h3 className="mt-2 font-medium text-base">{s.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+                <h3 className="heading-base mt-2">{s.title}</h3>
+                <p className="copy-sm mt-2 text-muted-foreground">{s.desc}</p>
               </div>
             ))}
           </div>
 
           <div className="mt-10 rounded-2xl border border-border bg-background p-6">
-            <h4 className="font-medium text-sm">A note on how we invest engineering time</h4>
-            <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+            <h4 className="heading-base">A note on how we invest engineering time</h4>
+            <p className="copy-sm mt-2 text-muted-foreground">
               When Dust invests in building an MCP wrapper on behalf of a partner, we bump them
               into the <span className="text-foreground">Alliance</span> tier for a defined period
               — the GTM investment matches the engineering one. Where engineering effort is one-off,
@@ -360,10 +296,10 @@ export default function PartnersPage() {
       <section className="border-b border-border">
         <div className="mx-auto max-w-5xl px-6 py-20">
           <div className="rounded-3xl border border-border bg-muted px-8 py-14 text-center">
-            <h2 className="font-mono text-3xl font-medium tracking-tight sm:text-4xl">
+            <h2 className="heading-mono-3xl sm:heading-mono-4xl">
               Ready to be discovered by agent users?
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-base text-muted-foreground">
+            <p className="copy-lg mx-auto mt-4 max-w-xl text-muted-foreground">
               Submit your MCP server and we'll take it from there.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -374,7 +310,7 @@ export default function PartnersPage() {
                 Talk to the partner team
               </Button>
             </div>
-            <p className="mt-5 text-xs text-muted-foreground">
+            <p className="copy-xs mt-5 text-muted-foreground">
               Most partners hear back within 3 business days.
             </p>
           </div>
