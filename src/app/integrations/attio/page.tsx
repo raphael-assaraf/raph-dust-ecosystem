@@ -13,7 +13,7 @@ import {
   BarChartIcon,
 } from "@/components/icons";
 import { FinalCTASection } from "@/components/FinalCTASection";
-import { AgentChatMockup, Citation, UseCaseGrid } from "@/components/marketing";
+import { AgentChatMockup, Citation, UseCaseGrid, DustDecoration } from "@/components/marketing";
 import {
   AttioLogo,
   HubspotLogo,
@@ -148,16 +148,14 @@ export default function AttioIntegrationPage() {
       </section>
 
       {/* ─────────── Jobs to be done (3 use cases) ─────────── */}
-      <section className="border-t border-border bg-muted/40 py-16 md:py-20">
-        <div className="mx-auto max-w-5xl px-6">
-          <div className="mx-auto mb-12 max-w-2xl text-center">
-            <H2 className="text-center text-2xl font-semibold text-foreground md:text-3xl">
-              What sales teams ask Dust to do with Attio
-            </H2>
-            <P size="sm" className="mt-3 text-muted-foreground">
-              Three workflows your team can run from a single prompt — no clicking through tabs,
-              no copy-pasting between tools.
-            </P>
+      <section className="relative overflow-hidden border-t border-border bg-blue-50/60 py-14 md:py-16">
+        <DustDecoration position="top-left" />
+        <DustDecoration position="bottom-right" />
+        <div className="relative z-10 mx-auto max-w-5xl px-6">
+          <div className="mb-10 text-center">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-background px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-blue-600">
+              Use cases
+            </span>
           </div>
 
           <UseCaseGrid
@@ -167,23 +165,23 @@ export default function AttioIntegrationPage() {
                 color: "blue",
                 title: "Pre-call account snapshot",
                 description:
-                  "Get a 360° view of any account in seconds — records, notes, recent calls, emails, and meetings, summarized for your next conversation.",
-                tools: ["search-records", "semantic-search-notes", "get-call-recording"],
+                  "Before a call, get a 360° view of any account in one prompt — records, recent notes, meetings, calls, and emails, summarized.",
+                tools: ["search-records", "semantic-search-notes", "search-meetings", "semantic-search-emails"],
               },
               {
                 icon: PencilSquareIcon,
                 color: "green",
-                title: "Capture activity automatically",
+                title: "Turn meeting notes into action",
                 description:
-                  "After a meeting, ask Dust to log the call notes, create a follow-up task series, and update record fields — in one prompt.",
+                  "Drop your raw notes into Dust and it writes them into Attio, creates follow-up tasks, and updates the deal's fields.",
                 tools: ["create-note", "create-task", "upsert-record"],
               },
               {
                 icon: BarChartIcon,
                 color: "golden",
-                title: "Pipeline pulse & deal recap",
+                title: "Weekly pipeline recap",
                 description:
-                  "Summarize won/lost deals, surface stalled accounts, and get the 'what changed this week' recap your team actually reads.",
+                  "Ask Dust what closed, what's stalled, and what shifted this week — get the recap your team actually reads.",
                 tools: ["search-records", "list-attribute-definitions"],
               },
             ]}
