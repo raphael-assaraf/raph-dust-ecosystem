@@ -5,8 +5,15 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Button } from "@/components/ui";
 import { H1, H2, P } from "@/components/content";
-import { RocketIcon, ExternalLinkIcon } from "@/components/icons";
+import {
+  RocketIcon,
+  ExternalLinkIcon,
+  EyeIcon,
+  PencilSquareIcon,
+  BarChartIcon,
+} from "@/components/icons";
 import { FinalCTASection } from "@/components/FinalCTASection";
+import { AgentChatMockup, Citation, UseCaseGrid } from "@/components/marketing";
 import {
   AttioLogo,
   HubspotLogo,
@@ -91,6 +98,96 @@ export default function AttioIntegrationPage() {
               View documentation
             </Button>
           </div>
+        </div>
+      </section>
+
+      {/* ─────────── Live demo (chat mockup) ─────────── */}
+      <section className="bg-background pb-12 md:pb-16">
+        <div className="mx-auto max-w-3xl px-6">
+          <AgentChatMockup
+            partner={{ name: "Attio", logo: AttioLogo, logoTint: "text-foreground" }}
+            userPrompt="Give me a recap of our sales performance last week."
+            toolCalls={[
+              "search-records",
+              "semantic-search-notes",
+              "semantic-search-call-recordings",
+              "search-meetings",
+            ]}
+            completedInSeconds={14}
+            agentResponse={
+              <>
+                <p>Here&apos;s your sales recap for the past 7 days:</p>
+                <div>
+                  <p className="font-semibold text-foreground">New deals closed (3)</p>
+                  <ul className="mt-1 list-disc space-y-1 pl-5 text-foreground/70">
+                    <li>
+                      Acme Corp — $42K Series A, signed Friday <Citation>1</Citation>
+                    </li>
+                    <li>
+                      Northwind — $18K renewal closed Tuesday <Citation>2</Citation>
+                    </li>
+                    <li>
+                      Globex — $24K expansion, multi-year <Citation>3</Citation>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <p className="font-semibold text-foreground">Stalled accounts (2)</p>
+                  <ul className="mt-1 list-disc space-y-1 pl-5 text-foreground/70">
+                    <li>Pied Piper — no contact in 14 days</li>
+                    <li>Initech — final approval pending since Monday</li>
+                  </ul>
+                </div>
+                <p className="text-foreground/70">
+                  Want me to draft follow-up tasks for the stalled accounts?
+                </p>
+              </>
+            }
+          />
+        </div>
+      </section>
+
+      {/* ─────────── Jobs to be done (3 use cases) ─────────── */}
+      <section className="border-t border-border bg-muted/40 py-16 md:py-20">
+        <div className="mx-auto max-w-5xl px-6">
+          <div className="mx-auto mb-12 max-w-2xl text-center">
+            <H2 className="text-center text-2xl font-semibold text-foreground md:text-3xl">
+              What sales teams ask Dust to do with Attio
+            </H2>
+            <P size="sm" className="mt-3 text-muted-foreground">
+              Three workflows your team can run from a single prompt — no clicking through tabs,
+              no copy-pasting between tools.
+            </P>
+          </div>
+
+          <UseCaseGrid
+            useCases={[
+              {
+                icon: EyeIcon,
+                color: "blue",
+                title: "Pre-call account snapshot",
+                description:
+                  "Get a 360° view of any account in seconds — records, notes, recent calls, emails, and meetings, summarized for your next conversation.",
+                tools: ["search-records", "semantic-search-notes", "get-call-recording"],
+              },
+              {
+                icon: PencilSquareIcon,
+                color: "green",
+                title: "Capture activity automatically",
+                description:
+                  "After a meeting, ask Dust to log the call notes, create a follow-up task series, and update record fields — in one prompt.",
+                tools: ["create-note", "create-task", "upsert-record"],
+              },
+              {
+                icon: BarChartIcon,
+                color: "golden",
+                title: "Pipeline pulse & deal recap",
+                description:
+                  "Summarize won/lost deals, surface stalled accounts, and get the 'what changed this week' recap your team actually reads.",
+                tools: ["search-records", "list-attribute-definitions"],
+              },
+            ]}
+          />
         </div>
       </section>
 
