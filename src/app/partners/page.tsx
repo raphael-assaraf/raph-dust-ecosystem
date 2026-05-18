@@ -68,7 +68,7 @@ const TIERS: Tier[] = [
       "Warm rep-to-rep intros on shared deals when relevant",
     ],
     dustGets: "Mutual deal flow + lightweight co-marketing + vertical market validation.",
-    cadence: "Recurring check-ins (e.g. monthly)",
+    cadence: "Async recap & feedback to evolve the partnership",
   },
   {
     name: "Alliance",

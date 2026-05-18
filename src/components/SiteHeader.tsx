@@ -9,15 +9,17 @@ import { ChevronDownIcon } from "@/components/icons";
 import { cn } from "@/lib/utils";
 
 /*
- * Header matching dust.tt's MainNavigation pattern:
- * - At rest: h-24 (96px) with the big colorful DustLogo (h-8)
- * - On scroll (>12px): shrinks to h-16, gains border + backdrop blur
- * - Desktop: dropdown menus on hover for Product / Solutions / Resources
- * - Right side: Sign in / Contact sales / Try for free (blue highlight)
+ * Header — 1:1 with dust.tt's LandingLayout composition of
+ * ScrollingHeader + MainNavigation.
  *
- * Adapted from dust-main/front/components/home/menu/MainNavigation.tsx +
- * dust-main/front/components/home/ScrollingHeader.tsx, simplified for our
- * mockup site (one shared header for all routes).
+ * Confirmed by reading dust-main/front/components/home/LandingLayout.tsx:
+ * - Header is h-24 at rest, h-16 on scroll (>12px), gains backdrop blur
+ * - Logo is exactly h-[24px] w-[96px] (the wordmark viewBox 1:1) on desktop
+ * - Inner container: `flex h-full w-full items-center gap-4 px-6 xl:gap-10`
+ * - Right side: Sign in (text), Try for free (outline), Contact sales (highlight)
+ *
+ * On scroll the logo doesn't shrink in dust.tt's implementation — only the
+ * container height changes. Logo stays at 24px.
  */
 
 const SCROLL_THRESHOLD_PX = 12;
@@ -100,105 +102,110 @@ export function SiteHeader() {
           : "h-24 border-transparent bg-background"
       )}
     >
-      <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-6">
-        {/* Logo + main nav */}
-        <div className="flex items-center gap-8">
-          <Link href="/" aria-label="Dust home" className="block shrink-0">
-            <DustLogo
-              className={cn(
-                "w-auto transition-[height] duration-200",
-                isScrolled ? "h-6" : "h-8"
-              )}
-            />
-          </Link>
-          <nav
-            aria-label="Main"
-            className="relative z-10 hidden items-center gap-1 xl:flex"
-          >
-            {MAIN_NAV.map((item) => {
-              if (item.href) {
-                return (
-                  <Link
-                    key={item.title}
-                    href={item.href}
-                    className="inline-flex h-9 items-center px-4 text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
-                  >
-                    {item.title}
-                  </Link>
-                );
-              }
-              const isOpen = openId === item.title;
+      <div className="flex h-full w-full items-center gap-4 px-6 xl:gap-10">
+        {/* Desktop logo — exact dust.tt sizing */}
+        <Link
+          href="/"
+          aria-label="Dust home"
+          className="hidden h-[24px] w-[96px] shrink-0 xl:block"
+        >
+          <DustLogo className="h-full w-full" />
+        </Link>
+        {/* Mobile logo */}
+        <Link
+          href="/"
+          aria-label="Dust home"
+          className="block h-[24px] w-[96px] shrink-0 xl:hidden"
+        >
+          <DustLogo className="h-full w-full" />
+        </Link>
+
+        {/* Main nav with dropdowns */}
+        <nav
+          aria-label="Main"
+          className="relative z-10 hidden items-center gap-1 xl:flex"
+        >
+          {MAIN_NAV.map((item) => {
+            if (item.href) {
               return (
-                <div
+                <Link
                   key={item.title}
-                  className="relative"
-                  onMouseEnter={() => setOpenId(item.title)}
-                  onMouseLeave={() => setOpenId(null)}
+                  href={item.href}
+                  className="inline-flex h-9 items-center px-4 text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
                 >
-                  <button
-                    type="button"
-                    aria-expanded={isOpen}
-                    aria-haspopup="true"
-                    className="inline-flex h-9 items-center gap-1 px-4 text-sm font-medium text-foreground/70 transition-colors hover:text-foreground focus:outline-none"
-                  >
-                    {item.title}
-                    <ChevronDownIcon
-                      className={cn(
-                        "mt-px h-3 w-3 opacity-40 transition-transform duration-200",
-                        isOpen ? "rotate-180" : "rotate-0"
-                      )}
-                      aria-hidden="true"
-                    />
-                  </button>
-                  <div
-                    role="menu"
-                    aria-label={item.title}
+                  {item.title}
+                </Link>
+              );
+            }
+            const isOpen = openId === item.title;
+            return (
+              <div
+                key={item.title}
+                className="relative"
+                onMouseEnter={() => setOpenId(item.title)}
+                onMouseLeave={() => setOpenId(null)}
+              >
+                <button
+                  type="button"
+                  aria-expanded={isOpen}
+                  aria-haspopup="true"
+                  className="inline-flex h-9 items-center gap-1 px-4 text-sm font-medium text-foreground/70 transition-colors hover:text-foreground focus:outline-none"
+                >
+                  {item.title}
+                  <ChevronDownIcon
                     className={cn(
-                      "absolute left-0 top-full origin-top pt-2 transition-[opacity,transform] duration-200 ease-out",
-                      isOpen
-                        ? "pointer-events-auto translate-y-0 scale-100 opacity-100"
-                        : "pointer-events-none -translate-y-1 scale-[0.97] opacity-0"
+                      "mt-px h-3 w-3 opacity-40 transition-transform duration-200",
+                      isOpen ? "rotate-180" : "rotate-0"
                     )}
-                  >
-                    <div className="flex min-w-[180px] flex-col gap-3 rounded-2xl border border-border/60 bg-background p-5 shadow-[0_2px_6px_rgba(0,0,0,0.02),0_8px_24px_rgba(0,0,0,0.04),0_24px_48px_rgba(0,0,0,0.03)]">
-                      <ul
-                        className={cn(
-                          "grid grid-flow-col gap-x-10 gap-y-2",
-                          item.rows ? `grid-rows-${item.rows}` : "grid-rows-3"
-                        )}
-                      >
-                        {item.items?.map((sub, i) => (
-                          <DropdownItem
-                            key={sub.title || `spacer-${i}`}
-                            title={sub.title}
-                            href={sub.href}
-                            isColumnStart={
-                              item.rows ? i % item.rows === 0 : i === 0
-                            }
-                          />
-                        ))}
-                      </ul>
-                    </div>
+                    aria-hidden="true"
+                  />
+                </button>
+                <div
+                  role="menu"
+                  aria-label={item.title}
+                  className={cn(
+                    "absolute left-0 top-full origin-top pt-2 transition-[opacity,transform] duration-200 ease-out",
+                    isOpen
+                      ? "pointer-events-auto translate-y-0 scale-100 opacity-100"
+                      : "pointer-events-none -translate-y-1 scale-[0.97] opacity-0"
+                  )}
+                >
+                  <div className="flex min-w-[180px] flex-col gap-3 rounded-2xl border border-border/60 bg-background p-5 shadow-[0_2px_6px_rgba(0,0,0,0.02),0_8px_24px_rgba(0,0,0,0.04),0_24px_48px_rgba(0,0,0,0.03)]">
+                    <ul
+                      className={cn(
+                        "grid grid-flow-col gap-x-10 gap-y-2",
+                        item.rows ? `grid-rows-${item.rows}` : "grid-rows-3"
+                      )}
+                    >
+                      {item.items?.map((sub, i) => (
+                        <DropdownItem
+                          key={sub.title || `spacer-${i}`}
+                          title={sub.title}
+                          href={sub.href}
+                          isColumnStart={item.rows ? i % item.rows === 0 : i === 0}
+                        />
+                      ))}
+                    </ul>
                   </div>
                 </div>
-              );
-            })}
-          </nav>
-        </div>
+              </div>
+            );
+          })}
+        </nav>
 
-        {/* Right side CTAs */}
-        <div className="flex items-center gap-2">
+        {/* Right side CTAs — order + variants now match dust.tt */}
+        <div className="flex flex-grow items-center justify-end gap-4">
           <a
-            className="hidden text-sm text-muted-foreground transition-colors hover:text-foreground md:inline-block"
+            className="hidden h-9 items-center justify-center rounded-md text-base font-medium text-foreground/70 transition-colors hover:text-foreground hover:underline hover:underline-offset-4 xl:inline-flex"
             href="#"
           >
             Sign in
           </a>
-          <Button href="#" variant="outline" size="xs" className="hidden sm:inline-flex">
-            Contact sales
-          </Button>
-          <Button href="#" variant="highlight" size="xs">
+          <Button href="#" variant="outline" size="sm">
             Try for free
+          </Button>
+          <Button href="#" variant="highlight" size="sm" className="hidden xs:inline-flex">
+            Contact sales
           </Button>
         </div>
       </div>
