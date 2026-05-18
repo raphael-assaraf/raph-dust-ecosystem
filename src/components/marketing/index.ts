@@ -8,3 +8,4 @@ export { ScrollProgressText } from "./ScrollProgressText";
 export { AgentChatMockup, Citation, type AgentChatMockupProps } from "./AgentChatMockup";
 export { UseCaseGrid, type UseCase } from "./UseCaseGrid";
 export { DustDecoration } from "./DustDecoration";
+export { MarketplaceHero } from "./MarketplaceHero";
