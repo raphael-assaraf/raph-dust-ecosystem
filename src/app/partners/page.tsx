@@ -8,12 +8,13 @@ import {
   Crown,
   Sparkles,
   Info,
-  Rocket,
 } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Button } from "@/components/ui";
 import { H1, H2, P, FullWidthSection } from "@/components/content";
+import { RocketIcon } from "@/components/icons";
+import { FinalCTASection } from "@/components/FinalCTASection";
 
 export const metadata: Metadata = {
   title: "Partner Program | Dust",
@@ -140,7 +141,7 @@ export default function PartnersPage() {
             out.
           </P>
           <div className="flex flex-col gap-4 sm:flex-row">
-            <Button href="/partners/register" variant="highlight" size="md" icon={Rocket}>
+            <Button href="/partners/register" variant="highlight" size="md" icon={RocketIcon}>
               Apply now
             </Button>
             <Button href="#how-it-works" variant="outline" size="md">
@@ -304,28 +305,16 @@ export default function PartnersPage() {
         </div>
       </FullWidthSection>
 
-      {/* ─────────── Final CTA (full-bleed blue band, matches dust.tt) ─────────── */}
-      <FullWidthSection className="bg-blue-50 py-12 md:py-16">
-        <div className="mx-auto max-w-3xl px-6 py-16 text-center md:py-20">
-          <H2 className="mb-4 text-center text-3xl font-semibold text-foreground md:text-4xl lg:text-5xl">
-            Ready to be discovered by agent users?
-          </H2>
-          <P size="lg" className="mb-8 text-muted-foreground">
-            Submit your MCP server and we&apos;ll take it from there.
-          </P>
-          <div className="mb-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button href="/partners/register" variant="highlight" size="md" icon={Rocket}>
-              Apply now
-            </Button>
-            <Button href="mailto:partners@dust.tt" variant="outline" size="md">
-              Talk to the partner team
-            </Button>
-          </div>
-          <P size="xs" className="text-muted-foreground">
-            Most partners hear back within 3 business days.
-          </P>
-        </div>
-      </FullWidthSection>
+      {/* ─────────── Final CTA (shared component, mirrors dust.tt) ─────────── */}
+      <FinalCTASection
+        config={{
+          title: "Ready to be discovered by agent users?",
+          subtitle: "Submit your MCP server and we'll take it from there.",
+          primaryCTA: { label: "Apply now", href: "/partners/register" },
+          secondaryCTA: { label: "Talk to the partner team", href: "mailto:partners@dust.tt" },
+          trustText: "Most partners hear back within 3 business days.",
+        }}
+      />
 
       <SiteFooter />
     </div>

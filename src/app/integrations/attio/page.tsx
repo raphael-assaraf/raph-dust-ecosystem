@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, ExternalLink, Rocket, BookOpen, Plus } from "lucide-react";
+import { ArrowRight, BookOpen, Plus } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Button } from "@/components/ui";
-import { H1, H2, P, FullWidthSection } from "@/components/content";
+import { H1, H2, P } from "@/components/content";
+import { RocketIcon, ExternalLinkIcon } from "@/components/icons";
+import { FinalCTASection } from "@/components/FinalCTASection";
 import {
   AttioLogo,
   HubspotLogo,
@@ -82,10 +84,10 @@ export default function AttioIntegrationPage() {
           </P>
 
           <div className="flex flex-col gap-4 sm:flex-row">
-            <Button href="#" variant="highlight" size="md" icon={Rocket}>
+            <Button href="#" variant="highlight" size="md" icon={RocketIcon}>
               Get started with Dust
             </Button>
-            <Button href="#" variant="outline" size="md" icon={ExternalLink}>
+            <Button href="#" variant="outline" size="md" icon={ExternalLinkIcon}>
               View documentation
             </Button>
           </div>
@@ -185,28 +187,16 @@ export default function AttioIntegrationPage() {
         </div>
       </section>
 
-      {/* ─────────── Final CTA (full-bleed, blue band — matches dust.tt FinalCTASection) ─────────── */}
-      <FullWidthSection className="bg-blue-50 py-12 md:py-16">
-        <div className="mx-auto max-w-3xl px-6 py-16 text-center md:py-20">
-          <H2 className="mb-4 text-center text-3xl font-semibold text-foreground md:text-4xl lg:text-5xl">
-            Get started with Attio
-          </H2>
-          <P size="lg" className="mb-8 text-muted-foreground">
-            Connect Attio to Dust and let AI agents handle your workflows.
-          </P>
-          <div className="mb-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button href="#" variant="highlight" size="md" icon={Rocket}>
-              Start free trial
-            </Button>
-            <Button href="#" variant="outline" size="md">
-              Talk to sales
-            </Button>
-          </div>
-          <P size="xs" className="text-muted-foreground">
-            14-day free trial. No credit card required.
-          </P>
-        </div>
-      </FullWidthSection>
+      {/* ─────────── Final CTA (shared component, mirrors dust.tt) ─────────── */}
+      <FinalCTASection
+        config={{
+          title: "Get started with Attio",
+          subtitle: "Connect Attio to Dust and let AI agents handle your workflows.",
+          primaryCTA: { label: "Start free trial", href: "#" },
+          secondaryCTA: { label: "Talk to sales", href: "#" },
+          trustText: "14-day free trial. No credit card required.",
+        }}
+      />
 
       <SiteFooter />
     </div>
