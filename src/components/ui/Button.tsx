@@ -4,8 +4,15 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 /*
- * Modeled after Sparkle's Button, simplified for our marketing-site mockup.
- * No Radix Slot, no spinner/tooltip/counter, no dark mode.
+ * Button — modeled after Sparkle's Button, simplified for our marketing-site mockup.
+ *
+ * Defaults are tuned to dust.tt's marketing pages:
+ * - `variant` defaults to "highlight" (blue) — this is what every primary
+ *   CTA on dust.tt uses, NOT the dark "primary" variant Sparkle reserves for
+ *   in-product UI.
+ * - `size="md"` is the marketing-page default (h-12, px-4, rounded-2xl).
+ * - Rounding is derived from size (xs → rounded-lg, sm → rounded-xl,
+ *   md → rounded-2xl) matching Sparkle, unless `isRounded` is true (pill).
  */
 const buttonVariants = cva(
   cn(
@@ -16,10 +23,12 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: "bg-foreground text-background hover:opacity-90 border border-transparent",
-        highlight: "bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700 border border-transparent",
+        highlight:
+          "bg-blue-500 text-blue-50 hover:bg-blue-400 active:bg-blue-600 border border-transparent",
         "highlight-secondary":
-          "border border-border bg-background text-blue-600 hover:bg-blue-50 hover:border-blue-200",
+          "border border-border bg-background text-blue-500 hover:bg-blue-50 hover:border-blue-200",
+        primary:
+          "bg-gray-800 text-gray-50 hover:bg-gray-700 active:bg-gray-900 border border-transparent",
         outline:
           "border border-border bg-background text-foreground hover:bg-gray-50 hover:border-gray-200",
         ghost:
@@ -28,20 +37,14 @@ const buttonVariants = cva(
           "border border-transparent text-muted-foreground hover:bg-gray-100 hover:text-foreground",
       },
       size: {
-        xs: "h-7 px-2.5 gap-1.5 text-xs font-medium",
-        sm: "h-9 px-3 gap-2 text-sm font-medium",
-        md: "h-12 px-4 py-2 gap-2.5 text-base font-medium",
-      },
-      rounded: {
-        sm: "rounded-xl",
-        md: "rounded-2xl",
-        full: "rounded-full",
+        xs: "h-7 px-2.5 gap-1.5 text-xs font-semibold rounded-lg",
+        sm: "h-9 px-3 gap-2 text-sm font-semibold rounded-xl",
+        md: "h-12 px-4 py-2 gap-2.5 text-base font-semibold rounded-2xl",
       },
     },
     defaultVariants: {
-      variant: "primary",
-      size: "sm",
-      rounded: "sm",
+      variant: "highlight",
+      size: "md",
     },
   }
 );
@@ -53,6 +56,7 @@ interface BaseButtonProps extends VariantProps<typeof buttonVariants> {
   icon?: IconType;
   iconRight?: IconType;
   className?: string;
+  isRounded?: boolean;
 }
 
 interface ButtonAsButton
@@ -81,7 +85,7 @@ function renderIcon(icon: IconType, className: string) {
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ label, icon, iconRight, variant, size, rounded, className, children, ...props }, ref) => {
+  ({ label, icon, iconRight, variant, size, className, isRounded, children, ...props }, ref) => {
     const content = (
       <>
         {icon && renderIcon(icon, "")}
@@ -90,15 +94,16 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       </>
     );
 
+    const classes = cn(
+      buttonVariants({ variant, size }),
+      isRounded && "rounded-full",
+      className
+    );
+
     if ("href" in props && props.href) {
       const { href, target, rel } = props;
       return (
-        <Link
-          href={href}
-          target={target}
-          rel={rel}
-          className={cn(buttonVariants({ variant, size, rounded }), className)}
-        >
+        <Link href={href} target={target} rel={rel} className={classes}>
           {content}
         </Link>
       );
@@ -107,7 +112,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         ref={ref}
-        className={cn(buttonVariants({ variant, size, rounded }), className)}
+        className={classes}
         {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
       >
         {content}

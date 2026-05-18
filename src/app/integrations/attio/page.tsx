@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Search, Pencil, Lock } from "lucide-react";
+import { ArrowRight, ExternalLink, Rocket, BookOpen, Plus } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Button } from "@/components/ui";
+import { H1, H2, P, FullWidthSection } from "@/components/content";
 import {
   AttioLogo,
   HubspotLogo,
@@ -19,30 +20,30 @@ export const metadata: Metadata = {
 };
 
 const READ_ACTIONS = [
-  "Search-records",
-  "Get-records-by-ids",
-  "List-attribute-definitions",
-  "Search-notes-by-metadata",
-  "Semantic-search-notes",
-  "Get-note-body",
-  "Search-meetings",
-  "Search-call-recordings-by-metadata",
-  "Semantic-search-call-recordings",
-  "Get-call-recording",
-  "Search-emails-by-metadata",
-  "Semantic-search-emails",
-  "Get-email-content",
-  "List-workspace-members",
-  "List-workspace-teams",
+  "Search records",
+  "Get records by ids",
+  "List attribute definitions",
+  "Search notes by metadata",
+  "Semantic search notes",
+  "Get note body",
+  "Search meetings",
+  "Search call recordings by metadata",
+  "Semantic search call recordings",
+  "Get call recording",
+  "Search emails by metadata",
+  "Semantic search emails",
+  "Get email content",
+  "List workspace members",
+  "List workspace teams",
   "Whoami",
 ];
 
 const WRITE_ACTIONS = [
-  "Create-record",
-  "Upsert-record",
-  "Create-note",
-  "Create-task",
-  "Update-task",
+  "Create record",
+  "Upsert record",
+  "Create note",
+  "Create task",
+  "Update task",
 ];
 
 const RELATED = [
@@ -57,161 +58,155 @@ export default function AttioIntegrationPage() {
     <div className="h-dvh overflow-y-auto bg-background text-foreground">
       <SiteHeader />
 
-      {/* ─────────── Hero (centered, matches dust.tt) ─────────── */}
-      <section>
-        <div className="mx-auto max-w-4xl px-6 pt-24 pb-20 text-center">
-          {/* Logo above the headline */}
-          <div className="mx-auto mb-8 flex h-16 w-16 items-center justify-center rounded-2xl border border-border bg-background text-foreground">
-            <AttioLogo className="h-8 w-8" />
+      {/* ─────────── Hero (centered, mirrors dust.tt's IntegrationHeroSection) ─────────── */}
+      <section className="bg-background">
+        <div className="mx-auto flex max-w-3xl flex-col items-center px-6 pb-12 pt-16 text-center md:pb-16 md:pt-24">
+          <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-border bg-muted">
+            <AttioLogo className="h-8 w-8 text-foreground" />
           </div>
 
-          <h1 className="heading-mono-4xl sm:heading-mono-5xl">
+          <H1
+            mono
+            className="mb-2 text-center text-4xl font-medium leading-tight text-foreground md:text-5xl"
+          >
             AI Sales Assistant for Attio
-          </h1>
-          <p className="copy-lg mx-auto mt-6 max-w-2xl text-muted-foreground">
+          </H1>
+
+          <P size="lg" className="mb-4 max-w-2xl text-muted-foreground">
             Automate your Attio CRM workflows with AI agents. Update records, log activities,
             and get insights automatically.
-          </p>
+          </P>
 
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-            <Button href="#" variant="primary" size="md" iconRight={ArrowRight}>
+          <P size="xs" className="mb-8 text-muted-foreground">
+            Requires authorization to connect
+          </P>
+
+          <div className="flex flex-col gap-4 sm:flex-row">
+            <Button href="#" variant="highlight" size="md" icon={Rocket}>
               Get started with Dust
             </Button>
-            <Button href="#" variant="outline" size="md" iconRight={ArrowUpRight}>
+            <Button href="#" variant="outline" size="md" icon={ExternalLink}>
               View documentation
             </Button>
           </div>
-
-          <div className="mt-6 flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
-            <Lock className="h-3 w-3" />
-            Requires authorization to connect
-          </div>
         </div>
       </section>
 
-      {/* ─────────── What you can do ─────────── */}
-      <section>
-        <div className="mx-auto max-w-4xl px-6 pb-20">
-          <div className="mb-12 text-center">
-            <h2 className="heading-mono-3xl">What you can do with Attio</h2>
-            <p className="copy-base mt-4 text-muted-foreground">
-              <span className="font-medium text-foreground">21 total actions</span> available
-              <span> · 16 read · 5 write</span>
-            </p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2">
-            {/* Read & Search */}
-            <div className="rounded-2xl border border-border bg-background p-7">
-              <div className="mb-5 flex items-center gap-3">
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-                  <Search className="h-4 w-4" />
+      {/* ─────────── Tools (Read & Search / Create & Update) ─────────── */}
+      <section className="py-12 md:py-16">
+        <H2 className="mb-8 text-center text-2xl font-semibold text-foreground md:text-3xl">
+          What you can do with Attio
+        </H2>
+        <div className="mx-auto max-w-4xl px-6">
+          <div className="grid gap-8 md:grid-cols-2">
+            {/* Read Actions */}
+            <div className="rounded-2xl border border-border bg-background p-6">
+              <div className="mb-4 flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-green-100 text-green-700">
+                  <BookOpen className="h-5 w-5" />
                 </div>
-                <div>
-                  <h3 className="heading-base">Read &amp; Search</h3>
-                  <p className="copy-xs text-muted-foreground">
-                    {READ_ACTIONS.length} actions
-                  </p>
-                </div>
+                <h3 className="text-lg font-semibold text-foreground">Read &amp; Search</h3>
               </div>
-              <ul className="space-y-1.5">
-                {READ_ACTIONS.map((a) => (
-                  <li key={a} className="copy-sm flex gap-2 text-foreground/80">
-                    <span className="text-muted-foreground">·</span>
-                    {a}
+              <ul className="space-y-2">
+                {READ_ACTIONS.map((tool) => (
+                  <li key={tool} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-green-400" />
+                    <span>{tool}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Create & Update */}
-            <div className="rounded-2xl border border-border bg-background p-7">
-              <div className="mb-5 flex items-center gap-3">
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-green-50 text-green-700">
-                  <Pencil className="h-4 w-4" />
+            {/* Write Actions */}
+            <div className="rounded-2xl border border-border bg-background p-6">
+              <div className="mb-4 flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-green-100 text-green-700">
+                  <Plus className="h-5 w-5" />
                 </div>
-                <div>
-                  <h3 className="heading-base">Create &amp; Update</h3>
-                  <p className="copy-xs text-muted-foreground">
-                    {WRITE_ACTIONS.length} actions
-                  </p>
-                </div>
+                <h3 className="text-lg font-semibold text-foreground">Create &amp; Update</h3>
               </div>
-              <ul className="space-y-1.5">
-                {WRITE_ACTIONS.map((a) => (
-                  <li key={a} className="copy-sm flex gap-2 text-foreground/80">
-                    <span className="text-muted-foreground">·</span>
-                    {a}
+              <ul className="space-y-2">
+                {WRITE_ACTIONS.map((tool) => (
+                  <li key={tool} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-green-400" />
+                    <span>{tool}</span>
                   </li>
                 ))}
               </ul>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* ─────────── Other integrations ─────────── */}
-      <section className="border-t border-border bg-muted/40">
-        <div className="mx-auto max-w-4xl px-6 py-20">
-          <div className="mb-10 text-center">
-            <h2 className="heading-mono-2xl">Other integrations you might like</h2>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
-            {RELATED.map((r) => {
-              const Logo = r.logo;
-              return (
-                <Link
-                  key={r.name}
-                  href="#"
-                  className="group flex flex-col rounded-2xl border border-border bg-background p-5 transition-colors hover:border-blue-300"
-                >
-                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-background">
-                    <Logo className={`h-6 w-6 ${r.tint}`} />
-                  </div>
-                  <div className="heading-base">{r.name}</div>
-                  <div className="copy-xs mt-0.5 text-muted-foreground">{r.category}</div>
-                  <div className="copy-xs mt-4 inline-flex items-center gap-1 text-blue-600">
-                    Learn more
-                    <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-
-          <div className="mt-10 text-center">
-            <Link
-              href="/integrations"
-              className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              View all integrations
-              <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ─────────── Bottom CTA ─────────── */}
-      <section>
-        <div className="mx-auto max-w-4xl px-6 py-24 text-center">
-          <h2 className="heading-mono-3xl sm:heading-mono-4xl">Get started with Attio</h2>
-          <p className="copy-base mx-auto mt-4 max-w-xl text-muted-foreground">
-            Connect Attio to Dust and let AI agents handle your workflows.
+          <p className="mt-6 text-center text-sm text-muted-foreground">
+            {READ_ACTIONS.length + WRITE_ACTIONS.length} total actions available (
+            {READ_ACTIONS.length} read, {WRITE_ACTIONS.length} write)
           </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <Button href="#" variant="primary" size="md" iconRight={ArrowRight}>
+        </div>
+      </section>
+
+      {/* ─────────── Related integrations ─────────── */}
+      <section className="py-12 md:py-16">
+        <H2 className="mb-8 text-center text-2xl font-semibold text-foreground md:text-3xl">
+          Other integrations you might like
+        </H2>
+
+        <div className="mx-auto grid max-w-4xl gap-4 px-6 sm:grid-cols-2 lg:grid-cols-4">
+          {RELATED.map((r) => {
+            const Logo = r.logo;
+            return (
+              <Link
+                key={r.slug}
+                href={`/integrations/${r.slug}`}
+                className="group flex flex-col items-center rounded-2xl border border-border bg-background p-6 transition-all hover:border-green-200 hover:shadow-sm"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-muted">
+                  <Logo className={`h-7 w-7 ${r.tint}`} />
+                </div>
+                <h3 className="mt-3 text-center text-sm font-semibold text-foreground">
+                  {r.name}
+                </h3>
+                <span className="mt-1 text-xs capitalize text-muted-foreground">{r.category}</span>
+                <span className="mt-3 flex items-center gap-1 text-xs font-medium text-green-600 opacity-0 transition-opacity group-hover:opacity-100">
+                  Learn more
+                  <ArrowRight className="h-3 w-3" />
+                </span>
+              </Link>
+            );
+          })}
+        </div>
+
+        <div className="mt-8 text-center">
+          <Link
+            href="/integrations"
+            className="inline-flex items-center gap-2 text-sm font-medium text-green-600 hover:text-green-700"
+          >
+            View all integrations
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </section>
+
+      {/* ─────────── Final CTA (full-bleed, blue band — matches dust.tt FinalCTASection) ─────────── */}
+      <FullWidthSection className="bg-blue-50 py-12 md:py-16">
+        <div className="mx-auto max-w-3xl px-6 py-16 text-center md:py-20">
+          <H2 className="mb-4 text-center text-3xl font-semibold text-foreground md:text-4xl lg:text-5xl">
+            Get started with Attio
+          </H2>
+          <P size="lg" className="mb-8 text-muted-foreground">
+            Connect Attio to Dust and let AI agents handle your workflows.
+          </P>
+          <div className="mb-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Button href="#" variant="highlight" size="md" icon={Rocket}>
               Start free trial
             </Button>
             <Button href="#" variant="outline" size="md">
               Talk to sales
             </Button>
           </div>
-          <p className="copy-xs mt-5 text-muted-foreground">
+          <P size="xs" className="text-muted-foreground">
             14-day free trial. No credit card required.
-          </p>
+          </P>
         </div>
-      </section>
+      </FullWidthSection>
 
       <SiteFooter />
     </div>

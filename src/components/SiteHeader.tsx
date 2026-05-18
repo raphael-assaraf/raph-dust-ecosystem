@@ -25,7 +25,7 @@ export function SiteHeader() {
           <Button href="#" variant="outline" size="xs" className="hidden sm:inline-flex">
             Contact sales
           </Button>
-          <Button href="#" variant="primary" size="xs">
+          <Button href="#" variant="highlight" size="xs">
             Try for free
           </Button>
         </div>

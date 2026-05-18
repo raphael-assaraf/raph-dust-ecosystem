@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Button } from "@/components/ui";
+import { H1, P } from "@/components/content";
 
 type FormState = {
   // Company
@@ -81,19 +82,23 @@ export default function RegisterPage() {
             <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#E8F5E9] text-[color:var(--color-dust-green)]">
               <CheckCircle2 className="h-7 w-7" />
             </div>
-            <h1 className="mt-6 font-mono text-3xl font-medium tracking-tight">
+            <H1
+              mono
+              className="mt-6 text-center text-3xl font-medium text-foreground md:text-4xl"
+            >
               Application received
-            </h1>
-            <p className="mt-4 text-base text-muted-foreground">
+            </H1>
+            <P size="md" className="mt-4 text-muted-foreground">
               Thanks{form.partnerName ? `, ${form.partnerName.split(" ")[0]}` : ""} — we got{" "}
               <span className="text-foreground">{form.companyName || "your"}</span> details. Our
-              partner team will run a quick QA pass on the MCP and follow up within 3 business days.
-            </p>
+              partner team will run a quick QA pass on the MCP and follow up within 3 business
+              days.
+            </P>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Button href="/partners" variant="outline" size="md" icon={ArrowLeft}>
                 Back to program
               </Button>
-              <Button href="/integrations/attio" variant="primary" size="md" iconRight={ArrowRight}>
+              <Button href="/integrations/attio" variant="highlight" size="md" iconRight={ArrowRight}>
                 Browse integrations
               </Button>
             </div>
@@ -118,13 +123,17 @@ export default function RegisterPage() {
             <ArrowLeft className="h-3 w-3" />
             Back to partner program
           </Link>
-          <h1 className="mt-4 font-mono text-4xl font-medium leading-tight tracking-tight">
-            Apply to the <span className="kw-blue">Dust Partner Program</span>
-          </h1>
-          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-            Tell us about your product and your MCP. We'll review and reach out within 3 business
-            days. You'll start in Community tier — graduation paths are visible from day one.
-          </p>
+          <H1
+            mono
+            className="mt-4 text-4xl font-medium leading-tight text-foreground md:text-5xl"
+          >
+            Apply to the Dust Partner Program
+          </H1>
+          <P size="md" className="mt-4 text-muted-foreground">
+            Tell us about your product and your MCP. We&apos;ll review and reach out within 3
+            business days. You&apos;ll start in Community tier — graduation paths are visible from
+            day one.
+          </P>
         </div>
       </section>
 
@@ -386,7 +395,7 @@ export default function RegisterPage() {
               <Button
                 type="submit"
                 disabled={submitting}
-                variant="primary"
+                variant="highlight"
                 size="md"
                 icon={submitting ? Loader2 : undefined}
                 iconRight={submitting ? undefined : ArrowRight}

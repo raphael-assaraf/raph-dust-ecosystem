@@ -8,10 +8,12 @@ import {
   Crown,
   Sparkles,
   Info,
+  Rocket,
 } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Button } from "@/components/ui";
+import { H1, H2, P, FullWidthSection } from "@/components/content";
 
 export const metadata: Metadata = {
   title: "Partner Program | Dust",
@@ -114,27 +116,31 @@ export default function PartnersPage() {
           <Info className="h-3.5 w-3.5 shrink-0 text-[color:var(--color-dust-golden)]" />
           <p className="text-foreground/80">
             <span className="font-medium text-foreground">Internal document.</span>{" "}
-            Draft of the Dust Partner Program. Specific examples and the &quot;ideas to explore&quot; lists are directional, not committed deliverables.
+            Draft of the Dust Partner Program. Specific examples are directional, not committed deliverables.
           </p>
         </div>
       </div>
 
       {/* ─────────── Hero ─────────── */}
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-5xl px-6 pt-20 pb-16 text-center">
-          <span className="dust-badge">
-            <Sparkles className="h-3 w-3 text-[color:var(--color-dust-blue)]" />
+      <section className="bg-background">
+        <div className="mx-auto flex max-w-3xl flex-col items-center px-6 pb-12 pt-16 text-center md:pb-16 md:pt-24">
+          <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
+            <Sparkles className="h-3 w-3 text-blue-500" />
             Dust Partner Program
           </span>
-          <h1 className="heading-mono-4xl sm:heading-mono-5xl mt-6">
+          <H1
+            mono
+            className="mb-2 text-center text-4xl font-medium leading-tight text-foreground md:text-5xl"
+          >
             Build, launch, and grow with Dust
-          </h1>
-          <p className="copy-lg mx-auto mt-6 max-w-2xl text-muted-foreground">
+          </H1>
+          <P size="lg" className="mb-8 max-w-2xl text-muted-foreground">
             Any tool with an MCP server can become a one-click Dust integration. Get discovered by
-            thousands of agent users — and grow into a deeper relationship as your traction proves out.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <Button href="/partners/register" variant="primary" size="md" iconRight={ArrowRight}>
+            thousands of agent users — and grow into a deeper relationship as your traction proves
+            out.
+          </P>
+          <div className="flex flex-col gap-4 sm:flex-row">
+            <Button href="/partners/register" variant="highlight" size="md" icon={Rocket}>
               Apply now
             </Button>
             <Button href="#how-it-works" variant="outline" size="md">
@@ -145,8 +151,8 @@ export default function PartnersPage() {
       </section>
 
       {/* ─────────── Why partner ─────────── */}
-      <section className="border-b border-border bg-muted/40">
-        <div className="mx-auto grid max-w-5xl gap-6 px-6 py-16 md:grid-cols-3">
+      <FullWidthSection className="bg-muted py-12 md:py-16">
+        <div className="mx-auto grid max-w-4xl gap-8 px-6 py-8 md:grid-cols-3">
           {[
             { stat: "100+", label: "MCP integrations live on Dust" },
             { stat: "1 URL", label: "All it takes to ship an integration" },
@@ -154,21 +160,25 @@ export default function PartnersPage() {
           ].map((s) => (
             <div key={s.label} className="text-center">
               <div className="heading-mono-3xl text-foreground">{s.stat}</div>
-              <div className="copy-sm mt-2 text-muted-foreground">{s.label}</div>
+              <P size="xs" className="mt-2 text-muted-foreground">
+                {s.label}
+              </P>
             </div>
           ))}
         </div>
-      </section>
+      </FullWidthSection>
 
       {/* ─────────── The four tiers ─────────── */}
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-5xl px-6 py-20">
-          <div className="mb-12 max-w-3xl text-center mx-auto">
-            <h2 className="heading-mono-3xl">Four tiers. One path.</h2>
-            <p className="copy-base mt-4 text-muted-foreground">
-              Every partner starts in Community. The deeper your traction with Dust customers,
-              the more we invest in your growth — together.
-            </p>
+      <section className="py-12 md:py-16">
+        <div className="mx-auto max-w-5xl px-6">
+          <div className="mb-12 mx-auto max-w-3xl text-center">
+            <H2 className="mb-3 text-center text-3xl font-semibold text-foreground md:text-4xl">
+              Four tiers. One path.
+            </H2>
+            <P size="md" className="text-muted-foreground">
+              Every partner starts in Community. The deeper your traction with Dust customers, the
+              more we invest in your growth — together.
+            </P>
           </div>
 
           <div className="space-y-5">
@@ -239,13 +249,15 @@ export default function PartnersPage() {
       </section>
 
       {/* ─────────── How it works ─────────── */}
-      <section id="how-it-works" className="border-b border-border bg-muted/40">
-        <div className="mx-auto max-w-5xl px-6 py-20">
-          <div className="mb-12 max-w-3xl text-center mx-auto">
-            <h2 className="heading-mono-3xl">How it works</h2>
-            <p className="copy-base mt-4 text-muted-foreground">
+      <FullWidthSection id="how-it-works" className="bg-muted py-12 md:py-16">
+        <div className="mx-auto max-w-5xl px-6 py-8">
+          <div className="mb-12 mx-auto max-w-3xl text-center">
+            <H2 className="mb-3 text-center text-3xl font-semibold text-foreground md:text-4xl">
+              How it works
+            </H2>
+            <P size="md" className="text-muted-foreground">
               From submission to a featured launch — typically 1 to 3 weeks.
-            </p>
+            </P>
           </div>
 
           <div className="grid gap-5 md:grid-cols-4">
@@ -281,41 +293,39 @@ export default function PartnersPage() {
 
           <div className="mt-10 rounded-2xl border border-border bg-background p-6">
             <h4 className="heading-base">A note on how we invest engineering time</h4>
-            <p className="copy-sm mt-2 text-muted-foreground">
+            <P size="xs" className="mt-2 text-muted-foreground">
               When Dust invests in building an MCP wrapper on behalf of a partner, we bump them
               into the <span className="text-foreground">Alliance</span> tier for a defined period
               — the GTM investment matches the engineering one. Where engineering effort is one-off,
-              partners stay in their existing tier; we ship the integration but don't add a GTM
+              partners stay in their existing tier; we ship the integration but don&apos;t add a GTM
               motion. This keeps our investment aligned with mutual commitment.
-            </p>
+            </P>
           </div>
         </div>
-      </section>
+      </FullWidthSection>
 
-      {/* ─────────── Bottom CTA ─────────── */}
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-5xl px-6 py-20">
-          <div className="rounded-3xl border border-border bg-muted px-8 py-14 text-center">
-            <h2 className="heading-mono-3xl sm:heading-mono-4xl">
-              Ready to be discovered by agent users?
-            </h2>
-            <p className="copy-lg mx-auto mt-4 max-w-xl text-muted-foreground">
-              Submit your MCP server and we'll take it from there.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Button href="/partners/register" variant="primary" size="md" iconRight={ArrowRight}>
-                Apply now
-              </Button>
-              <Button href="mailto:partners@dust.tt" variant="outline" size="md">
-                Talk to the partner team
-              </Button>
-            </div>
-            <p className="copy-xs mt-5 text-muted-foreground">
-              Most partners hear back within 3 business days.
-            </p>
+      {/* ─────────── Final CTA (full-bleed blue band, matches dust.tt) ─────────── */}
+      <FullWidthSection className="bg-blue-50 py-12 md:py-16">
+        <div className="mx-auto max-w-3xl px-6 py-16 text-center md:py-20">
+          <H2 className="mb-4 text-center text-3xl font-semibold text-foreground md:text-4xl lg:text-5xl">
+            Ready to be discovered by agent users?
+          </H2>
+          <P size="lg" className="mb-8 text-muted-foreground">
+            Submit your MCP server and we&apos;ll take it from there.
+          </P>
+          <div className="mb-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Button href="/partners/register" variant="highlight" size="md" icon={Rocket}>
+              Apply now
+            </Button>
+            <Button href="mailto:partners@dust.tt" variant="outline" size="md">
+              Talk to the partner team
+            </Button>
           </div>
+          <P size="xs" className="text-muted-foreground">
+            Most partners hear back within 3 business days.
+          </P>
         </div>
-      </section>
+      </FullWidthSection>
 
       <SiteFooter />
     </div>
