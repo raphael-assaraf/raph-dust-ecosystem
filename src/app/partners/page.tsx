@@ -8,6 +8,8 @@ import {
   Handshake,
   Crown,
   Sparkles,
+  Lightbulb,
+  Info,
 } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -29,6 +31,7 @@ type Tier = {
   partnerGets: string[];
   dustGets: string;
   cadence: string;
+  ideas: string[];
 };
 
 const TIERS: Tier[] = [
@@ -43,12 +46,19 @@ const TIERS: Tier[] = [
     partnerGets: [
       "Logo + integration card inside the Dust app — surfaced to every Dust user when they browse integrations",
       "Public listing on dust.tt/integrations with logo and category",
-      "Featured in batched product release notes",
-      "Opportunistic social / UGC features",
-      "Eligibility for marketplace newsletter inclusion",
+      "Periodic visibility in Dust's product communications (e.g. batched release notes, marketplace newsletter)",
+      "Opportunistic discovery surfaces (e.g. UGC demos, themed launches, comparison content)",
     ],
     dustGets: "Marketplace breadth, devrel surface area, retention moat.",
     cadence: "Async / batched",
+    ideas: [
+      "Featured slot in a Raphael-recorded 2-min demo video (part of the 30-day MCP series)",
+      "Inclusion in a Dust-curated \"best of [category]\" round-up post",
+      "Co-branded starter frame — a Dust template that uses their MCP, distributed to all users",
+      "Logo placement on launch-day hero collateral or marketplace screenshots",
+      "Founder cameo / quote in a Dust product release note",
+      "Small Dust API credit grant for the partner's internal team to dogfood",
+    ],
   },
   {
     name: "Growth",
@@ -57,15 +67,24 @@ const TIERS: Tier[] = [
     accent: "#418B5C",
     bg: "#E8F5E9",
     who: "Community partners showing GTM traction with Dust customers.",
-    entry: "Provide dev support assets + adoption signal (≥X customers installed or a customer story)",
+    entry: "Provide dev support assets + adoption signal (e.g. customer installs, customer story)",
     partnerGets: [
-      "Dedicated Slack channel with the Dust team",
-      "Crossbeam account mapping",
-      "Targeted co-marketing — one customer story per year",
-      "Warm rep-to-rep intros on shared deals",
+      "A direct line to the Dust team (e.g. dedicated Slack channel)",
+      "Account mapping with the Dust GTM team (e.g. via Crossbeam)",
+      "Targeted co-marketing (e.g. customer story on Dust's blog, joint social, vertical playbooks)",
+      "Warm rep-to-rep intros on shared deals when relevant",
     ],
     dustGets: "Mutual deal flow + lightweight co-marketing + vertical market validation.",
-    cadence: "Monthly check-in",
+    cadence: "Recurring check-ins (e.g. monthly)",
+    ideas: [
+      "A custom Dust skill built for the partner's workflow — one well-defined agent template that chains their tools end-to-end and ships in Dust",
+      "Co-authored playbook (e.g. \"How [partner]'s customers automate X with Dust\")",
+      "Live demo slot at a Dust customer webinar or community event",
+      "Founder ↔ founder content swap (interview, podcast, joint LinkedIn post)",
+      "Inclusion in Dust's vertical starter pack (\"if you're a fintech, start with these 5 integrations\")",
+      "Partner's employees get complimentary Dust Pro accounts (drives organic adoption)",
+      "Joint POC kicked off with a mutual high-priority prospect",
+    ],
   },
   {
     name: "Alliance",
@@ -76,13 +95,23 @@ const TIERS: Tier[] = [
     who: "Partners aligned with Dust's GTM priorities, or invited by a Partner Account Manager.",
     entry: "Prove deal frequency + growing adoption — or be assigned by Dust",
     partnerGets: [
-      "Joint co-sell motion with shared business plan",
-      "Themed launches, joint webinars and events",
-      "Quarterly business reviews + champion mapping",
-      "Deeper product roadmap collaboration",
+      "Joint co-sell motion with a shared business plan",
+      "Joint marketing surface (e.g. themed launches, co-hosted webinars, in-person events)",
+      "Recurring business reviews (e.g. QBRs, champion mapping)",
+      "Deeper product collaboration (e.g. shared roadmap input, design partner opportunities)",
     ],
     dustGets: "Predictable deal volume, named champion accounts, category presence.",
     cadence: "Monthly+ planning, quarterly QBR",
+    ideas: [
+      "Joint annual planning offsite",
+      "Embedded Dust SE working alongside the partner's enterprise team on select deals",
+      "Featured breakout session at the partner's annual user conference (and vice versa)",
+      "Custom partner-branded surface in Dust (e.g. dedicated landing or onboarding flow)",
+      "Joint research / industry white paper",
+      "Co-funded paid campaign budget for a target vertical or region",
+      "Joint customer council — a handful of mutual customers meeting regularly",
+      "Multi-quarter shared OKRs",
+    ],
   },
   {
     name: "Strategic",
@@ -93,13 +122,22 @@ const TIERS: Tier[] = [
     who: "Top-down chosen by Dust — partners we intentionally build on, or those that don't fit the program model.",
     entry: "Not application-based",
     partnerGets: [
-      "Executive sponsorship + custom commercial structure",
-      "Engineering roadmap collaboration",
-      "Bespoke launch surface, custom integration depth",
-      "Tier prioritized alongside Dust's own product roadmap",
+      "Executive sponsorship and custom commercial structure",
+      "Engineering and product roadmap collaboration",
+      "Bespoke launch surfaces and custom integration depth",
+      "Treated as a peer initiative within Dust's product roadmap",
     ],
     dustGets: "Category-defining partnership outcomes.",
     cadence: "Continuous",
+    ideas: [
+      "Equity or convertible commercial relationship",
+      "Co-developed new product surface (e.g. embedded Dust UI inside the partner's product, or vice versa)",
+      "Reseller or OEM arrangement",
+      "Exclusive period on a category of integrations",
+      "Co-funded dedicated engineering FTE",
+      "Joint go-to-market in a new geography",
+      "Executive cross-pollination (board observer, advisor swap)",
+    ],
   },
 ];
 
@@ -107,6 +145,17 @@ export default function PartnersPage() {
   return (
     <div className="h-dvh overflow-y-auto bg-background text-foreground">
       <SiteHeader />
+
+      {/* ─────────── Internal banner ─────────── */}
+      <div className="border-b border-[color:var(--color-dust-golden)]/30 bg-[color:var(--color-dust-sunshine)]/40">
+        <div className="mx-auto flex max-w-5xl items-start gap-3 px-6 py-3 text-xs sm:items-center">
+          <Info className="h-3.5 w-3.5 shrink-0 text-[color:var(--color-dust-golden)]" />
+          <p className="text-foreground/80">
+            <span className="font-medium text-foreground">Internal document.</span>{" "}
+            Draft of the Dust Partner Program. Specific examples and the &quot;ideas to explore&quot; lists are directional, not committed deliverables.
+          </p>
+        </div>
+      </div>
 
       {/* ─────────── Hero ─────────── */}
       <section className="border-b border-border">
@@ -173,58 +222,83 @@ export default function PartnersPage() {
             {TIERS.map((t, i) => {
               const Icon = t.icon;
               return (
-                <div key={t.name} className="dust-card grid gap-6 md:grid-cols-[200px_1fr]">
-                  <div>
-                    <div
-                      className="flex h-12 w-12 items-center justify-center rounded-xl"
-                      style={{ background: t.bg, color: t.accent }}
-                    >
-                      <Icon className="h-5 w-5" />
+                <div key={t.name} className="dust-card">
+                  <div className="grid gap-6 md:grid-cols-[200px_1fr]">
+                    <div>
+                      <div
+                        className="flex h-12 w-12 items-center justify-center rounded-xl"
+                        style={{ background: t.bg, color: t.accent }}
+                      >
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <div className="mt-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                        Tier {i + 1}
+                      </div>
+                      <h3 className="mt-1 font-mono text-xl font-medium" style={{ color: t.accent }}>
+                        {t.name}
+                      </h3>
+                      <p className="mt-1.5 text-sm text-muted-foreground">{t.tagline}</p>
                     </div>
-                    <div className="mt-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                      Tier {i + 1}
+
+                    <div className="grid gap-5 md:grid-cols-2">
+                      <div>
+                        <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                          Who
+                        </div>
+                        <p className="mt-1.5 text-sm">{t.who}</p>
+                        <div className="mt-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                          How to qualify
+                        </div>
+                        <p className="mt-1.5 text-sm">{t.entry}</p>
+                        <div className="mt-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                          Cadence
+                        </div>
+                        <p className="mt-1.5 text-sm">{t.cadence}</p>
+                      </div>
+                      <div>
+                        <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                          What you get
+                        </div>
+                        <ul className="mt-2 space-y-1.5">
+                          {t.partnerGets.map((g) => (
+                            <li key={g} className="flex gap-2 text-sm">
+                              <Check
+                                className="h-4 w-4 shrink-0 mt-0.5"
+                                style={{ color: t.accent }}
+                              />
+                              <span>{g}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        <div className="mt-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                          What Dust gets
+                        </div>
+                        <p className="mt-1.5 text-sm text-muted-foreground">{t.dustGets}</p>
+                      </div>
                     </div>
-                    <h3 className="mt-1 font-mono text-xl font-medium" style={{ color: t.accent }}>
-                      {t.name}
-                    </h3>
-                    <p className="mt-1.5 text-sm text-muted-foreground">{t.tagline}</p>
                   </div>
 
-                  <div className="grid gap-5 md:grid-cols-2">
-                    <div>
-                      <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                        Who
-                      </div>
-                      <p className="mt-1.5 text-sm">{t.who}</p>
-                      <div className="mt-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                        How to qualify
-                      </div>
-                      <p className="mt-1.5 text-sm">{t.entry}</p>
-                      <div className="mt-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                        Cadence
-                      </div>
-                      <p className="mt-1.5 text-sm">{t.cadence}</p>
+                  {/* Ideas to explore */}
+                  <div
+                    className="mt-6 rounded-xl border border-dashed border-border bg-muted/40 p-5"
+                  >
+                    <div className="flex items-center gap-2">
+                      <Lightbulb className="h-4 w-4" style={{ color: t.accent }} />
+                      <h4 className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                        Ideas to explore — open for brainstorm
+                      </h4>
                     </div>
-                    <div>
-                      <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                        What you get
-                      </div>
-                      <ul className="mt-2 space-y-1.5">
-                        {t.partnerGets.map((g) => (
-                          <li key={g} className="flex gap-2 text-sm">
-                            <Check
-                              className="h-4 w-4 shrink-0 mt-0.5"
-                              style={{ color: t.accent }}
-                            />
-                            <span>{g}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      <div className="mt-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                        What Dust gets
-                      </div>
-                      <p className="mt-1.5 text-sm text-muted-foreground">{t.dustGets}</p>
-                    </div>
+                    <ul className="mt-3 grid gap-1.5 sm:grid-cols-2">
+                      {t.ideas.map((idea) => (
+                        <li key={idea} className="flex gap-2 text-sm text-foreground/80">
+                          <span
+                            className="mt-2 h-1 w-1 shrink-0 rounded-full"
+                            style={{ background: t.accent }}
+                          />
+                          <span>{idea}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               );
