@@ -41,7 +41,8 @@ const TIERS: Tier[] = [
     who: "Any partner with a working MCP server that passes Dust quality checks.",
     entry: "Self-serve registration · ~1 week QA",
     partnerGets: [
-      "Listing on dust.tt/integrations with logo + category",
+      "Logo + integration card inside the Dust app — surfaced to every Dust user when they browse integrations",
+      "Public listing on dust.tt/integrations with logo and category",
       "Featured in batched product release notes",
       "Opportunistic social / UGC features",
       "Eligibility for marketplace newsletter inclusion",
@@ -259,7 +260,7 @@ export default function PartnersPage() {
               {
                 step: "03",
                 title: "List",
-                desc: "Your logo + integration page goes live on dust.tt/integrations. You're now Community tier.",
+                desc: "Your logo goes live both inside the Dust app (where users install) and on dust.tt/integrations. You're now Community tier.",
               },
               {
                 step: "04",
