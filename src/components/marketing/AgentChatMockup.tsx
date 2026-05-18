@@ -1,6 +1,13 @@
 import * as React from "react";
 import { DustLogoSquare } from "@/components/logos/dust";
-import { CheckIcon, SparklesIcon, ArrowUpIcon, AttachmentIcon } from "@/components/icons";
+import {
+  CheckIcon,
+  ArrowUpIcon,
+  AttachmentIcon,
+  MicIcon,
+  ShapesIcon,
+  XMarkIcon,
+} from "@/components/icons";
 import { BrowserMockup } from "@/components/BrowserMockup";
 import { cn } from "@/lib/utils";
 
@@ -96,30 +103,53 @@ export function AgentChatMockup({
             </div>
           </div>
 
-          {/* Input bar — single line, compact, matches the real Dust input */}
-          <div className="border-t border-border bg-muted/30 px-3 py-2.5 sm:px-4">
-            <div className="flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-2">
-              <div className="inline-flex shrink-0 items-center gap-1 rounded-md bg-muted px-1.5 py-0.5 text-[11px] font-medium text-foreground">
-                <SparklesIcon className="h-3 w-3 text-blue-500" />
-                dust
+          {/* Input bar — two-row layout matching the real Dust agent input */}
+          <div className="border-t border-border bg-background px-3 py-3 sm:px-4">
+            <div className="rounded-xl border border-border bg-background px-3 pt-3 pb-2 shadow-[0_0_0_3px_rgba(28,145,255,0.05)]">
+              {/* Row 1: input field */}
+              <div className="text-[13px] text-muted-foreground/70">Ask a question</div>
+              {/* Row 2: controls */}
+              <div className="mt-2 flex items-center justify-between">
+                {/* Left: agent picker chip + add tool + attach */}
+                <div className="flex items-center gap-1.5">
+                  <div className="inline-flex items-center gap-1 rounded-md py-0.5 pl-1 pr-1.5 text-[11px] font-medium text-foreground">
+                    <DustLogoSquare className="h-4 w-4" />
+                    <span>dust</span>
+                    <XMarkIcon className="h-3 w-3 text-muted-foreground/70" />
+                  </div>
+                  <button
+                    type="button"
+                    aria-label="Add tool"
+                    className="flex h-6 w-6 items-center justify-center rounded text-foreground/70 transition-colors hover:bg-gray-100"
+                  >
+                    <ShapesIcon className="h-4 w-4" />
+                  </button>
+                  <button
+                    type="button"
+                    aria-label="Attach"
+                    className="flex h-6 w-6 items-center justify-center rounded text-foreground/70 transition-colors hover:bg-gray-100"
+                  >
+                    <AttachmentIcon className="h-4 w-4" />
+                  </button>
+                </div>
+                {/* Right: mic + send */}
+                <div className="flex items-center gap-1.5">
+                  <button
+                    type="button"
+                    aria-label="Voice"
+                    className="flex h-6 w-6 items-center justify-center rounded text-foreground/70 transition-colors hover:bg-gray-100"
+                  >
+                    <MicIcon className="h-4 w-4" />
+                  </button>
+                  <button
+                    type="button"
+                    aria-label="Send"
+                    className="flex h-7 w-7 items-center justify-center rounded-md bg-blue-500 text-white transition-colors hover:bg-blue-600"
+                  >
+                    <ArrowUpIcon className="h-4 w-4" />
+                  </button>
+                </div>
               </div>
-              <span className="flex-1 text-[12px] text-muted-foreground">
-                Ask a question
-              </span>
-              <button
-                type="button"
-                aria-label="Attach"
-                className="flex h-6 w-6 items-center justify-center rounded text-muted-foreground transition-colors hover:bg-gray-100"
-              >
-                <AttachmentIcon className="h-3.5 w-3.5" />
-              </button>
-              <button
-                type="button"
-                aria-label="Send"
-                className="flex h-6 w-6 items-center justify-center rounded-md bg-blue-500 text-white transition-colors hover:bg-blue-600"
-              >
-                <ArrowUpIcon className="h-3 w-3" />
-              </button>
             </div>
           </div>
         </div>
