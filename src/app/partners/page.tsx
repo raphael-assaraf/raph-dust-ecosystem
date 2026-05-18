@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import {
   ArrowRight,
   Check,
@@ -13,6 +12,7 @@ import {
 } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { Button } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Partner Program | Dust",
@@ -172,19 +172,12 @@ export default function PartnersPage() {
             thousands of agent users — and grow into a deeper relationship as your traction proves out.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <Link
-              href="/partners/register"
-              className="inline-flex items-center gap-2 rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-90"
-            >
+            <Button href="/partners/register" variant="primary" size="md" iconRight={ArrowRight}>
               Apply now
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-            <a
-              href="#how-it-works"
-              className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-[color:var(--color-dust-blue)]"
-            >
+            </Button>
+            <Button href="#how-it-works" variant="outline" size="md">
               How it works
-            </a>
+            </Button>
           </div>
         </div>
       </section>
@@ -374,19 +367,12 @@ export default function PartnersPage() {
               Submit your MCP server and we'll take it from there.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link
-                href="/partners/register"
-                className="inline-flex items-center gap-2 rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-90"
-              >
+              <Button href="/partners/register" variant="primary" size="md" iconRight={ArrowRight}>
                 Apply now
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <a
-                href="mailto:partners@dust.tt"
-                className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-[color:var(--color-dust-blue)]"
-              >
+              </Button>
+              <Button href="mailto:partners@dust.tt" variant="outline" size="md">
                 Talk to the partner team
-              </a>
+              </Button>
             </div>
             <p className="mt-5 text-xs text-muted-foreground">
               Most partners hear back within 3 business days.

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { Button } from "@/components/ui";
 
 type FormState = {
   // Company
@@ -89,20 +90,12 @@ export default function RegisterPage() {
               partner team will run a quick QA pass on the MCP and follow up within 3 business days.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link
-                href="/partners"
-                className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-[color:var(--color-dust-blue)]"
-              >
-                <ArrowLeft className="h-4 w-4" />
+              <Button href="/partners" variant="outline" size="md" icon={ArrowLeft}>
                 Back to program
-              </Link>
-              <a
-                href="/integrations/attio"
-                className="inline-flex items-center gap-2 rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-90"
-              >
+              </Button>
+              <Button href="/integrations/attio" variant="primary" size="md" iconRight={ArrowRight}>
                 Browse integrations
-                <ArrowRight className="h-4 w-4" />
-              </a>
+              </Button>
             </div>
           </div>
         </section>
@@ -390,23 +383,17 @@ export default function RegisterPage() {
                 By submitting, you agree to be contacted about your application. We don't share
                 your info with third parties.
               </p>
-              <button
+              <Button
                 type="submit"
                 disabled={submitting}
-                className="inline-flex shrink-0 items-center gap-2 rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-90 disabled:opacity-60"
+                variant="primary"
+                size="md"
+                icon={submitting ? Loader2 : undefined}
+                iconRight={submitting ? undefined : ArrowRight}
+                className={submitting ? "[&_svg]:animate-spin" : ""}
               >
-                {submitting ? (
-                  <>
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                    Submitting…
-                  </>
-                ) : (
-                  <>
-                    Submit application
-                    <ArrowRight className="h-4 w-4" />
-                  </>
-                )}
-              </button>
+                {submitting ? "Submitting…" : "Submit application"}
+              </Button>
             </div>
           </form>
         </div>

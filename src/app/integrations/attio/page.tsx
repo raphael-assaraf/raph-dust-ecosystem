@@ -11,6 +11,14 @@ import {
 } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { Button, Chip } from "@/components/ui";
+import {
+  AttioLogo,
+  HubspotLogo,
+  SalesforceLogo,
+  SalesloftLogo,
+  StripeLogo,
+} from "@/components/logos/platforms";
 
 export const metadata: Metadata = {
   title: "AI Sales Assistant for Attio | Dust",
@@ -46,10 +54,10 @@ const WRITE_ACTIONS = [
 ];
 
 const RELATED = [
-  { name: "HubSpot", category: "CRM", letter: "H", color: "#FE9C1A", bg: "#FFF1E0" },
-  { name: "Salesforce", category: "CRM", letter: "S", color: "#1C91FF", bg: "#E9F7FF" },
-  { name: "Salesloft", category: "Sales", letter: "S", color: "#418B5C", bg: "#E8F5E9" },
-  { name: "Stripe", category: "Payments", letter: "S", color: "#D97AB0", bg: "#FBE8F1" },
+  { name: "HubSpot", category: "CRM", logo: HubspotLogo, tint: "text-[#FF7A59]" },
+  { name: "Salesforce", category: "CRM", logo: SalesforceLogo, tint: "text-[#00A1E0]" },
+  { name: "Salesloft", category: "Sales", logo: SalesloftLogo, tint: "text-foreground" },
+  { name: "Stripe", category: "Payments", logo: StripeLogo, tint: "text-[#635BFF]" },
 ];
 
 export default function AttioIntegrationPage() {
@@ -70,26 +78,22 @@ export default function AttioIntegrationPage() {
 
             {/* Logo + name row */}
             <div className="flex items-center gap-4">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-border bg-[#0F0F12] text-xl font-semibold text-white">
-                A
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-border bg-background text-foreground">
+                <AttioLogo className="h-7 w-7" />
               </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="dust-badge">
-                    <Sparkles className="h-3 w-3 text-[color:var(--color-dust-blue)]" />
-                    CRM
-                  </span>
-                </div>
+              <div className="flex items-center gap-2">
+                <Chip size="xs" color="highlight" icon={Sparkles}>
+                  CRM
+                </Chip>
               </div>
             </div>
 
             {/* Headline */}
             <div className="max-w-3xl">
-              <h1 className="font-mono text-4xl font-medium leading-tight tracking-tight sm:text-5xl">
-                AI Sales Assistant for{" "}
-                <span className="kw-blue">Attio</span>
+              <h1 className="heading-mono-5xl">
+                AI Sales Assistant for <span className="kw-blue">Attio</span>
               </h1>
-              <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+              <p className="copy-lg mt-5 text-muted-foreground">
                 Automate your Attio CRM workflows with AI agents. Update records, log activities,
                 and get insights automatically.
               </p>
@@ -97,20 +101,12 @@ export default function AttioIntegrationPage() {
 
             {/* CTAs */}
             <div className="mt-2 flex flex-wrap items-center gap-3">
-              <a
-                href="#"
-                className="inline-flex items-center gap-2 rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-90"
-              >
+              <Button href="#" variant="primary" size="md" iconRight={ArrowRight}>
                 Get started with Dust
-                <ArrowRight className="h-4 w-4" />
-              </a>
-              <a
-                href="#"
-                className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-[color:var(--color-dust-blue)]"
-              >
+              </Button>
+              <Button href="#" variant="outline" size="md" iconRight={ArrowUpRight}>
                 View documentation
-                <ArrowUpRight className="h-4 w-4" />
-              </a>
+              </Button>
             </div>
 
             <div className="flex items-center gap-2 text-xs text-muted-foreground">
@@ -125,12 +121,12 @@ export default function AttioIntegrationPage() {
       <section className="border-b border-border">
         <div className="mx-auto max-w-5xl px-6 py-16">
           <div className="mb-10">
-            <h2 className="font-mono text-2xl font-medium tracking-tight sm:text-3xl">
+            <h2 className="heading-mono-3xl">
               What you can do with <span className="kw-blue">Attio</span>
             </h2>
-            <p className="mt-3 text-sm text-muted-foreground">
+            <p className="copy-sm mt-3 text-muted-foreground">
               <span className="font-medium text-foreground">21 total actions</span> available
-              <span className="text-muted-foreground"> · 16 read · 5 write</span>
+              <span> · 16 read · 5 write</span>
             </p>
           </div>
 
@@ -139,16 +135,16 @@ export default function AttioIntegrationPage() {
             <div className="dust-card flex flex-col">
               <div className="mb-4 flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#E9F7FF] text-[color:var(--color-dust-blue)]">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
                     <Search className="h-4 w-4" />
                   </div>
-                  <h3 className="text-base font-medium">Read &amp; Search</h3>
+                  <h3 className="heading-base">Read &amp; Search</h3>
                 </div>
-                <span className="text-xs font-medium text-muted-foreground">
+                <span className="label-xs text-muted-foreground">
                   {READ_ACTIONS.length} actions
                 </span>
               </div>
-              <p className="mb-4 text-sm text-muted-foreground">
+              <p className="copy-sm mb-4 text-muted-foreground">
                 Pull live records, notes, meetings, calls and emails into agent context — and
                 resolve identifiers across your workspace.
               </p>
@@ -168,16 +164,16 @@ export default function AttioIntegrationPage() {
             <div className="dust-card flex flex-col">
               <div className="mb-4 flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#E8F5E9] text-[color:var(--color-dust-green)]">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-green-50 text-green-700">
                     <Pencil className="h-4 w-4" />
                   </div>
-                  <h3 className="text-base font-medium">Create &amp; Update</h3>
+                  <h3 className="heading-base">Create &amp; Update</h3>
                 </div>
-                <span className="text-xs font-medium text-muted-foreground">
+                <span className="label-xs text-muted-foreground">
                   {WRITE_ACTIONS.length} actions
                 </span>
               </div>
-              <p className="mb-4 text-sm text-muted-foreground">
+              <p className="copy-sm mb-4 text-muted-foreground">
                 Let agents update CRM state — create or upsert records, log notes, manage tasks
                 without context switching.
               </p>
@@ -202,10 +198,10 @@ export default function AttioIntegrationPage() {
               { label: "SOC 2 Type II", desc: "Enterprise-grade security and audit-ready logs by default." },
             ].map((b) => (
               <div key={b.label} className="dust-card-flat flex gap-3">
-                <CheckCircle2 className="h-4 w-4 shrink-0 text-[color:var(--color-dust-green)]" />
+                <CheckCircle2 className="h-4 w-4 shrink-0 text-green-600" />
                 <div>
-                  <h4 className="text-sm font-medium">{b.label}</h4>
-                  <p className="mt-0.5 text-xs text-muted-foreground">{b.desc}</p>
+                  <h4 className="label-sm">{b.label}</h4>
+                  <p className="copy-xs mt-0.5 text-muted-foreground">{b.desc}</p>
                 </div>
               </div>
             ))}
@@ -217,9 +213,7 @@ export default function AttioIntegrationPage() {
       <section className="border-b border-border">
         <div className="mx-auto max-w-5xl px-6 py-16">
           <div className="mb-8 flex items-end justify-between">
-            <h2 className="font-mono text-2xl font-medium tracking-tight">
-              Other integrations you might like
-            </h2>
+            <h2 className="heading-mono-2xl">Other integrations you might like</h2>
             <Link
               href="/integrations"
               className="hidden items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors sm:inline-flex"
@@ -230,24 +224,20 @@ export default function AttioIntegrationPage() {
           </div>
 
           <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-4">
-            {RELATED.map((r) => (
-              <a
-                key={r.name}
-                href="#"
-                className="dust-card flex items-center gap-3"
-              >
-                <div
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-sm font-semibold"
-                  style={{ background: r.bg, color: r.color }}
-                >
-                  {r.letter}
-                </div>
-                <div className="min-w-0">
-                  <div className="text-sm font-medium">{r.name}</div>
-                  <div className="text-xs text-muted-foreground">{r.category}</div>
-                </div>
-              </a>
-            ))}
+            {RELATED.map((r) => {
+              const Logo = r.logo;
+              return (
+                <a key={r.name} href="#" className="dust-card flex items-center gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-border bg-background">
+                    <Logo className={`h-6 w-6 ${r.tint}`} />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="label-sm">{r.name}</div>
+                    <div className="copy-xs text-muted-foreground">{r.category}</div>
+                  </div>
+                </a>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -256,28 +246,21 @@ export default function AttioIntegrationPage() {
       <section className="border-b border-border">
         <div className="mx-auto max-w-5xl px-6 py-20">
           <div className="rounded-3xl border border-border bg-muted px-8 py-14 text-center">
-            <h2 className="font-mono text-3xl font-medium tracking-tight sm:text-4xl">
+            <h2 className="heading-mono-4xl">
               Get started with <span className="kw-blue">Attio</span>
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-base text-muted-foreground">
+            <p className="copy-base mx-auto mt-4 max-w-xl text-muted-foreground">
               Connect Attio to Dust and let AI agents handle your workflows.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <a
-                href="#"
-                className="inline-flex items-center gap-2 rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-90"
-              >
+              <Button href="#" variant="primary" size="md" iconRight={ArrowRight}>
                 Start free trial
-                <ArrowRight className="h-4 w-4" />
-              </a>
-              <a
-                href="#"
-                className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-[color:var(--color-dust-blue)]"
-              >
+              </Button>
+              <Button href="#" variant="outline" size="md">
                 Talk to sales
-              </a>
+              </Button>
             </div>
-            <p className="mt-5 text-xs text-muted-foreground">
+            <p className="copy-xs mt-5 text-muted-foreground">
               14-day free trial. No credit card required.
             </p>
           </div>

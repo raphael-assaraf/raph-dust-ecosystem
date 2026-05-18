@@ -39,6 +39,9 @@ yarn-error.log*
 # Internal docs (SOW, partner data, etc.) — never commit
 Docs/
 
+# Public Dust repo clone — kept locally for reference, not for commit
+dust-main/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

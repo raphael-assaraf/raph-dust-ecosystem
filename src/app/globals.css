@@ -1,44 +1,167 @@
 @import "tailwindcss";
 
+/*
+ * Design tokens ported from @dust-tt/sparkle's tailwind-preset.js
+ * (the public Dust design system). Adapted for Tailwind v4 `@theme` syntax.
+ * Full color scales (50-950), semantic tokens, and Geist-tuned font sizes
+ * with the same letter-spacing as the real dust.tt site.
+ */
 @theme inline {
+  /* ── Brand: blues ── */
+  --color-blue-50: #E9F7FF;
+  --color-blue-100: #CAEBFF;
+  --color-blue-200: #9FDBFF;
+  --color-blue-300: #7AC6FF;
+  --color-blue-400: #4BABFF;
+  --color-blue-500: #1C91FF;
+  --color-blue-600: #137FE3;
+  --color-blue-700: #0A6CC6;
+  --color-blue-800: #085092;
+  --color-blue-900: #07355F;
+  --color-blue-950: #041728;
+
+  /* ── Brand: greens ── */
+  --color-green-50: #FEFFF0;
+  --color-green-100: #F0FBBD;
+  --color-green-200: #E2F78C;
+  --color-green-300: #BCDE81;
+  --color-green-400: #91C174;
+  --color-green-500: #6AA668;
+  --color-green-600: #418B5C;
+  --color-green-700: #277644;
+  --color-green-800: #105B2B;
+  --color-green-900: #0A361A;
+  --color-green-950: #04140A;
+
+  /* ── Brand: golden ── */
+  --color-golden-50: #FFFAE0;
+  --color-golden-100: #FFEFA8;
+  --color-golden-200: #FFE262;
+  --color-golden-300: #FFD046;
+  --color-golden-400: #FFBE2C;
+  --color-golden-500: #FFAA0D;
+  --color-golden-600: #FE9C1A;
+  --color-golden-700: #E27716;
+  --color-golden-800: #AF5511;
+  --color-golden-900: #70350C;
+  --color-golden-950: #331606;
+
+  /* ── Brand: rose ── */
+  --color-rose-50: #FFF1F7;
+  --color-rose-100: #FFDCEC;
+  --color-rose-200: #FFC3DF;
+  --color-rose-300: #F8A6B4;
+  --color-rose-400: #ED756C;
+  --color-rose-500: #E14322;
+  --color-rose-600: #C93913;
+  --color-rose-700: #B22E13;
+  --color-rose-800: #8C230D;
+  --color-rose-900: #571609;
+  --color-rose-950: #220A04;
+
+  /* ── Pinks (Dust brand uses these in the logo) ── */
+  --color-pink-50: #FFF1F7;
+  --color-pink-100: #FFDCEC;
+  --color-pink-200: #FFC3DF;
+  --color-pink-300: #F99BC3;
+  --color-pink-400: #F373A5;
+  --color-pink-500: #EC4987;
+  --color-pink-600: #D13C72;
+  --color-pink-700: #B8315E;
+  --color-pink-800: #9E254A;
+  --color-pink-900: #841936;
+  --color-pink-950: #39061A;
+
+  /* ── Grays ── */
+  --color-gray-50: #F7F7F7;
+  --color-gray-100: #EEEEEF;
+  --color-gray-150: #DFE0E2;
+  --color-gray-200: #D3D5D9;
+  --color-gray-300: #B2B6BD;
+  --color-gray-400: #969CA5;
+  --color-gray-500: #7B818D;
+  --color-gray-600: #596170;
+  --color-gray-700: #364153;
+  --color-gray-800: #2A3241;
+  --color-gray-850: #232A37;
+  --color-gray-900: #1C222D;
+  --color-gray-950: #111418;
+
+  /* ── Semantic tokens ── */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border-color);
   --color-separator: var(--separator);
-  --color-highlight: var(--highlight);
+  --color-highlight: var(--color-blue-500);
+  --color-ring: var(--color-blue-200);
 
-  /* Dust brand palette — from Sparkle design system + dust.tt homepage */
-  --color-dust-blue: #1C91FF;
-  --color-dust-green: #418B5C;
-  --color-dust-tea: #E2F78C;
-  --color-dust-sky: #9FDBFF;
-  --color-dust-red: #E14322;
+  /* Brand alias tokens (Sparkle naming retained for direct port) */
+  --color-brand: var(--color-green-600);
+
+  /* ── Legacy aliases (back-compat with first pass of this site) ── */
+  --color-dust-blue: var(--color-blue-500);
+  --color-dust-green: var(--color-green-600);
+  --color-dust-tea: var(--color-green-200);
+  --color-dust-sky: var(--color-blue-200);
+  --color-dust-red: var(--color-rose-500);
   --color-dust-rose: #F2AD9F;
-  --color-dust-golden: #FE9C1A;
-  --color-dust-sunshine: #FFE262;
+  --color-dust-golden: var(--color-golden-600);
+  --color-dust-sunshine: var(--color-golden-200);
   --color-dust-pink: #D97AB0;
   --color-dust-olive: #A3B558;
 
-  /* Gray scale from Sparkle */
-  --color-gray-950: #111418;
-  --color-gray-900: #1C222D;
-  --color-gray-800: #2A3241;
-  --color-gray-700: #364153;
-  --color-gray-200: #D3D5D9;
-  --color-gray-100: #EEEEEF;
-  --color-gray-50: #F7F7F7;
-
+  /* ── Typography: Geist with Sparkle's letter-spacing tuning ── */
   --font-sans: "Geist", "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --font-mono: "Geist Mono", "SF Mono", "Fira Code", monospace;
+
+  --text-xs: 12px;
+  --text-xs--line-height: 16px;
+  --text-xs--letter-spacing: normal;
+  --text-sm: 14px;
+  --text-sm--line-height: 20px;
+  --text-sm--letter-spacing: -0.28px;
+  --text-base: 16px;
+  --text-base--line-height: 24px;
+  --text-base--letter-spacing: -0.32px;
+  --text-lg: 18px;
+  --text-lg--line-height: 26px;
+  --text-lg--letter-spacing: -0.36px;
+  --text-xl: 20px;
+  --text-xl--line-height: 28px;
+  --text-xl--letter-spacing: -0.4px;
+  --text-2xl: 24px;
+  --text-2xl--line-height: 30px;
+  --text-2xl--letter-spacing: -0.96px;
+  --text-3xl: 32px;
+  --text-3xl--line-height: 36px;
+  --text-3xl--letter-spacing: -1.28px;
+  --text-4xl: 40px;
+  --text-4xl--line-height: 42px;
+  --text-4xl--letter-spacing: -2.4px;
+  --text-5xl: 48px;
+  --text-5xl--line-height: 52px;
+  --text-5xl--letter-spacing: -2.88px;
+  --text-6xl: 56px;
+  --text-6xl--line-height: 60px;
+  --text-6xl--letter-spacing: -3.36px;
+  --text-7xl: 64px;
+  --text-7xl--line-height: 68px;
+  --text-7xl--letter-spacing: -3.84px;
+  --text-8xl: 72px;
+  --text-8xl--line-height: 76px;
+  --text-8xl--letter-spacing: -4.32px;
+  --text-9xl: 80px;
+  --text-9xl--line-height: 84px;
+  --text-9xl--letter-spacing: -4.8px;
 }
 
 :root {
   --background: #FFFFFF;
   --foreground: #111418;
   --muted: #F7F7F7;
-  --muted-foreground: #6B7280;
+  --muted-foreground: #596170;
   --border-color: #EEEEEF;
   --separator: #EEEEEF;
   --highlight: #1C91FF;
@@ -57,6 +180,35 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* ─── Sparkle-style typography helpers ─── */
+.label-xs { font-size: 12px; line-height: 16px; font-weight: 600; }
+.label-sm { font-size: 14px; line-height: 20px; letter-spacing: -0.28px; font-weight: 600; }
+.label-base { font-size: 16px; line-height: 24px; letter-spacing: -0.32px; font-weight: 600; }
+
+.heading-base { font-size: 16px; line-height: 24px; letter-spacing: -0.32px; font-weight: 600; }
+.heading-lg { font-size: 18px; line-height: 26px; letter-spacing: -0.36px; font-weight: 600; }
+.heading-xl { font-size: 20px; line-height: 28px; letter-spacing: -0.4px; font-weight: 600; }
+.heading-2xl { font-size: 24px; line-height: 30px; letter-spacing: -0.96px; font-weight: 600; }
+.heading-3xl { font-size: 32px; line-height: 36px; letter-spacing: -1.28px; font-weight: 600; }
+.heading-4xl { font-size: 40px; line-height: 42px; letter-spacing: -2.4px; font-weight: 500; }
+.heading-5xl { font-size: 48px; line-height: 52px; letter-spacing: -2.88px; font-weight: 500; }
+.heading-6xl { font-size: 56px; line-height: 60px; letter-spacing: -3.36px; font-weight: 500; }
+
+.heading-mono-lg { font-family: var(--font-mono); font-size: 18px; line-height: 26px; letter-spacing: -0.36px; font-weight: 400; }
+.heading-mono-xl { font-family: var(--font-mono); font-size: 20px; line-height: 28px; letter-spacing: -0.4px; font-weight: 400; }
+.heading-mono-2xl { font-family: var(--font-mono); font-size: 24px; line-height: 30px; letter-spacing: -0.96px; font-weight: 400; }
+.heading-mono-3xl { font-family: var(--font-mono); font-size: 32px; line-height: 36px; letter-spacing: -1.28px; font-weight: 400; }
+.heading-mono-4xl { font-family: var(--font-mono); font-size: 40px; line-height: 42px; letter-spacing: -2.4px; font-weight: 400; }
+.heading-mono-5xl { font-family: var(--font-mono); font-size: 48px; line-height: 52px; letter-spacing: -2.88px; font-weight: 400; }
+.heading-mono-6xl { font-family: var(--font-mono); font-size: 56px; line-height: 60px; letter-spacing: -3.36px; font-weight: 400; }
+
+.copy-xs { font-size: 12px; line-height: 16px; font-weight: 400; }
+.copy-sm { font-size: 14px; line-height: 20px; letter-spacing: -0.28px; font-weight: 400; }
+.copy-base { font-size: 16px; line-height: 24px; letter-spacing: -0.32px; font-weight: 400; }
+.copy-lg { font-size: 18px; line-height: 26px; letter-spacing: -0.36px; font-weight: 400; }
+.copy-xl { font-size: 20px; line-height: 28px; letter-spacing: -0.4px; font-weight: 400; }
+.copy-2xl { font-size: 24px; line-height: 30px; letter-spacing: -0.96px; font-weight: 400; }
 
 /* ─── Slide transitions ─── */
 .slide-enter {
@@ -129,23 +281,23 @@ body {
 }
 
 /* ─── Keyword color accents (Lego / Dust brand feel) ─── */
-.kw-blue { color: #1C91FF; }
-.kw-green { color: #418B5C; }
-.kw-golden { color: #FE9C1A; }
-.kw-red { color: #E14322; }
-.kw-pink { color: #D97AB0; }
+.kw-blue { color: var(--color-blue-500); }
+.kw-green { color: var(--color-green-600); }
+.kw-golden { color: var(--color-golden-600); }
+.kw-red { color: var(--color-rose-500); }
+.kw-pink { color: var(--color-pink-500); }
 .kw-olive { color: #A3B558; }
 
 /* Legacy — keep for any remaining usage */
 .gradient-text {
-  background: linear-gradient(135deg, #1C91FF, #418B5C);
+  background: linear-gradient(135deg, var(--color-blue-500), var(--color-green-600));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .gradient-text-golden {
-  background: linear-gradient(135deg, #FE9C1A, #E14322);
+  background: linear-gradient(135deg, var(--color-golden-600), var(--color-rose-500));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -190,20 +342,20 @@ body {
 /* ─── Dust card styles ─── */
 .dust-card {
   border: 1px solid var(--border-color);
-  border-radius: 12px;
+  border-radius: 16px;
   background: var(--background);
   padding: 20px;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .dust-card:hover {
-  border-color: #1C91FF;
+  border-color: var(--color-blue-500);
   box-shadow: 0 0 0 3px rgba(28, 145, 255, 0.08);
 }
 
 .dust-card-flat {
   border: 1px solid var(--border-color);
-  border-radius: 12px;
+  border-radius: 16px;
   background: var(--muted);
   padding: 20px;
 }
