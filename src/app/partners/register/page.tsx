@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-import { Button } from "@/components/ui";
+import { Button, ContentMessage } from "@/components/ui";
 import { H1, P } from "@/components/content";
 
 type FormState = {
@@ -22,6 +22,7 @@ type FormState = {
   docsUrl: string;
   techContactName: string;
   techContactEmail: string;
+  nonMcpInterest: string;
   // Partnership
   partnerName: string;
   partnerEmail: string;
@@ -43,6 +44,7 @@ const EMPTY: FormState = {
   docsUrl: "",
   techContactName: "",
   techContactEmail: "",
+  nonMcpInterest: "",
   partnerName: "",
   partnerEmail: "",
   partnerLinkedIn: "",
@@ -301,6 +303,57 @@ export default function RegisterPage() {
                   />
                 </Field>
               </div>
+
+              <ContentMessage
+                variant="info"
+                title="Today, Dust integrates with third-party tools exclusively through MCP servers."
+              >
+                <P size="xs" className="text-blue-900">
+                  If you don&apos;t have an MCP yet, our team will scope one with you — most
+                  partners go from zero to listed in under a week. If you&apos;re looking for a
+                  different integration shape (native iframe, OEM/embed, webhook bridge,
+                  in-product surface…), tell us below and we&apos;ll loop you in as we expand
+                  the surface area.
+                </P>
+              </ContentMessage>
+
+              <Field label="Looking for an integration shape we don't yet support?">
+                <textarea
+                  rows={2}
+                  value={form.nonMcpInterest}
+                  onChange={(e) => update("nonMcpInterest", e.target.value)}
+                  placeholder="Optional — e.g. native iframe embed, OEM / white-label, in-product surface, webhook bridge…"
+                  className={inputClass}
+                />
+              </Field>
+
+              <ContentMessage
+                variant="info"
+                title="Need to whitelist Dust for OAuth pre-registration?"
+              >
+                <P size="xs" className="mb-3 text-blue-900">
+                  These values are the same for every partner — no need to email us. Add them
+                  to your OAuth client allowlist:
+                </P>
+                <dl className="space-y-1.5 text-xs">
+                  <div className="flex flex-wrap items-baseline gap-2">
+                    <dt className="font-medium text-blue-900">Redirect URI (global)</dt>
+                    <dd className="font-mono text-blue-950">
+                      https://dust.tt/oauth/mcp/finalize
+                    </dd>
+                  </div>
+                  <div className="flex flex-wrap items-baseline gap-2">
+                    <dt className="font-medium text-blue-900">Redirect URI (EU)</dt>
+                    <dd className="font-mono text-blue-950">
+                      https://eu.dust.tt/oauth/mcp/finalize
+                    </dd>
+                  </div>
+                  <div className="flex flex-wrap items-baseline gap-2">
+                    <dt className="font-medium text-blue-900">Client ID</dt>
+                    <dd className="font-mono text-blue-950">dust</dd>
+                  </div>
+                </dl>
+              </ContentMessage>
             </FormSection>
 
             {/* PARTNERSHIP */}
