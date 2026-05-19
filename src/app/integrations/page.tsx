@@ -8,7 +8,6 @@ import { ChevronDownIcon } from "@/components/icons";
 import {
   IntegrationCard,
   type IntegrationCardData,
-  type IntegrationTag,
 } from "@/components/IntegrationCard";
 import { FinalCTASection } from "@/components/FinalCTASection";
 import { MarketplaceHero } from "@/components/marketing";
@@ -185,24 +184,14 @@ const HERO_LOGOS = [
   { Logo: AttioLogo, tint: "text-foreground" },
 ];
 
-const TAG_FILTERS: { value: IntegrationTag; label: string }[] = [
-  { value: "native", label: "Native" },
-  { value: "mcp", label: "MCP" },
-];
-
 export default function IntegrationsIndexPage() {
   const [selectedCategory, setSelectedCategory] = useState<CategoryName | null>(null);
-  const [selectedTags, setSelectedTags] = useState<IntegrationTag[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   const filtered = useMemo(() => {
     return INTEGRATIONS.filter((i) => {
       if (selectedCategory && i.category !== selectedCategory) return false;
-      if (selectedTags.length > 0) {
-        const hasAll = selectedTags.every((t) => i.tags?.includes(t));
-        if (!hasAll) return false;
-      }
       if (searchQuery) {
         const q = searchQuery.toLowerCase();
         const matchesName = i.name.toLowerCase().includes(q);
@@ -211,7 +200,7 @@ export default function IntegrationsIndexPage() {
       }
       return true;
     });
-  }, [selectedCategory, selectedTags, searchQuery]);
+  }, [selectedCategory, searchQuery]);
 
   const grouped = useMemo(() => {
     const map = new Map<CategoryName, IndexedIntegration[]>();
@@ -221,12 +210,6 @@ export default function IntegrationsIndexPage() {
     }
     return map;
   }, [filtered]);
-
-  const toggleTag = (t: IntegrationTag) => {
-    setSelectedTags((current) =>
-      current.includes(t) ? current.filter((x) => x !== t) : [...current, t]
-    );
-  };
 
   return (
     <div className="h-dvh overflow-y-auto bg-background text-foreground">
@@ -251,14 +234,7 @@ export default function IntegrationsIndexPage() {
             onClick={() => setMobileNavOpen((o) => !o)}
             className="flex items-center justify-between rounded-lg border border-border bg-background px-4 py-2.5 text-sm font-medium text-foreground"
           >
-            <span>
-              {selectedCategory ?? "All categories"}
-              {selectedTags.length > 0 && (
-                <span className="ml-2 text-xs text-muted-foreground">
-                  · {selectedTags.length} tag{selectedTags.length > 1 ? "s" : ""}
-                </span>
-              )}
-            </span>
+            <span>{selectedCategory ?? "All categories"}</span>
             <ChevronDownIcon
               className={cn(
                 "h-4 w-4 text-muted-foreground transition-transform",
@@ -269,24 +245,14 @@ export default function IntegrationsIndexPage() {
         </div>
 
         <div className="flex flex-col gap-10 lg:flex-row lg:gap-12">
-          {/* Sidebar — categories + tag filters */}
+          {/* Sidebar — categories */}
           <aside
             className={cn(
-              "lg:sticky lg:top-28 lg:max-h-[calc(100vh-9rem)] lg:overflow-y-auto lg:w-60 lg:shrink-0",
+              "lg:sticky lg:top-32 lg:max-h-[calc(100vh-10rem)] lg:overflow-y-auto lg:w-60 lg:shrink-0",
               !mobileNavOpen && "hidden lg:block"
             )}
           >
-            {/* Search — desktop */}
-            <div className="hidden lg:block">
-              <SearchInput
-                value={searchQuery}
-                onChange={setSearchQuery}
-                placeholder="Search integrations…"
-              />
-            </div>
-
-            {/* Categories */}
-            <nav className="mt-6 space-y-0.5">
+            <nav className="space-y-0.5">
               <h3 className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
                 Categories
               </h3>
@@ -316,48 +282,29 @@ export default function IntegrationsIndexPage() {
                 );
               })}
             </nav>
-
-            {/* Tag filters */}
-            <div className="mt-8 space-y-2">
-              <h3 className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-                Type
-              </h3>
-              {TAG_FILTERS.map(({ value, label }) => {
-                const isOn = selectedTags.includes(value);
-                const count = INTEGRATIONS.filter((i) => i.tags?.includes(value)).length;
-                return (
-                  <label
-                    key={value}
-                    className="flex cursor-pointer items-center justify-between rounded-md px-2 py-1.5 text-sm text-foreground hover:bg-muted"
-                  >
-                    <span className="flex items-center gap-2">
-                      <input
-                        type="checkbox"
-                        checked={isOn}
-                        onChange={() => toggleTag(value)}
-                        className="h-4 w-4 rounded border-border text-blue-500 focus:ring-2 focus:ring-blue-500/30"
-                      />
-                      {label}
-                    </span>
-                    <span className="text-xs text-muted-foreground">{count}</span>
-                  </label>
-                );
-              })}
-              {selectedTags.length > 0 && (
-                <button
-                  type="button"
-                  onClick={() => setSelectedTags([])}
-                  className="mt-2 text-xs font-medium text-blue-600 hover:text-blue-700"
-                >
-                  Clear filters
-                </button>
-              )}
-            </div>
           </aside>
 
           {/* Main: integrations grid */}
           <div className="flex-1 min-w-0">
-            <div className="mb-6 flex items-baseline justify-between">
+            {/* Sticky top bar — counter (left) + search (right). Desktop only;
+                mobile gets its own search in the flex above. */}
+            <div className="sticky top-16 z-30 mb-6 hidden items-center justify-between gap-4 rounded-xl border border-border bg-background/85 px-4 py-2.5 backdrop-blur-md lg:flex">
+              <p className="text-sm text-muted-foreground">
+                {filtered.length} integration{filtered.length !== 1 ? "s" : ""}
+                {selectedCategory && ` in ${selectedCategory}`}
+                {searchQuery && ` matching "${searchQuery}"`}
+              </p>
+              <div className="w-72 max-w-full">
+                <SearchInput
+                  value={searchQuery}
+                  onChange={setSearchQuery}
+                  placeholder="Search integrations…"
+                />
+              </div>
+            </div>
+
+            {/* Mobile counter only (mobile search lives in the top flex). */}
+            <div className="mb-6 flex items-baseline justify-between lg:hidden">
               <p className="text-sm text-muted-foreground">
                 {filtered.length} integration{filtered.length !== 1 ? "s" : ""}
                 {selectedCategory && ` in ${selectedCategory}`}
