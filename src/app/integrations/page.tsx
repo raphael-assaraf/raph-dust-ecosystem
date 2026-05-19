@@ -226,7 +226,7 @@ export default function IntegrationsIndexPage() {
       <SiteHeader />
 
       <MarketplaceHero
-        title="App Store"
+        title="Apps & Integrations"
         logos={HERO_LOGOS}
         subtitle="Connect Dust to your stack. Let agents get context and take actions in your favorite apps to unlock true multiplayer AI."
       />
