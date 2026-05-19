@@ -92,8 +92,8 @@ export default function RegisterPage() {
             </H1>
             <P size="md" className="mt-4 text-muted-foreground">
               Thanks{form.partnerName ? `, ${form.partnerName.split(" ")[0]}` : ""} — we got{" "}
-              <span className="text-foreground">{form.companyName || "your"}</span> details. Our
-              partner team will take a look and reach out to talk through next steps.
+              <span className="text-foreground">{form.companyName || "your"}</span> details.
+              We&apos;ll be in touch.
             </P>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Button href="/partners" variant="outline" size="md" icon={ArrowLeft}>
@@ -131,9 +131,7 @@ export default function RegisterPage() {
             Become a Dust app partner
           </H1>
           <P size="md" className="mt-4 text-muted-foreground">
-            Tell us about your product and your MCP. You&apos;ll start in Community tier —
-            graduation paths are visible from day one, and our partner team will reach out to
-            talk through what working together could look like.
+            Tell us about your product and your MCP.
           </P>
         </div>
       </section>
@@ -308,11 +306,8 @@ export default function RegisterPage() {
                 title="Today, Dust integrates with third-party tools exclusively through MCP servers."
               >
                 <P size="xs" className="text-blue-900">
-                  If you don&apos;t have an MCP yet, our team will scope one with you — most
-                  partners go from zero to listed in under a week. If you&apos;re looking for a
-                  different integration shape (native iframe, OEM/embed, webhook bridge,
-                  in-product surface…), tell us below and we&apos;ll loop you in as we expand
-                  the surface area.
+                  If you&apos;re looking for a different integration shape (native iframe,
+                  OEM/embed, webhook bridge, in-product surface…), tell us below.
                 </P>
               </ContentMessage>
 
