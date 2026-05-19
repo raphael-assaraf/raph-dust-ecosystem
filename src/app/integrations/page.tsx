@@ -1,10 +1,10 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SearchInput } from "@/components/ui";
-import { ChevronDownIcon } from "@/components/icons";
+import { ChevronDownIcon, MagnifyingGlassIcon } from "@/components/icons";
 import {
   IntegrationCard,
   type IntegrationCardData,
@@ -188,6 +188,16 @@ export default function IntegrationsIndexPage() {
   const [selectedCategory, setSelectedCategory] = useState<CategoryName | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  // Match SiteHeader's threshold so the sticky bar tracks the header's
+  // h-24 → h-16 transition exactly. Avoids the bar being clipped by the
+  // unscrolled header (96px) and avoids a gap once it shrinks to 64px.
+  const [isHeaderScrolled, setIsHeaderScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setIsHeaderScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const filtered = useMemo(() => {
     return INTEGRATIONS.filter((i) => {
@@ -216,8 +226,9 @@ export default function IntegrationsIndexPage() {
       <SiteHeader />
 
       <MarketplaceHero
+        title="App Store"
         logos={HERO_LOGOS}
-        subtitle={`${INTEGRATIONS.length}+ integrations across ${CATEGORIES.length} categories. Connect Dust to your favorite tools and let AI agents work across your stack.`}
+        subtitle="Connect Dust to your stack. Let agents get context and take actions in your favorite apps to unlock true multiplayer AI."
       />
 
       {/* ─────────── Marketplace body: sidebar + grid ─────────── */}
@@ -286,19 +297,27 @@ export default function IntegrationsIndexPage() {
 
           {/* Main: integrations grid */}
           <div className="flex-1 min-w-0">
-            {/* Sticky top bar — counter (left) + search (right). Desktop only;
-                mobile gets its own search in the flex above. */}
-            <div className="sticky top-16 z-30 mb-6 hidden items-center justify-between gap-4 rounded-xl border border-border bg-background/85 px-4 py-2.5 backdrop-blur-md lg:flex">
+            {/* Sticky top row — counter (left) + slim search (right). Flush
+                with the page, no surrounding box. Top offset follows the
+                header's h-24 → h-16 transition so the bar always sits just
+                below it, never under it. */}
+            <div
+              className="sticky z-30 mb-6 hidden items-center justify-between gap-4 border-b border-border bg-background py-3 transition-[top] duration-200 ease-out lg:flex"
+              style={{ top: isHeaderScrolled ? "4rem" : "6rem" }}
+            >
               <p className="text-sm text-muted-foreground">
                 {filtered.length} integration{filtered.length !== 1 ? "s" : ""}
                 {selectedCategory && ` in ${selectedCategory}`}
                 {searchQuery && ` matching "${searchQuery}"`}
               </p>
-              <div className="w-72 max-w-full">
-                <SearchInput
+              <div className="relative w-72 max-w-full">
+                <MagnifyingGlassIcon className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground" />
+                <input
+                  type="text"
                   value={searchQuery}
-                  onChange={setSearchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search integrations…"
+                  className="h-8 w-full rounded-full border border-border bg-background pl-8 pr-3 text-sm text-foreground placeholder:text-muted-foreground/60 transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/30"
                 />
               </div>
             </div>
