@@ -120,7 +120,7 @@ const TIERS: Tier[] = [
     accent: "#D97AB0",
     bg: "#FBE8F1",
     who: "Top-down chosen by Dust — partners we intentionally build on, or those that don't fit the program model.",
-    entry: "Not application-based",
+    entry: "By Dust invitation only",
     partnerGets: [
       "Executive sponsorship and custom commercial structure",
       "Engineering and product roadmap collaboration",
@@ -174,7 +174,7 @@ export default function PartnersPage() {
           </P>
           <div className="flex flex-col gap-4 sm:flex-row">
             <Button href="/partners/register" variant="highlight" size="md" icon={RocketIcon}>
-              Apply now
+              Become a partner
             </Button>
             <Button href="#how-it-works" variant="outline" size="md">
               How it works
@@ -315,7 +315,7 @@ export default function PartnersPage() {
               How it works
             </H2>
             <P size="md" className="text-muted-foreground">
-              From submission to a featured launch — typically 1 to 3 weeks.
+              From a first conversation to a featured launch — together, step by step.
             </P>
           </div>
 
@@ -323,13 +323,13 @@ export default function PartnersPage() {
             {[
               {
                 step: "01",
-                title: "Apply",
-                desc: "Submit your MCP server URL and a few details about your product, team, and target customers.",
+                title: "Get in touch",
+                desc: "Share your MCP server URL and a few details about your product, team, and target customers.",
               },
               {
                 step: "02",
                 title: "QA",
-                desc: "We test the integration end-to-end against real Dust agents. Aim: ~1 week for healthy MCPs.",
+                desc: "We test the integration end-to-end against real Dust agents.",
               },
               {
                 step: "03",
@@ -367,10 +367,9 @@ export default function PartnersPage() {
       <FinalCTASection
         config={{
           title: "Ready to be discovered by agent users?",
-          subtitle: "Submit your MCP server and we'll take it from there.",
-          primaryCTA: { label: "Apply now", href: "/partners/register" },
+          subtitle: "Share your MCP server and we'll take it from there.",
+          primaryCTA: { label: "Become a partner", href: "/partners/register" },
           secondaryCTA: { label: "Talk to the partner team", href: "mailto:partners@dust.tt" },
-          trustText: "Most partners hear back within 3 business days.",
         }}
       />
 

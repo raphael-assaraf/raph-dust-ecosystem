@@ -88,13 +88,12 @@ export default function RegisterPage() {
               mono
               className="mt-6 text-center text-3xl font-medium text-foreground md:text-4xl"
             >
-              Application received
+              Thanks — we&apos;ve got your info
             </H1>
             <P size="md" className="mt-4 text-muted-foreground">
               Thanks{form.partnerName ? `, ${form.partnerName.split(" ")[0]}` : ""} — we got{" "}
               <span className="text-foreground">{form.companyName || "your"}</span> details. Our
-              partner team will run a quick QA pass on the MCP and follow up within 3 business
-              days.
+              partner team will take a look and reach out to talk through next steps.
             </P>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Button href="/partners" variant="outline" size="md" icon={ArrowLeft}>
@@ -129,12 +128,12 @@ export default function RegisterPage() {
             mono
             className="mt-4 text-4xl font-medium leading-tight text-foreground md:text-5xl"
           >
-            Apply to the Dust Partner Program
+            Become a Dust app partner
           </H1>
           <P size="md" className="mt-4 text-muted-foreground">
-            Tell us about your product and your MCP. We&apos;ll review and reach out within 3
-            business days. You&apos;ll start in Community tier — graduation paths are visible from
-            day one.
+            Tell us about your product and your MCP. You&apos;ll start in Community tier —
+            graduation paths are visible from day one, and our partner team will reach out to
+            talk through what working together could look like.
           </P>
         </div>
       </section>
@@ -442,8 +441,8 @@ export default function RegisterPage() {
             {/* SUBMIT */}
             <div className="flex flex-col items-start gap-3 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
               <p className="text-xs text-muted-foreground">
-                By submitting, you agree to be contacted about your application. We don't share
-                your info with third parties.
+                By sending, you agree to be contacted about a potential partnership. We don&apos;t
+                share your info with third parties.
               </p>
               <Button
                 type="submit"
@@ -454,7 +453,7 @@ export default function RegisterPage() {
                 iconRight={submitting ? undefined : ArrowRight}
                 className={submitting ? "[&_svg]:animate-spin" : ""}
               >
-                {submitting ? "Submitting…" : "Submit application"}
+                {submitting ? "Sending…" : "Get in touch"}
               </Button>
             </div>
           </form>
