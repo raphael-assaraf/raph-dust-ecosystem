@@ -33,6 +33,12 @@ type Tier = {
   partnerGets: string[];
   dustGets: string;
   cadence: string;
+  /**
+   * Directional ideas we could layer onto this tier over time. Intentionally
+   * forward-looking, not commitments — surfaces what's possible without
+   * locking the program in.
+   */
+  futureIdeas: string[];
 };
 
 const TIERS: Tier[] = [
@@ -52,6 +58,12 @@ const TIERS: Tier[] = [
     ],
     dustGets: "Marketplace breadth, devrel surface area, retention moat.",
     cadence: "Async / batched",
+    futureIdeas: [
+      "\"Featured this week\" spotlight on the marketplace homepage",
+      "Auto-generated short-form demo videos from a template",
+      "Vertical roundup posts (e.g. \"10 new MCPs for sales teams\")",
+      "Monthly \"What's new in Dust integrations\" digest to all customers",
+    ],
   },
   {
     name: "Growth",
@@ -69,6 +81,13 @@ const TIERS: Tier[] = [
     ],
     dustGets: "Mutual deal flow + lightweight co-marketing + vertical market validation.",
     cadence: "Async recap & feedback to evolve the partnership",
+    futureIdeas: [
+      "Custom Dust skill — a pre-configured agent template using the partner's MCP",
+      "Inclusion in Dust's SE/AE enablement materials",
+      "\"Partner pick\" badge inside the marketplace",
+      "Shared adoption dashboard so partners see install + usage signal",
+      "Joint customer interview, panel, or co-hosted office hours",
+    ],
   },
   {
     name: "Alliance",
@@ -86,6 +105,13 @@ const TIERS: Tier[] = [
     ],
     dustGets: "Predictable deal volume, named champion accounts, category presence.",
     cadence: "Monthly+ planning, quarterly QBR",
+    futureIdeas: [
+      "Dedicated Partner Account Manager",
+      "Joint customer advisory board",
+      "Co-authored thought leadership (vertical benchmark, whitepaper, framework)",
+      "Joint booth presence at major events",
+      "\"Built for [Partner]\" badge on partner's own site, certified by Dust",
+    ],
   },
   {
     name: "Strategic",
@@ -103,6 +129,12 @@ const TIERS: Tier[] = [
     ],
     dustGets: "Category-defining partnership outcomes.",
     cadence: "Continuous",
+    futureIdeas: [
+      "Co-developed product features (joint engineering sprints)",
+      "Embedded Dust as a layer in the partner's product (white-label / OEM)",
+      "Joint go-to-market entity or revenue-share commercial structure",
+      "Co-branded vertical solutions (e.g. \"Dust + [Partner] for Funds\")",
+    ],
   },
 ];
 
@@ -242,6 +274,32 @@ export default function PartnersPage() {
                     </div>
                   </div>
 
+                  {/* Future ideas — directional, not committed */}
+                  <div className="mt-6 border-t border-border/60 pt-5">
+                    <div className="mb-3 flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                      <Sparkles className="h-3 w-3" style={{ color: t.accent }} />
+                      <span>Future ideas to layer on</span>
+                      <span className="ml-1 normal-case tracking-normal text-muted-foreground/70 italic">
+                        — directional, not committed
+                      </span>
+                    </div>
+                    <ul className="grid gap-x-6 gap-y-1.5 sm:grid-cols-2">
+                      {t.futureIdeas.map((idea) => (
+                        <li
+                          key={idea}
+                          className="flex gap-2 text-sm text-muted-foreground"
+                        >
+                          <span
+                            className="mt-0.5 font-mono text-xs"
+                            style={{ color: t.accent }}
+                          >
+                            +
+                          </span>
+                          <span>{idea}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               );
             })}
