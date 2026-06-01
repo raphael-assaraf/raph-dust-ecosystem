@@ -32,7 +32,7 @@ export function SiteFooter() {
               </div>
               <ul className="mt-4 space-y-2.5">
                 {col.items.map((item) => {
-                  const href = item === "Become a Partner" ? "/partners" : "#";
+                  const href = item === "Become a Partner" ? "/become-a-partner" : "#";
                   return (
                     <li key={item}>
                       <Link

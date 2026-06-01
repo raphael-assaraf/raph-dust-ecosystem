@@ -72,7 +72,7 @@ const MAIN_NAV: NavItem[] = [
       { title: "Webinars", href: "#" },
       { title: "Connect" },
       { title: "Slack Community", href: "#" },
-      { title: "Become a Partner", href: "/partners" },
+      { title: "Become a Partner", href: "/become-a-partner" },
     ],
   },
   { title: "Security", href: "#" },

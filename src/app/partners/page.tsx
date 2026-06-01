@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
 import {
-  ArrowRight,
   Check,
   Users,
   TrendingUp,
   Handshake,
   Crown,
   Sparkles,
-  Info,
 } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -41,7 +39,13 @@ type Tier = {
   futureIdeas: string[];
 };
 
-const TIERS: Tier[] = [
+/*
+ * PUBLIC_TIERS — rendered on the page.
+ * INTERNAL_TIERS — kept in code as operational reference (Alliance / Strategic).
+ * Per 2026-06-01 huddle: Strategic and Alliance are operational reality but
+ * NOT exposed to external prospects. Public surface is Tier 1 + Tier 2 only.
+ */
+const PUBLIC_TIERS: Tier[] = [
   {
     name: "Community",
     tagline: "Be discoverable. Reach Dust customers from day one.",
@@ -89,6 +93,10 @@ const TIERS: Tier[] = [
       "Joint customer interview, panel, or co-hosted office hours",
     ],
   },
+];
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const INTERNAL_TIERS: Tier[] = [
   {
     name: "Alliance",
     tagline: "Co-sell motion. Shared plans. Deep product collab.",
@@ -143,23 +151,12 @@ export default function PartnersPage() {
     <div className="h-dvh overflow-y-auto bg-background text-foreground">
       <SiteHeader />
 
-      {/* ─────────── Internal banner ─────────── */}
-      <div className="border-b border-[color:var(--color-dust-golden)]/30 bg-[color:var(--color-dust-sunshine)]/40">
-        <div className="mx-auto flex max-w-5xl items-start gap-3 px-6 py-3 text-xs sm:items-center">
-          <Info className="h-3.5 w-3.5 shrink-0 text-[color:var(--color-dust-golden)]" />
-          <p className="text-foreground/80">
-            <span className="font-medium text-foreground">Internal document.</span>{" "}
-            Draft of the Dust Partner Program. Specific examples are directional, not committed deliverables.
-          </p>
-        </div>
-      </div>
-
       {/* ─────────── Hero ─────────── */}
       <section className="bg-background">
         <div className="mx-auto flex max-w-3xl flex-col items-center px-6 pb-12 pt-16 text-center md:pb-16 md:pt-24">
           <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
             <Sparkles className="h-3 w-3 text-blue-500" />
-            Dust Partner Program
+            Dust App Partner Program
           </span>
           <H1
             mono
@@ -168,13 +165,12 @@ export default function PartnersPage() {
             Build, launch, and grow with Dust
           </H1>
           <P size="lg" className="mb-8 max-w-2xl text-muted-foreground">
-            Any tool with an MCP server can become a one-click Dust integration. Get discovered by
-            thousands of agent users — and grow into a deeper relationship as your traction proves
-            out.
+            List your app on Dust and get discovered by thousands of AI agent users — then grow
+            into a deeper partnership as your traction proves out.
           </P>
           <div className="flex flex-col gap-4 sm:flex-row">
             <Button href="/partners/register" variant="highlight" size="md" icon={RocketIcon}>
-              Become a partner
+              List your app
             </Button>
             <Button href="#how-it-works" variant="outline" size="md">
               How it works
@@ -187,9 +183,9 @@ export default function PartnersPage() {
       <FullWidthSection className="bg-muted py-12 md:py-16">
         <div className="mx-auto grid max-w-4xl gap-8 px-6 py-8 md:grid-cols-3">
           {[
-            { stat: "100+", label: "MCP integrations live on Dust" },
-            { stat: "1 URL", label: "All it takes to ship an integration" },
-            { stat: "4 tiers", label: "Clear graduation path with shared upside" },
+            { stat: "100+", label: "Apps live on Dust" },
+            { stat: "1 URL", label: "All it takes to list yours" },
+            { stat: "Built for", label: "AI agents, end-to-end" },
           ].map((s) => (
             <div key={s.label} className="text-center">
               <div className="heading-mono-3xl text-foreground">{s.stat}</div>
@@ -201,109 +197,111 @@ export default function PartnersPage() {
         </div>
       </FullWidthSection>
 
-      {/* ─────────── The four tiers ─────────── */}
+      {/* ─────────── Two tiers — pricing-page treatment ─────────── */}
       <section className="py-12 md:py-16">
         <div className="mx-auto max-w-5xl px-6">
           <div className="mb-12 mx-auto max-w-3xl text-center">
             <H2 className="mb-3 text-center text-3xl font-semibold text-foreground md:text-4xl">
-              Four tiers. One path.
+              Two tiers. One path.
             </H2>
             <P size="md" className="text-muted-foreground">
-              Every partner starts in Community. The deeper your traction with Dust customers, the
-              more we invest in your growth — together.
+              Every partner starts as Community. Show traction, and we go deeper together.
             </P>
           </div>
 
-          <div className="space-y-5">
-            {TIERS.map((t, i) => {
+          <div className="grid gap-5 md:grid-cols-2">
+            {PUBLIC_TIERS.map((t, i) => {
               const Icon = t.icon;
+              const isFeatured = i === 1; // Growth gets the highlighted treatment
               return (
-                <div key={t.name} className="dust-card">
-                  <div className="grid gap-6 md:grid-cols-[200px_1fr]">
-                    <div>
+                <div
+                  key={t.name}
+                  className="relative flex flex-col overflow-hidden rounded-3xl border bg-background p-8 transition-shadow hover:shadow-md"
+                  style={{
+                    borderColor: isFeatured ? t.accent : "var(--color-border)",
+                    boxShadow: isFeatured ? `0 0 0 1px ${t.accent}40` : undefined,
+                  }}
+                >
+                  {/* Top tint band */}
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-x-0 top-0 h-32"
+                    style={{
+                      background: `linear-gradient(to bottom, ${t.bg}, transparent)`,
+                    }}
+                  />
+
+                  <div className="relative">
+                    {/* Tier number + icon row */}
+                    <div className="mb-4 flex items-center justify-between">
+                      <span
+                        className="rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider"
+                        style={{ background: t.bg, color: t.accent }}
+                      >
+                        Tier {i + 1}
+                      </span>
                       <div
-                        className="flex h-12 w-12 items-center justify-center rounded-xl"
+                        className="flex h-10 w-10 items-center justify-center rounded-xl"
                         style={{ background: t.bg, color: t.accent }}
                       >
                         <Icon className="h-5 w-5" />
                       </div>
-                      <div className="mt-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                        Tier {i + 1}
-                      </div>
-                      <h3 className="heading-mono-xl mt-1" style={{ color: t.accent }}>
-                        {t.name}
-                      </h3>
-                      <p className="copy-sm mt-1.5 text-muted-foreground">{t.tagline}</p>
                     </div>
 
-                    <div className="grid gap-5 md:grid-cols-2">
-                      <div>
-                        <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                          Who
-                        </div>
-                        <p className="mt-1.5 text-sm">{t.who}</p>
-                        <div className="mt-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                          How to qualify
-                        </div>
-                        <p className="mt-1.5 text-sm">{t.entry}</p>
-                        <div className="mt-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                          Cadence
-                        </div>
-                        <p className="mt-1.5 text-sm">{t.cadence}</p>
+                    <h3
+                      className="heading-mono-2xl"
+                      style={{ color: t.accent }}
+                    >
+                      {t.name}
+                    </h3>
+                    <p className="copy-sm mt-2 text-muted-foreground">{t.tagline}</p>
+
+                    {/* How to qualify */}
+                    <div className="mt-6 rounded-xl bg-muted/60 px-4 py-3">
+                      <div className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                        How to qualify
                       </div>
-                      <div>
-                        <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                          What you get
-                        </div>
-                        <ul className="mt-2 space-y-1.5">
-                          {t.partnerGets.map((g) => (
-                            <li key={g} className="flex gap-2 text-sm">
-                              <Check
-                                className="h-4 w-4 shrink-0 mt-0.5"
-                                style={{ color: t.accent }}
-                              />
-                              <span>{g}</span>
-                            </li>
-                          ))}
-                        </ul>
-                        <div className="mt-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                          What Dust gets
-                        </div>
-                        <p className="mt-1.5 text-sm text-muted-foreground">{t.dustGets}</p>
+                      <p className="mt-1 text-sm text-foreground">{t.entry}</p>
+                    </div>
+
+                    {/* What you get */}
+                    <div className="mt-6">
+                      <div className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                        What you get
                       </div>
+                      <ul className="space-y-2.5">
+                        {t.partnerGets.map((g) => (
+                          <li key={g} className="flex gap-2.5 text-sm leading-snug">
+                            <Check
+                              className="h-4 w-4 shrink-0 mt-0.5"
+                              style={{ color: t.accent }}
+                            />
+                            <span>{g}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
 
-                  {/* Future ideas — directional, not committed */}
-                  <div className="mt-6 border-t border-border/60 pt-5">
-                    <div className="mb-3 flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                      <Sparkles className="h-3 w-3" style={{ color: t.accent }} />
-                      <span>Future ideas to layer on</span>
-                      <span className="ml-1 normal-case tracking-normal text-muted-foreground/70 italic">
-                        — directional, not committed
-                      </span>
-                    </div>
-                    <ul className="grid gap-x-6 gap-y-1.5 sm:grid-cols-2">
-                      {t.futureIdeas.map((idea) => (
-                        <li
-                          key={idea}
-                          className="flex gap-2 text-sm text-muted-foreground"
-                        >
-                          <span
-                            className="mt-0.5 font-mono text-xs"
-                            style={{ color: t.accent }}
-                          >
-                            +
-                          </span>
-                          <span>{idea}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  {/* CTA at the bottom */}
+                  <div className="relative mt-8 pt-2">
+                    <Button
+                      href="/partners/register"
+                      variant={isFeatured ? "highlight" : "outline"}
+                      size="md"
+                      className="w-full"
+                    >
+                      {i === 0 ? "Start as Community" : "Apply for Growth"}
+                    </Button>
                   </div>
                 </div>
               );
             })}
           </div>
+
+          <p className="mt-6 text-center text-xs text-muted-foreground">
+            Beyond Tier 2 we work case-by-case with select partners — by invitation.
+          </p>
         </div>
       </section>
 
@@ -324,7 +322,7 @@ export default function PartnersPage() {
               {
                 step: "01",
                 title: "Get in touch",
-                desc: "Share your MCP server URL and a few details about your product, team, and target customers.",
+                desc: "Share your app's MCP server URL and a few details about your product.",
               },
               {
                 step: "02",
@@ -334,12 +332,12 @@ export default function PartnersPage() {
               {
                 step: "03",
                 title: "List",
-                desc: "Your logo goes live both inside the Dust app (where users install) and on dust.tt/integrations. You're now Community tier.",
+                desc: "Your logo goes live inside the Dust app and on the public marketplace.",
               },
               {
                 step: "04",
                 title: "Grow",
-                desc: "Show traction, and we graduate you into Growth, Alliance, and beyond.",
+                desc: "Show traction, and we go deeper together — Growth tier and beyond.",
               },
             ].map((s) => (
               <div key={s.step} className="dust-card-flat">
@@ -349,17 +347,6 @@ export default function PartnersPage() {
               </div>
             ))}
           </div>
-
-          <div className="mt-10 rounded-2xl border border-border bg-background p-6">
-            <h4 className="heading-base">A note on how we invest engineering time</h4>
-            <P size="xs" className="mt-2 text-muted-foreground">
-              When Dust invests in building an MCP wrapper on behalf of a partner, we bump them
-              into the <span className="text-foreground">Alliance</span> tier for a defined period
-              — the GTM investment matches the engineering one. Where engineering effort is one-off,
-              partners stay in their existing tier; we ship the integration but don&apos;t add a GTM
-              motion. This keeps our investment aligned with mutual commitment.
-            </P>
-          </div>
         </div>
       </FullWidthSection>
 
@@ -367,8 +354,8 @@ export default function PartnersPage() {
       <FinalCTASection
         config={{
           title: "Ready to be discovered by agent users?",
-          subtitle: "Share your MCP server and we'll take it from there.",
-          primaryCTA: { label: "Become a partner", href: "/partners/register" },
+          subtitle: "Share your app and we'll take it from there.",
+          primaryCTA: { label: "List your app", href: "/partners/register" },
           secondaryCTA: { label: "Talk to the partner team", href: "mailto:partners@dust.tt" },
         }}
       />
