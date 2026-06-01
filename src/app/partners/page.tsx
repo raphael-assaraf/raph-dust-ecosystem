@@ -93,10 +93,6 @@ const PUBLIC_TIERS: Tier[] = [
       "Joint customer interview, panel, or co-hosted office hours",
     ],
   },
-];
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const INTERNAL_TIERS: Tier[] = [
   {
     name: "Alliance",
     tagline: "Co-sell motion. Shared plans. Deep product collab.",
@@ -121,6 +117,10 @@ const INTERNAL_TIERS: Tier[] = [
       "\"Built for [Partner]\" badge on partner's own site, certified by Dust",
     ],
   },
+];
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const INTERNAL_TIERS: Tier[] = [
   {
     name: "Strategic",
     tagline: "Bespoke partnership at the executive level.",
@@ -202,17 +202,17 @@ export default function PartnersPage() {
         <div className="mx-auto max-w-5xl px-6">
           <div className="mb-12 mx-auto max-w-3xl text-center">
             <H2 className="mb-3 text-center text-3xl font-semibold text-foreground md:text-4xl">
-              Two tiers. One path.
+              Three tiers. One path.
             </H2>
             <P size="md" className="text-muted-foreground">
               Every partner starts as Community. Show traction, and we go deeper together.
             </P>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-2">
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {PUBLIC_TIERS.map((t, i) => {
               const Icon = t.icon;
-              const isFeatured = i === 1; // Growth gets the highlighted treatment
+              const isFeatured = i === 1; // Growth gets the highlighted middle treatment
               return (
                 <div
                   key={t.name}
@@ -291,17 +291,17 @@ export default function PartnersPage() {
                       size="md"
                       className="w-full"
                     >
-                      {i === 0 ? "Start as Community" : "Apply for Growth"}
+                      {i === 0
+                        ? "Start as Community"
+                        : i === 1
+                          ? "Apply for Growth"
+                          : "Talk to the partner team"}
                     </Button>
                   </div>
                 </div>
               );
             })}
           </div>
-
-          <p className="mt-6 text-center text-xs text-muted-foreground">
-            Beyond Tier 2 we work case-by-case with select partners — by invitation.
-          </p>
         </div>
       </section>
 
@@ -337,7 +337,7 @@ export default function PartnersPage() {
               {
                 step: "04",
                 title: "Grow",
-                desc: "Show traction, and we go deeper together — Growth tier and beyond.",
+                desc: "Show traction, and we go deeper together — Growth, Alliance, and beyond.",
               },
             ].map((s) => (
               <div key={s.step} className="dust-card-flat">
