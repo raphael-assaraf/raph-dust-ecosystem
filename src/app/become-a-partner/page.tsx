@@ -1,40 +1,28 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight, Blocks, Handshake } from "lucide-react";
+import { ArrowRight, Blocks, Coins, Headphones, Users, Briefcase, ShoppingBag, Building2 } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-import { H1, H2, P } from "@/components/content";
+import { Button } from "@/components/ui";
+import { H1, H2, P, FullWidthSection } from "@/components/content";
+import { FeatureCard, LogoStrip } from "@/components/marketing";
+import {
+  AttioLogo,
+  GongLogo,
+  GranolaLogo,
+  HubspotLogo,
+  IntercomLogo,
+  LinearLogo,
+  NotionLogo,
+  SnowflakeLogo,
+  StripeLogo,
+  VantaLogo,
+} from "@/components/logos/platforms";
 
 export const metadata: Metadata = {
-  title: "Partner with Dust",
+  title: "Become a Partner | Dust",
   description:
-    "Multiple ways to build and grow with the AI agent platform. Choose the right path: tech, channel, or services.",
+    "Partner with Dust to bring AI agents to your customers — as a service partner, reseller, integrator, or app builder.",
 };
-
-const PATHS = [
-  {
-    title: "Tech Partners",
-    summary: "You build software. List your app on Dust so AI agents can use it across thousands of customers.",
-    forWho: "SaaS companies, MCP servers, developer tools, data platforms.",
-    examples: "Attio, Notion, Customer.io, Linear, Snowflake.",
-    href: "/partners",
-    cta: "Become a tech partner",
-    icon: Blocks,
-    accent: "#1C91FF",
-    bg: "#E9F7FF",
-  },
-  {
-    title: "Channel & Services Partners",
-    summary: "You deploy, customize, and train teams on Dust. Resell, scale, and build long-term programs with end customers.",
-    forWho: "Resellers, system integrators, consultancies, agencies, training partners.",
-    examples: "Boutique consultancies, regional resellers, AI-deployment specialists.",
-    href: "mailto:partnerships@dust.tt?subject=Channel%20%2F%20Services%20Partnership",
-    cta: "Get in touch",
-    icon: Handshake,
-    accent: "#418B5C",
-    bg: "#E8F5E9",
-  },
-];
 
 export default function BecomeAPartnerPage() {
   return (
@@ -51,99 +39,203 @@ export default function BecomeAPartnerPage() {
             mono
             className="mb-2 text-center text-4xl font-medium leading-tight text-foreground md:text-5xl"
           >
-            Partner with Dust
+            Become a Partner
           </H1>
-          <P size="lg" className="mb-2 max-w-2xl text-muted-foreground">
-            Multiple ways to build, deploy, and grow with the AI agent platform.
-            Pick the path that fits your team.
+          <P size="lg" className="mt-4 max-w-2xl text-muted-foreground">
+            Partner with Dust to bring AI agents to your customers. We&apos;re
+            building a network of service partners, resellers, integrators, and
+            app builders deploying Dust across the world.
           </P>
         </div>
       </section>
 
-      {/* ─────────── Two paths ─────────── */}
-      <section className="bg-background pb-20">
-        <div className="mx-auto max-w-5xl px-6">
-          <div className="grid gap-5 md:grid-cols-2">
-            {PATHS.map((p) => {
-              const Icon = p.icon;
-              return (
-                <div
-                  key={p.title}
-                  className="group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-background p-8 transition-all hover:border-foreground/30 hover:shadow-md"
-                >
-                  {/* Top tint band */}
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-x-0 top-0 h-32"
-                    style={{
-                      background: `linear-gradient(to bottom, ${p.bg}, transparent)`,
-                    }}
-                  />
-
-                  <div className="relative flex h-full flex-col">
-                    <div
-                      className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl"
-                      style={{ background: p.bg, color: p.accent }}
-                    >
-                      <Icon className="h-6 w-6" />
-                    </div>
-
-                    <h2
-                      className="heading-mono-2xl"
-                      style={{ color: p.accent }}
-                    >
-                      {p.title}
-                    </h2>
-                    <p className="copy-base mt-3 text-foreground/85">{p.summary}</p>
-
-                    <div className="mt-6 rounded-xl bg-muted/60 px-4 py-3">
-                      <div className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-                        Who it's for
-                      </div>
-                      <p className="mt-1 text-sm text-foreground">{p.forWho}</p>
-                      <div className="mt-3 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-                        Typical examples
-                      </div>
-                      <p className="mt-1 text-sm text-muted-foreground">{p.examples}</p>
-                    </div>
-
-                    <div className="mt-auto pt-8">
-                      <Link
-                        href={p.href}
-                        className="inline-flex items-center gap-2 text-sm font-semibold transition-opacity hover:opacity-80"
-                        style={{ color: p.accent }}
-                      >
-                        {p.cta}
-                        <ArrowRight className="h-4 w-4" />
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Not sure? */}
-          <div className="mx-auto mt-10 max-w-2xl text-center">
-            <H2 className="mb-2 text-center text-xl font-semibold text-foreground">
-              Not sure which one fits?
+      {/* ─────────── Value props ─────────── */}
+      <FullWidthSection className="bg-background py-12 md:py-16">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="mb-10 mx-auto max-w-2xl text-center">
+            <H2 className="mb-3 text-center text-3xl font-semibold text-foreground md:text-4xl">
+              Why partner with Dust
             </H2>
-            <P size="sm" className="text-muted-foreground">
-              The short version: if your product has an MCP server (or could),
-              that's <Link href="/partners" className="font-semibold text-foreground underline">Tech Partners</Link>.
-              If you deploy or resell Dust to end customers,
-              that's <Link href={PATHS[1].href} className="font-semibold text-foreground underline">Channel & Services</Link>.
-              Both, or unsure? Email{" "}
-              <a href="mailto:partnerships@dust.tt" className="font-semibold text-foreground underline">
-                partnerships@dust.tt
-              </a>
-              .
+            <P size="md" className="text-muted-foreground">
+              Three reasons partners build on Dust — and what we bring to the table.
             </P>
+          </div>
+          <div className="grid gap-5 md:grid-cols-3">
+            <FeatureCard
+              title="Revenue opportunity"
+              color="green"
+              visual={<Coins className="h-20 w-20 text-green-700" strokeWidth={1.2} />}
+              features={[
+                "Attractive partner margins",
+                "Recurring revenue from customer deployments",
+                "Volume incentives at scale",
+              ]}
+            />
+            <FeatureCard
+              title="Dedicated support"
+              color="blue"
+              visual={<Headphones className="h-20 w-20 text-blue-700" strokeWidth={1.2} />}
+              features={[
+                "Technical onboarding",
+                "Sales enablement materials",
+                "Partner success resources",
+              ]}
+            />
+            <FeatureCard
+              title="Co-selling motion"
+              color="golden"
+              visual={<Users className="h-20 w-20 text-golden-700" strokeWidth={1.2} />}
+              features={[
+                "Joint deal pipeline",
+                "Warm intros to Dust reps",
+                "Co-marketing opportunities",
+              ]}
+            />
+          </div>
+        </div>
+      </FullWidthSection>
+
+      {/* ─────────── Logo strip ─────────── */}
+      <FullWidthSection className="bg-background pb-6 pt-0">
+        <div className="mx-auto max-w-5xl px-6">
+          <LogoStrip
+            title="Trusted by partners worldwide"
+            size="default"
+            logos={[
+              NotionLogo,
+              HubspotLogo,
+              AttioLogo,
+              GranolaLogo,
+              GongLogo,
+              IntercomLogo,
+              VantaLogo,
+              SnowflakeLogo,
+              LinearLogo,
+              StripeLogo,
+            ]}
+          />
+        </div>
+      </FullWidthSection>
+
+      {/* ─────────── NEW BAND: Tech partners ─────────── */}
+      <FullWidthSection className="bg-blue-50 py-16 md:py-20">
+        <div className="mx-auto max-w-5xl px-6">
+          <div className="grid gap-10 md:grid-cols-[1fr_auto] md:items-center">
+            <div>
+              <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-background px-3 py-1 text-xs font-medium text-blue-700">
+                <Blocks className="h-3 w-3" />
+                For software builders
+              </span>
+              <H2 className="mb-3 text-3xl font-semibold text-foreground md:text-4xl">
+                Build software? <span className="text-blue-700">List your app on Dust.</span>
+              </H2>
+              <P size="md" className="mb-6 text-foreground/80">
+                If your product has an MCP server (or you&apos;re building one), get listed
+                on the Dust marketplace and reach thousands of AI agent users — with a clear
+                path from listing to deep partnership.
+              </P>
+              <div className="flex flex-wrap gap-3">
+                <Button href="/partners" variant="highlight" size="md" iconRight={ArrowRight}>
+                  Explore tech partnerships
+                </Button>
+                <Button href="/partners/register" variant="outline" size="md">
+                  List your app
+                </Button>
+              </div>
+            </div>
+
+            {/* Decorative grid of partner logos */}
+            <div className="hidden md:block">
+              <div className="grid grid-cols-3 gap-3">
+                {[NotionLogo, AttioLogo, GongLogo, HubspotLogo, IntercomLogo, SnowflakeLogo, GranolaLogo, VantaLogo, LinearLogo].slice(0, 9).map((Logo, i) => (
+                  <div
+                    key={i}
+                    className="flex h-16 w-16 items-center justify-center rounded-2xl border border-blue-200/60 bg-background shadow-sm"
+                  >
+                    <Logo className="h-7 w-7 text-foreground" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </FullWidthSection>
+
+      {/* ─────────── Ideal partners ─────────── */}
+      <section className="bg-background py-16 md:py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="mb-10 mx-auto max-w-2xl text-center">
+            <H2 className="mb-3 text-center text-3xl font-semibold text-foreground md:text-4xl">
+              Ideal partners
+            </H2>
+            <P size="md" className="text-muted-foreground">
+              We&apos;re actively working with these profiles — though many shapes fit.
+            </P>
+          </div>
+          <div className="grid gap-5 md:grid-cols-3">
+            <FeatureCard
+              title="Service Partners"
+              color="blue"
+              visual={<Briefcase className="h-20 w-20 text-blue-700" strokeWidth={1.2} />}
+              features={[
+                "Agencies and consultancies",
+                "Custom agent development",
+                "AI strategy and rollouts",
+              ]}
+            />
+            <FeatureCard
+              title="Resellers"
+              color="golden"
+              visual={<ShoppingBag className="h-20 w-20 text-golden-700" strokeWidth={1.2} />}
+              features={[
+                "Technology resellers and VARs",
+                "B2B customer bases",
+                "Regional Dust champions",
+              ]}
+            />
+            <FeatureCard
+              title="Systems Integrators"
+              color="rose"
+              visual={<Building2 className="h-20 w-20 text-rose-700" strokeWidth={1.2} />}
+              features={[
+                "Enterprise deployments at scale",
+                "Multi-tool integrations",
+                "Industry-vertical expertise",
+              ]}
+            />
           </div>
         </div>
       </section>
+
+      {/* ─────────── CTA / waitlist ─────────── */}
+      <FullWidthSection className="bg-blue-50 py-16 md:py-20">
+        <div className="mx-auto max-w-3xl px-6 text-center">
+          <H2 className="mb-4 text-center text-3xl font-semibold text-foreground md:text-4xl">
+            Join the Partner Network
+          </H2>
+          <P size="lg" className="mb-8 text-muted-foreground">
+            Partners are central to our next stage at Dust. Together with agencies,
+            integrators, resellers, and app builders, we&apos;re accelerating how
+            companies adopt AI agents.
+          </P>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <Button
+              href="mailto:partnerships@dust.tt?subject=Channel%20%2F%20Services%20Partnership"
+              variant="highlight"
+              size="md"
+              iconRight={ArrowRight}
+            >
+              Get in touch
+            </Button>
+            <Button href="/partners" variant="outline" size="md">
+              For app builders
+            </Button>
+          </div>
+        </div>
+      </FullWidthSection>
 
       <SiteFooter />
     </div>
   );
 }
+

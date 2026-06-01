@@ -6,6 +6,9 @@ import {
   Handshake,
   Crown,
   Sparkles,
+  BookOpen,
+  Code,
+  MessageCircle,
 } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -13,6 +16,7 @@ import { Button } from "@/components/ui";
 import { H1, H2, P, FullWidthSection } from "@/components/content";
 import { RocketIcon } from "@/components/icons";
 import { FinalCTASection } from "@/components/FinalCTASection";
+import { FeatureCard } from "@/components/marketing";
 
 export const metadata: Metadata = {
   title: "Partner Program | Dust",
@@ -301,6 +305,64 @@ export default function PartnersPage() {
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────── Build your app — developer / MCP docs home ─────────── */}
+      <section className="bg-background py-16 md:py-20">
+        <div className="mx-auto max-w-5xl px-6">
+          <div className="mb-10 mx-auto max-w-2xl text-center">
+            <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
+              <Code className="h-3 w-3 text-blue-500" />
+              For developers
+            </span>
+            <H2 className="mb-3 text-center text-3xl font-semibold text-foreground md:text-4xl">
+              Build your app on Dust
+            </H2>
+            <P size="md" className="text-muted-foreground">
+              Everything you need to launch an integration — from MCP basics to
+              real examples and human help.
+            </P>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-3">
+            <FeatureCard
+              title="MCP Documentation"
+              color="blue"
+              visual={<BookOpen className="h-20 w-20 text-blue-700" strokeWidth={1.2} />}
+              features={[
+                "MCP protocol fundamentals",
+                "OAuth, DCR, and whitelisting flows",
+                "Dust-specific extensions",
+              ]}
+              href="https://docs.dust.tt"
+              ctaLabel="View docs"
+            />
+            <FeatureCard
+              title="Build & test"
+              color="green"
+              visual={<Code className="h-20 w-20 text-green-700" strokeWidth={1.2} />}
+              features={[
+                "Quickstart templates",
+                "Example integrations on GitHub",
+                "Connect and test inside Dust",
+              ]}
+              href="https://github.com/dust-tt"
+              ctaLabel="See examples"
+            />
+            <FeatureCard
+              title="Get help"
+              color="golden"
+              visual={<MessageCircle className="h-20 w-20 text-golden-700" strokeWidth={1.2} />}
+              features={[
+                "Public Slack community",
+                "Direct line to partners@dust.tt",
+                "Co-build sessions with our team",
+              ]}
+              href="mailto:partners@dust.tt"
+              ctaLabel="Contact us"
+            />
           </div>
         </div>
       </section>
