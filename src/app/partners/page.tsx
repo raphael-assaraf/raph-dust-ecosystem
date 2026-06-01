@@ -44,13 +44,19 @@ type Tier = {
 };
 
 /*
- * PUBLIC_TIERS — rendered on the page.
- * INTERNAL_TIERS — kept in code as operational reference (Alliance / Strategic).
- * Per 2026-06-01 huddle: Strategic and Alliance are operational reality but
- * NOT exposed to external prospects. Public surface is Tier 1 + Tier 2 only.
+ * PUBLIC_TIERS — rendered on the page in numeric order: Tier 1 (Alliance, most
+ * premium) → Tier 3 (Community, entry). Order intentional per Thibault's
+ * "1 = highest" feedback (2026-06-01 sync follow-up).
+ * INTERNAL_TIERS — Strategic only; operational reality, not exposed publicly.
  */
 const PUBLIC_TIERS: Tier[] = [
-  {
+  // Tier 1 — Alliance (filled in below after the data definitions).
+  // Tier 2 — Growth.
+  // Tier 3 — Community.
+];
+
+// Tier data (defined separately so we can compose PUBLIC_TIERS in the right order).
+const TIER_COMMUNITY: Tier = {
     name: "Community",
     tagline: "Be discoverable. Reach Dust customers from day one.",
     icon: Users,
@@ -72,8 +78,9 @@ const PUBLIC_TIERS: Tier[] = [
       "Vertical roundup posts (e.g. \"10 new MCPs for sales teams\")",
       "Monthly \"What's new in Dust integrations\" digest to all customers",
     ],
-  },
-  {
+};
+
+const TIER_GROWTH: Tier = {
     name: "Growth",
     tagline: "Warm rep-to-rep motion. Lightweight co-marketing.",
     icon: TrendingUp,
@@ -96,8 +103,9 @@ const PUBLIC_TIERS: Tier[] = [
       "Shared adoption dashboard so partners see install + usage signal",
       "Joint customer interview, panel, or co-hosted office hours",
     ],
-  },
-  {
+};
+
+const TIER_ALLIANCE: Tier = {
     name: "Alliance",
     tagline: "Co-sell motion. Shared plans. Deep product collab.",
     icon: Handshake,
@@ -120,8 +128,10 @@ const PUBLIC_TIERS: Tier[] = [
       "Joint booth presence at major events",
       "\"Built for [Partner]\" badge on partner's own site, certified by Dust",
     ],
-  },
-];
+};
+
+// Tier 1 = highest (Alliance), Tier 3 = entry (Community). Order matters here.
+PUBLIC_TIERS.push(TIER_ALLIANCE, TIER_GROWTH, TIER_COMMUNITY);
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const INTERNAL_TIERS: Tier[] = [
@@ -209,14 +219,19 @@ export default function PartnersPage() {
               Three tiers. One path.
             </H2>
             <P size="md" className="text-muted-foreground">
-              Every partner starts as Community. Show traction, and we go deeper together.
+              Tier 3 (Community) is the entry point. Show traction, and we move
+              up to Tier 2 (Growth) and Tier 1 (Alliance) together.
             </P>
           </div>
 
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {PUBLIC_TIERS.map((t, i) => {
               const Icon = t.icon;
-              const isFeatured = i === 1; // Growth gets the highlighted middle treatment
+              // Growth (index 1, middle) gets the highlighted treatment in the
+              // pricing-page sense. Alliance is Tier 1 (premium) but read-only —
+              // contact-led entry, not self-serve apply.
+              const isFeatured = i === 1;
+              const isInvitationOnly = i === 0; // Alliance
               return (
                 <div
                   key={t.name}
@@ -290,16 +305,20 @@ export default function PartnersPage() {
                   {/* CTA at the bottom */}
                   <div className="relative mt-8 pt-2">
                     <Button
-                      href="/partners/register"
+                      href={
+                        isInvitationOnly
+                          ? "mailto:partners@dust.tt?subject=Alliance%20Partnership"
+                          : "/partners/register"
+                      }
                       variant={isFeatured ? "highlight" : "outline"}
                       size="md"
                       className="w-full"
                     >
-                      {i === 0
-                        ? "Start as Community"
-                        : i === 1
+                      {isInvitationOnly
+                        ? "Talk to the partner team"
+                        : isFeatured
                           ? "Apply for Growth"
-                          : "Talk to the partner team"}
+                          : "Start as Community"}
                     </Button>
                   </div>
                 </div>
@@ -394,12 +413,12 @@ export default function PartnersPage() {
               {
                 step: "03",
                 title: "List",
-                desc: "Your logo goes live inside the Dust app and on the public marketplace.",
+                desc: "Your logo goes live inside the Dust app and on the public marketplace. You're now Tier 3 (Community).",
               },
               {
                 step: "04",
                 title: "Grow",
-                desc: "Show traction, and we go deeper together — Growth, Alliance, and beyond.",
+                desc: "Show traction, and we go deeper — Tier 2 (Growth) and Tier 1 (Alliance).",
               },
             ].map((s) => (
               <div key={s.step} className="dust-card-flat">

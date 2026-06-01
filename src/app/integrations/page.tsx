@@ -231,6 +231,28 @@ export default function IntegrationsIndexPage() {
         subtitle="Connect Dust to your stack. Let agents get context and take actions in your favorite apps to unlock true multiplayer AI."
       />
 
+      {/* ─────────── Register-your-integration band (top of marketplace) ─────────── */}
+      <div className="mx-auto -mt-2 mb-8 max-w-5xl px-6">
+        <a
+          href="/partners/register"
+          className="group relative flex items-center justify-between gap-4 overflow-hidden rounded-2xl border border-blue-200 bg-blue-50 px-6 py-4 transition-all hover:border-blue-300 hover:shadow-sm"
+        >
+          <div className="min-w-0 flex-1">
+            <div className="text-sm font-semibold text-blue-900">
+              Building software? Your app could be here.
+            </div>
+            <div className="mt-0.5 text-xs text-blue-900/70">
+              If your product has an MCP server, register it and we&apos;ll list
+              it on the Dust marketplace.
+            </div>
+          </div>
+          <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition-colors group-hover:bg-blue-700">
+            Register your integration
+            <span aria-hidden="true">→</span>
+          </span>
+        </a>
+      </div>
+
       {/* ─────────── Marketplace body: sidebar + grid ─────────── */}
       <div className="mx-auto max-w-7xl px-6 pb-16">
         {/* Mobile: search + collapse toggle */}
