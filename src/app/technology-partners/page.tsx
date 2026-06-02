@@ -23,7 +23,7 @@ import {
   UserGroupIcon,
 } from "@/components/icons";
 import { FinalCTASection } from "@/components/FinalCTASection";
-import { FeatureCard } from "@/components/marketing";
+import { FeatureCard, DustDecoration } from "@/components/marketing";
 
 export const metadata: Metadata = {
   title: "Partner Program | Dust",
@@ -68,7 +68,7 @@ const TIER_COMMUNITY: Tier = {
     tagline: "Be discoverable. Reach Dust customers from day one.",
     icon: Users,
     accent: "#1C91FF",
-    bg: "#E9F7FF",
+    bg: "bg-blue-100",
     who: "Any partner with a working MCP server that passes Dust quality checks.",
     entry: "Self-serve registration · ~1 week QA",
     partnerGets: [
@@ -92,7 +92,7 @@ const TIER_GROWTH: Tier = {
     tagline: "Warm rep-to-rep motion. Lightweight co-marketing.",
     icon: TrendingUp,
     accent: "#418B5C",
-    bg: "#E8F5E9",
+    bg: "bg-green-100",
     who: "Community partners showing GTM traction with Dust customers.",
     entry: "Provide dev support assets + adoption signal (e.g. customer installs, customer story)",
     partnerGets: [
@@ -117,7 +117,7 @@ const TIER_ALLIANCE: Tier = {
     tagline: "Co-sell motion. Shared plans. Deep product collab.",
     icon: Handshake,
     accent: "#FE9C1A",
-    bg: "#FFF1E0",
+    bg: "bg-golden-100",
     who: "Partners aligned with Dust's GTM priorities, or invited by a Partner Account Manager.",
     entry: "Prove deal frequency + growing adoption — or be assigned by Dust",
     partnerGets: [
@@ -147,7 +147,7 @@ const INTERNAL_TIERS: Tier[] = [
     tagline: "Bespoke partnership at the executive level.",
     icon: Crown,
     accent: "#D97AB0",
-    bg: "#FBE8F1",
+    bg: "bg-rose-100",
     who: "Top-down chosen by Dust — partners we intentionally build on, or those that don't fit the program model.",
     entry: "By Dust invitation only",
     partnerGets: [
@@ -301,7 +301,7 @@ export default function PartnersPage() {
       <section className="bg-background py-10 md:py-12">
         <div className="mx-auto max-w-5xl px-6">
           <div className="mb-8">
-            <H2 className="text-foreground">The partner programme</H2>
+            <H2 className="text-foreground">The partner program</H2>
             <P size="md" className="mt-2 max-w-2xl text-muted-foreground">
               Three tiers, one path. Community is the entry — show traction and we move up to Growth and Alliance together.
             </P>
@@ -309,34 +309,23 @@ export default function PartnersPage() {
 
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {PUBLIC_TIERS.map((t, i) => {
-              const Icon = t.icon;
-              const isFeatured = i === 1; // Growth (middle) highlighted
-              const isInvitationOnly = i === 0; // Alliance
+              const isInvitationOnly = i === 0; // Alliance — talk-to-team only
               return (
                 <div
                   key={t.name}
-                  className={`flex flex-col rounded-2xl p-6 ${t.bg} transition-shadow hover:shadow-md`}
+                  className={`relative flex flex-col overflow-hidden rounded-2xl p-6 ${t.bg} transition-shadow hover:shadow-md`}
                 >
-                  {/* Icon at top, dust.tt-style — colored on pastel, no separate badge */}
-                  <Icon
-                    className="mb-4 h-8 w-8"
-                    style={{ color: t.accent }}
-                  />
+                  {/* Dust brand decoration in corner */}
+                  <DustDecoration position="top-right" size="sm" />
 
-                  {/* Tier badge + name */}
-                  <div className="mb-1 flex items-center gap-2">
-                    <span
-                      className="rounded-full bg-background/70 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider"
-                      style={{ color: t.accent }}
-                    >
-                      Tier {i + 1}
-                    </span>
-                    {isFeatured && (
-                      <span className="rounded-full bg-foreground px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-background">
-                        Featured
-                      </span>
-                    )}
-                  </div>
+                  {/* Tier badge */}
+                  <span
+                    className="mb-3 inline-flex w-fit rounded-full bg-background/70 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider"
+                    style={{ color: t.accent }}
+                  >
+                    Tier {i + 1}
+                  </span>
+
                   <h4 className="text-lg font-semibold text-foreground">{t.name}</h4>
                   <p className="copy-base mt-1 font-sans text-muted-foreground">{t.tagline}</p>
 
@@ -353,7 +342,7 @@ export default function PartnersPage() {
                     ))}
                   </ul>
 
-                  {/* CTA */}
+                  {/* CTA — same style for every tier */}
                   <div className="mt-5">
                     <Button
                       href={
@@ -361,15 +350,11 @@ export default function PartnersPage() {
                           ? "mailto:partners@dust.tt?subject=Alliance%20Partnership"
                           : "/technology-partners/register"
                       }
-                      variant={isFeatured ? "highlight" : "outline"}
+                      variant="outline"
                       size="sm"
                       className="w-full"
                     >
-                      {isInvitationOnly
-                        ? "Talk to the partner team"
-                        : isFeatured
-                          ? "Apply for Growth"
-                          : "Start as Community"}
+                      {isInvitationOnly ? "Talk to the partner team" : "Get in touch"}
                     </Button>
                   </div>
                 </div>
@@ -380,7 +365,7 @@ export default function PartnersPage() {
           {/* Expand for full detail */}
           <details className="group mt-6 rounded-2xl border border-border bg-background">
             <summary className="flex cursor-pointer list-none items-center justify-between px-6 py-4 text-sm font-medium text-foreground transition-colors hover:bg-muted/40">
-              <span>See the full programme details</span>
+              <span>See the full program details</span>
               <span className="text-xs text-muted-foreground transition-transform group-open:rotate-180">▾</span>
             </summary>
             <div className="border-t border-border p-6">

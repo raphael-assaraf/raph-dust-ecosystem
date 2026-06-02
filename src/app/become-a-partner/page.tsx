@@ -54,7 +54,7 @@ const BIG_PATHS: BigPath[] = [
       "Connect your product to Dust. Build MCP integrations and reach thousands of AI agent users.",
     bullets: [
       "Listed in the Dust app and on the public marketplace",
-      "Clear tiered programme — from listing to deep partnership",
+      "Clear tiered program — from listing to deep partnership",
       "Co-marketing, customer stories, and roadmap collaboration",
     ],
     Icon: CodeBlockIcon,
@@ -183,10 +183,12 @@ export default function BecomeAPartnerPage() {
         </div>
       </section>
 
-      {/* ─────────── Two big paths (Integration / Service) ─────────── */}
+      {/* ─────────── Pick your path — two big + three smaller in one section ─────────── */}
       <section className="bg-background pb-10 md:pb-12">
         <div className="mx-auto max-w-5xl px-6">
-          <H2 className="mb-8 text-foreground">Where do you fit?</H2>
+          <H2 className="mb-8 text-foreground">Pick your path</H2>
+
+          {/* Two big paths: Integration + Service */}
           <div className="grid gap-4 md:grid-cols-2">
             {BIG_PATHS.map((p) => {
               const Icon = p.Icon;
@@ -223,14 +225,9 @@ export default function BecomeAPartnerPage() {
               );
             })}
           </div>
-        </div>
-      </section>
 
-      {/* ─────────── Three smaller specialised paths ─────────── */}
-      <section className="bg-background pb-10 md:pb-12">
-        <div className="mx-auto max-w-5xl px-6">
-          <H2 className="mb-8 text-foreground">Specialised programmes</H2>
-          <div className="grid gap-4 md:grid-cols-3">
+          {/* Three smaller paths below */}
+          <div className="mt-4 grid gap-4 md:grid-cols-3">
             {SMALL_PATHS.map((s) => {
               const Icon = s.Icon;
               return (
@@ -326,14 +323,14 @@ export default function BecomeAPartnerPage() {
         <div className="mx-auto max-w-5xl px-6">
           <H2 className="mb-2 text-foreground">Other ways to work with us</H2>
           <P size="md" className="mb-8 max-w-2xl text-muted-foreground">
-            Programmes we&apos;re building out as the partner network grows.
+            Programs we&apos;re building out as the partner network grows.
           </P>
           <div className="grid gap-4 md:grid-cols-3">
             {[
               {
                 title: "Community & Affiliates",
                 description:
-                  "Earn while you share. An affiliate programme for creators and communities pushing AI adoption forward.",
+                  "Earn while you share. An affiliate program for creators and communities pushing AI adoption forward.",
                 cta: "Coming soon",
                 href: "mailto:partnerships@dust.tt?subject=Community%20%26%20Affiliates",
               },
