@@ -5,16 +5,23 @@ import {
   TrendingUp,
   Handshake,
   Crown,
-  Sparkles,
-  BookOpen,
-  Code,
-  MessageCircle,
 } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Button } from "@/components/ui";
 import { H1, H2, P, FullWidthSection } from "@/components/content";
-import { RocketIcon } from "@/components/icons";
+import {
+  RocketIcon,
+  SparklesIcon,
+  GlobeAltIcon,
+  HandThumbUpIcon,
+  BookOpenIcon,
+  CodeBlockIcon,
+  ChatBubbleLeftRightIcon,
+  BarChartIcon,
+  UserIcon,
+  UserGroupIcon,
+} from "@/components/icons";
 import { FinalCTASection } from "@/components/FinalCTASection";
 import { FeatureCard } from "@/components/marketing";
 
@@ -165,17 +172,14 @@ export default function PartnersPage() {
     <div className="h-dvh overflow-y-auto bg-background text-foreground">
       <SiteHeader />
 
-      {/* ─────────── Hero ─────────── */}
+      {/* ─────────── Hero (left-aligned, dust.tt-style) ─────────── */}
       <section className="bg-background">
-        <div className="mx-auto flex max-w-3xl flex-col items-center px-6 pb-12 pt-16 text-center md:pb-16 md:pt-24">
+        <div className="mx-auto max-w-5xl px-6 pb-12 pt-16 md:pb-16 md:pt-24">
           <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
-            <Sparkles className="h-3 w-3 text-blue-500" />
+            <SparklesIcon className="h-3 w-3 text-blue-500" />
             Dust App Partner Program
           </span>
-          <H1
-            mono
-            className="mb-2 text-center text-4xl font-medium leading-tight text-foreground md:text-5xl"
-          >
+          <H1 mono className="mb-4 text-foreground">
             Build, launch, and grow with Dust
           </H1>
           <P size="lg" className="mb-8 max-w-2xl text-muted-foreground">
@@ -193,44 +197,40 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      {/* ─────────── Why partner — three pastel value props (no grey stats) ─────────── */}
-      <section className="bg-background py-12 md:py-16">
+      {/* ─────────── Why partner — compact dust.tt-style cards (green/blue/rose) ─────────── */}
+      <section className="bg-background py-10 md:py-12">
         <div className="mx-auto max-w-5xl px-6">
-          <div className="grid gap-5 md:grid-cols-3">
+          <H2 className="mb-8 text-foreground">Why partner with Dust</H2>
+          <div className="grid gap-4 md:grid-cols-3">
             {[
               {
                 title: "Be discoverable",
                 desc: "Your logo lives inside the Dust app where users browse apps — and on the public marketplace.",
                 bg: "bg-blue-50",
-                accentText: "text-blue-700",
-                badgeBg: "bg-blue-500", // full saturation, white icon
-                Icon: Users,
+                iconColor: "text-blue-400",
+                Icon: GlobeAltIcon,
               },
               {
                 title: "Plug & play",
                 desc: "One MCP URL is all it takes. No deploys, no engineering on either side once your server is live.",
                 bg: "bg-green-50",
-                accentText: "text-green-700",
-                badgeBg: "bg-green-600",
-                Icon: TrendingUp,
+                iconColor: "text-green-400",
+                Icon: SparklesIcon,
               },
               {
-                title: "Grow into a partnership",
-                desc: "From listed to Alliance — a clear graduation path with shared upside as your traction proves out.",
-                bg: "bg-golden-50",
-                accentText: "text-golden-700",
-                badgeBg: "bg-golden-500",
-                Icon: Handshake,
+                title: "Grow together",
+                desc: "From listed to Alliance — a clear graduation path with shared upside as traction proves out.",
+                bg: "bg-rose-50",
+                iconColor: "text-rose-400",
+                Icon: HandThumbUpIcon,
               },
             ].map((v) => {
               const Icon = v.Icon;
               return (
-                <div key={v.title} className={`rounded-3xl ${v.bg} p-7`}>
-                  <div className={`mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl ${v.badgeBg} text-white`}>
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <h3 className={`heading-mono-xl ${v.accentText}`}>{v.title}</h3>
-                  <p className="copy-sm mt-2 text-foreground/80">{v.desc}</p>
+                <div key={v.title} className={`flex flex-col rounded-2xl p-6 ${v.bg}`}>
+                  <Icon className={`mb-4 h-8 w-8 ${v.iconColor}`} />
+                  <h4 className="text-lg font-semibold text-foreground">{v.title}</h4>
+                  <p className="copy-base mt-1 font-sans text-muted-foreground">{v.desc}</p>
                 </div>
               );
             })}
@@ -238,72 +238,72 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      {/* ─────────── Build your app — moved ABOVE the tiers per Thibault feedback ─────────── */}
-      <section className="bg-background py-12 md:py-16">
+      {/* ─────────── Build your app — left-aligned, compact, dust.tt-style ─────────── */}
+      <section className="bg-background py-10 md:py-12">
         <div className="mx-auto max-w-5xl px-6">
-          <div className="mb-8">
-            <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-border bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
-              <Code className="h-3 w-3 text-blue-500" />
-              For developers
-            </span>
-            <H2 className="text-2xl font-semibold text-foreground md:text-3xl">
-              Build your app on Dust
-            </H2>
-            <P size="sm" className="mt-2 text-muted-foreground">
-              Everything you need to launch — MCP basics, real examples, direct help.
-            </P>
-          </div>
+          <H2 className="mb-2 text-foreground">Build your app on Dust</H2>
+          <P size="md" className="mb-8 max-w-2xl text-muted-foreground">
+            Everything you need to launch — MCP basics, real examples, direct help.
+          </P>
 
-          <div className="grid gap-5 md:grid-cols-3">
-            <FeatureCard
-              title="MCP Documentation"
-              color="blue"
-              visual={<BookOpen className="h-20 w-20 text-blue-700" strokeWidth={1.2} />}
-              features={[
-                "MCP protocol fundamentals",
-                "OAuth, DCR, and whitelisting flows",
-                "Dust-specific extensions",
-              ]}
-              href="https://docs.dust.tt"
-              ctaLabel="View docs"
-            />
-            <FeatureCard
-              title="Build & test"
-              color="green"
-              visual={<Code className="h-20 w-20 text-green-700" strokeWidth={1.2} />}
-              features={[
-                "Quickstart templates",
-                "Example integrations on GitHub",
-                "Connect and test inside Dust",
-              ]}
-              href="https://github.com/dust-tt"
-              ctaLabel="See examples"
-            />
-            <FeatureCard
-              title="Get help"
-              color="golden"
-              visual={<MessageCircle className="h-20 w-20 text-golden-700" strokeWidth={1.2} />}
-              features={[
-                "Public Slack community",
-                "Direct line to partners@dust.tt",
-                "Co-build sessions with our team",
-              ]}
-              href="mailto:partners@dust.tt"
-              ctaLabel="Contact us"
-            />
+          <div className="grid gap-4 md:grid-cols-3">
+            {[
+              {
+                title: "MCP Documentation",
+                desc: "Protocol fundamentals, OAuth and whitelisting flows, Dust-specific extensions.",
+                bg: "bg-blue-50",
+                iconColor: "text-blue-400",
+                Icon: BookOpenIcon,
+                href: "https://docs.dust.tt",
+                cta: "View docs",
+              },
+              {
+                title: "Build & test",
+                desc: "Quickstart templates, example integrations on GitHub, connect and test inside Dust.",
+                bg: "bg-green-50",
+                iconColor: "text-green-400",
+                Icon: CodeBlockIcon,
+                href: "https://github.com/dust-tt",
+                cta: "See examples",
+              },
+              {
+                title: "Get help",
+                desc: "Public Slack community, direct line to partners@dust.tt, co-build sessions with our team.",
+                bg: "bg-rose-50",
+                iconColor: "text-rose-400",
+                Icon: ChatBubbleLeftRightIcon,
+                href: "mailto:partners@dust.tt",
+                cta: "Contact us",
+              },
+            ].map((d) => {
+              const Icon = d.Icon;
+              return (
+                <a
+                  key={d.title}
+                  href={d.href}
+                  className={`group flex flex-col rounded-2xl p-6 ${d.bg} transition-all hover:translate-y-[-2px] hover:shadow-sm`}
+                >
+                  <Icon className={`mb-4 h-8 w-8 ${d.iconColor}`} />
+                  <h4 className="text-lg font-semibold text-foreground">{d.title}</h4>
+                  <p className="copy-base mt-1 flex-grow font-sans text-muted-foreground">{d.desc}</p>
+                  <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-foreground">
+                    {d.cta}
+                    <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">→</span>
+                  </span>
+                </a>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* ─────────── Three tiers — compressed pricing-page cards + expand for full detail ─────────── */}
-      <FullWidthSection className="bg-muted/40 py-12 md:py-16">
+      {/* ─────────── Three tiers — compact cards + expand for full detail ─────────── */}
+      <section className="bg-background py-10 md:py-12">
         <div className="mx-auto max-w-5xl px-6">
           <div className="mb-8">
-            <H2 className="text-2xl font-semibold text-foreground md:text-3xl">
-              The partner programme
-            </H2>
-            <P size="sm" className="mt-2 text-muted-foreground">
-              Three tiers, one path. Community is the entry point — show traction and we move up to Growth and Alliance together.
+            <H2 className="text-foreground">The partner programme</H2>
+            <P size="md" className="mt-2 max-w-2xl text-muted-foreground">
+              Three tiers, one path. Community is the entry — show traction and we move up to Growth and Alliance together.
             </P>
           </div>
 
@@ -315,38 +315,35 @@ export default function PartnersPage() {
               return (
                 <div
                   key={t.name}
-                  className="flex flex-col rounded-3xl border border-border bg-background p-7 transition-shadow hover:shadow-md"
-                  style={{
-                    borderColor: isFeatured ? t.accent : "var(--color-border)",
-                    boxShadow: isFeatured ? `0 0 0 1px ${t.accent}40` : undefined,
-                  }}
+                  className={`flex flex-col rounded-2xl p-6 ${t.bg} transition-shadow hover:shadow-md`}
                 >
-                  {/* Header — tier badge + full-saturation icon badge with white icon */}
-                  <div className="mb-4 flex items-center justify-between">
+                  {/* Icon at top, dust.tt-style — colored on pastel, no separate badge */}
+                  <Icon
+                    className="mb-4 h-8 w-8"
+                    style={{ color: t.accent }}
+                  />
+
+                  {/* Tier badge + name */}
+                  <div className="mb-1 flex items-center gap-2">
                     <span
-                      className="rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider"
-                      style={{ background: t.bg, color: t.accent }}
+                      className="rounded-full bg-background/70 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider"
+                      style={{ color: t.accent }}
                     >
                       Tier {i + 1}
                     </span>
-                    <div
-                      className="flex h-10 w-10 items-center justify-center rounded-xl text-white"
-                      style={{ background: t.accent }}
-                    >
-                      <Icon className="h-5 w-5" />
-                    </div>
+                    {isFeatured && (
+                      <span className="rounded-full bg-foreground px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-background">
+                        Featured
+                      </span>
+                    )}
                   </div>
-
-                  {/* Name + tagline */}
-                  <h3 className="heading-mono-2xl" style={{ color: t.accent }}>
-                    {t.name}
-                  </h3>
-                  <p className="copy-sm mt-2 text-muted-foreground">{t.tagline}</p>
+                  <h4 className="text-lg font-semibold text-foreground">{t.name}</h4>
+                  <p className="copy-base mt-1 font-sans text-muted-foreground">{t.tagline}</p>
 
                   {/* Top 3 benefits only */}
-                  <ul className="mt-5 space-y-2 flex-grow">
+                  <ul className="mt-4 space-y-2 flex-grow">
                     {t.partnerGets.slice(0, 3).map((g) => (
-                      <li key={g} className="flex gap-2 text-sm leading-snug">
+                      <li key={g} className="flex gap-2 text-sm leading-snug text-foreground/85">
                         <Check
                           className="h-4 w-4 shrink-0 mt-0.5"
                           style={{ color: t.accent }}
@@ -357,7 +354,7 @@ export default function PartnersPage() {
                   </ul>
 
                   {/* CTA */}
-                  <div className="mt-6">
+                  <div className="mt-5">
                     <Button
                       href={
                         isInvitationOnly
@@ -365,7 +362,7 @@ export default function PartnersPage() {
                           : "/technology-partners/register"
                       }
                       variant={isFeatured ? "highlight" : "outline"}
-                      size="md"
+                      size="sm"
                       className="w-full"
                     >
                       {isInvitationOnly
@@ -381,7 +378,7 @@ export default function PartnersPage() {
           </div>
 
           {/* Expand for full detail */}
-          <details className="group mt-8 rounded-2xl border border-border bg-background">
+          <details className="group mt-6 rounded-2xl border border-border bg-background">
             <summary className="flex cursor-pointer list-none items-center justify-between px-6 py-4 text-sm font-medium text-foreground transition-colors hover:bg-muted/40">
               <span>See the full programme details</span>
               <span className="text-xs text-muted-foreground transition-transform group-open:rotate-180">▾</span>
@@ -419,21 +416,14 @@ export default function PartnersPage() {
             </div>
           </details>
         </div>
-      </FullWidthSection>
+      </section>
 
       {/* ─────────── Partner stories — three real public Dust testimonials ─────────── */}
       {/* Quotes sourced from dust.tt's public homepage. Replace with partner-
           specific quotes (e.g. from Customer.io, Attio, Granola) once collected. */}
-      <section className="bg-background py-12 md:py-16">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="mb-8">
-            <H2 className="text-2xl font-semibold text-foreground md:text-3xl">
-              What partners say
-            </H2>
-            <P size="sm" className="mt-2 text-muted-foreground">
-              Why teams are building on Dust.
-            </P>
-          </div>
+      <section className="bg-background py-10 md:py-12">
+        <div className="mx-auto max-w-5xl px-6">
+          <H2 className="mb-8 text-foreground">What partners say</H2>
           <div className="grid gap-5 md:grid-cols-3">
             {[
               {
@@ -470,16 +460,12 @@ export default function PartnersPage() {
       </section>
 
       {/* ─────────── How it works ─────────── */}
-      <FullWidthSection id="how-it-works" className="bg-muted py-12 md:py-16">
+      <FullWidthSection id="how-it-works" className="bg-muted py-10 md:py-12">
         <div className="mx-auto max-w-5xl px-6 py-8">
-          <div className="mb-8">
-            <H2 className="text-2xl font-semibold text-foreground md:text-3xl">
-              How it works
-            </H2>
-            <P size="sm" className="mt-2 text-muted-foreground">
-              From a first conversation to a featured launch — together, step by step.
-            </P>
-          </div>
+          <H2 className="mb-2 text-foreground">How it works</H2>
+          <P size="md" className="mb-8 max-w-2xl text-muted-foreground">
+            From a first conversation to a featured launch — together, step by step.
+          </P>
 
           <div className="grid gap-5 md:grid-cols-4">
             {[
