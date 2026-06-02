@@ -234,7 +234,7 @@ export default function IntegrationsIndexPage() {
       {/* ─────────── Register-your-integration band (top of marketplace) ─────────── */}
       <div className="mx-auto -mt-2 mb-8 max-w-5xl px-6">
         <a
-          href="/partners/register"
+          href="/technology-partners/register"
           className="group relative flex items-center justify-between gap-4 overflow-hidden rounded-2xl border border-blue-200 bg-blue-50 px-6 py-4 transition-all hover:border-blue-300 hover:shadow-sm"
         >
           <div className="min-w-0 flex-1">
@@ -379,7 +379,7 @@ export default function IntegrationsIndexPage() {
                 <p className="text-sm text-muted-foreground">
                   No integration found yet — but you can connect any MCP server you want in Dust.{" "}
                   <a
-                    href="/partners/register"
+                    href="/technology-partners/register"
                     className="font-medium text-foreground underline hover:text-blue-500"
                   >
                     Submit yours

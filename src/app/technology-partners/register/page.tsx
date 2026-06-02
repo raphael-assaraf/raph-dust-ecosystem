@@ -100,7 +100,7 @@ export default function RegisterPage() {
               We&apos;ll be in touch.
             </P>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Button href="/partners" variant="outline" size="md" icon={ArrowLeft}>
+              <Button href="/technology-partners" variant="outline" size="md" icon={ArrowLeft}>
                 Back to program
               </Button>
               <Button href="/integrations/attio" variant="highlight" size="md" iconRight={ArrowRight}>
@@ -122,7 +122,7 @@ export default function RegisterPage() {
       <section className="border-b border-border">
         <div className="mx-auto max-w-3xl px-6 pt-16 pb-10">
           <Link
-            href="/partners"
+            href="/technology-partners"
             className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
           >
             <ArrowLeft className="h-3 w-3" />

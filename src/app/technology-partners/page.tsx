@@ -183,7 +183,7 @@ export default function PartnersPage() {
             into a deeper partnership as your traction proves out.
           </P>
           <div className="flex flex-col gap-4 sm:flex-row">
-            <Button href="/partners/register" variant="highlight" size="md" icon={RocketIcon}>
+            <Button href="/technology-partners/register" variant="highlight" size="md" icon={RocketIcon}>
               List your app
             </Button>
             <Button href="#how-it-works" variant="outline" size="md">
@@ -193,134 +193,44 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      {/* ─────────── Why partner ─────────── */}
-      <FullWidthSection className="bg-muted py-12 md:py-16">
-        <div className="mx-auto grid max-w-4xl gap-8 px-6 py-8 md:grid-cols-3">
-          {[
-            { stat: "100+", label: "Apps live on Dust" },
-            { stat: "1 URL", label: "All it takes to list yours" },
-            { stat: "Built for", label: "AI agents, end-to-end" },
-          ].map((s) => (
-            <div key={s.label} className="text-center">
-              <div className="heading-mono-3xl text-foreground">{s.stat}</div>
-              <P size="xs" className="mt-2 text-muted-foreground">
-                {s.label}
-              </P>
-            </div>
-          ))}
-        </div>
-      </FullWidthSection>
-
-      {/* ─────────── Two tiers — pricing-page treatment ─────────── */}
-      <section className="py-12 md:py-16">
+      {/* ─────────── Why partner — three pastel value props (no grey stats) ─────────── */}
+      <section className="bg-background py-12 md:py-16">
         <div className="mx-auto max-w-5xl px-6">
-          <div className="mb-12 mx-auto max-w-3xl text-center">
-            <H2 className="mb-3 text-center text-3xl font-semibold text-foreground md:text-4xl">
-              Three tiers. One path.
-            </H2>
-            <P size="md" className="text-muted-foreground">
-              Tier 3 (Community) is the entry point. Show traction, and we move
-              up to Tier 2 (Growth) and Tier 1 (Alliance) together.
-            </P>
-          </div>
-
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {PUBLIC_TIERS.map((t, i) => {
-              const Icon = t.icon;
-              // Growth (index 1, middle) gets the highlighted treatment in the
-              // pricing-page sense. Alliance is Tier 1 (premium) but read-only —
-              // contact-led entry, not self-serve apply.
-              const isFeatured = i === 1;
-              const isInvitationOnly = i === 0; // Alliance
+          <div className="grid gap-5 md:grid-cols-3">
+            {[
+              {
+                title: "Be discoverable",
+                desc: "Your logo lives inside the Dust app where users browse apps — and on the public marketplace.",
+                bg: "bg-blue-50",
+                accentText: "text-blue-700",
+                badgeBg: "bg-blue-100",
+                Icon: Users,
+              },
+              {
+                title: "Plug & play",
+                desc: "One MCP URL is all it takes. No deploys, no engineering on either side once your server is live.",
+                bg: "bg-green-50",
+                accentText: "text-green-700",
+                badgeBg: "bg-green-100",
+                Icon: TrendingUp,
+              },
+              {
+                title: "Grow into a partnership",
+                desc: "From listed to Alliance — a clear graduation path with shared upside as your traction proves out.",
+                bg: "bg-golden-50",
+                accentText: "text-golden-700",
+                badgeBg: "bg-golden-100",
+                Icon: Handshake,
+              },
+            ].map((v) => {
+              const Icon = v.Icon;
               return (
-                <div
-                  key={t.name}
-                  className="relative flex flex-col overflow-hidden rounded-3xl border bg-background p-8 transition-shadow hover:shadow-md"
-                  style={{
-                    borderColor: isFeatured ? t.accent : "var(--color-border)",
-                    boxShadow: isFeatured ? `0 0 0 1px ${t.accent}40` : undefined,
-                  }}
-                >
-                  {/* Top tint band */}
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-x-0 top-0 h-32"
-                    style={{
-                      background: `linear-gradient(to bottom, ${t.bg}, transparent)`,
-                    }}
-                  />
-
-                  <div className="relative">
-                    {/* Tier number + icon row */}
-                    <div className="mb-4 flex items-center justify-between">
-                      <span
-                        className="rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider"
-                        style={{ background: t.bg, color: t.accent }}
-                      >
-                        Tier {i + 1}
-                      </span>
-                      <div
-                        className="flex h-10 w-10 items-center justify-center rounded-xl"
-                        style={{ background: t.bg, color: t.accent }}
-                      >
-                        <Icon className="h-5 w-5" />
-                      </div>
-                    </div>
-
-                    <h3
-                      className="heading-mono-2xl"
-                      style={{ color: t.accent }}
-                    >
-                      {t.name}
-                    </h3>
-                    <p className="copy-sm mt-2 text-muted-foreground">{t.tagline}</p>
-
-                    {/* How to qualify */}
-                    <div className="mt-6 rounded-xl bg-muted/60 px-4 py-3">
-                      <div className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-                        How to qualify
-                      </div>
-                      <p className="mt-1 text-sm text-foreground">{t.entry}</p>
-                    </div>
-
-                    {/* What you get */}
-                    <div className="mt-6">
-                      <div className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-                        What you get
-                      </div>
-                      <ul className="space-y-2.5">
-                        {t.partnerGets.map((g) => (
-                          <li key={g} className="flex gap-2.5 text-sm leading-snug">
-                            <Check
-                              className="h-4 w-4 shrink-0 mt-0.5"
-                              style={{ color: t.accent }}
-                            />
-                            <span>{g}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                <div key={v.title} className={`rounded-3xl ${v.bg} p-7`}>
+                  <div className={`mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl ${v.badgeBg} ${v.accentText}`}>
+                    <Icon className="h-5 w-5" />
                   </div>
-
-                  {/* CTA at the bottom */}
-                  <div className="relative mt-8 pt-2">
-                    <Button
-                      href={
-                        isInvitationOnly
-                          ? "mailto:partners@dust.tt?subject=Alliance%20Partnership"
-                          : "/partners/register"
-                      }
-                      variant={isFeatured ? "highlight" : "outline"}
-                      size="md"
-                      className="w-full"
-                    >
-                      {isInvitationOnly
-                        ? "Talk to the partner team"
-                        : isFeatured
-                          ? "Apply for Growth"
-                          : "Start as Community"}
-                    </Button>
-                  </div>
+                  <h3 className={`heading-mono-xl ${v.accentText}`}>{v.title}</h3>
+                  <p className="copy-sm mt-2 text-foreground/80">{v.desc}</p>
                 </div>
               );
             })}
@@ -328,8 +238,8 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      {/* ─────────── Build your app — developer / MCP docs home ─────────── */}
-      <section className="bg-background py-16 md:py-20">
+      {/* ─────────── Build your app — moved ABOVE the tiers per Thibault feedback ─────────── */}
+      <section className="bg-background py-12 md:py-16">
         <div className="mx-auto max-w-5xl px-6">
           <div className="mb-10 mx-auto max-w-2xl text-center">
             <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
@@ -340,8 +250,7 @@ export default function PartnersPage() {
               Build your app on Dust
             </H2>
             <P size="md" className="text-muted-foreground">
-              Everything you need to launch an integration — from MCP basics to
-              real examples and human help.
+              Everything you need to launch — from MCP basics to real examples and direct help.
             </P>
           </div>
 
@@ -385,6 +294,133 @@ export default function PartnersPage() {
           </div>
         </div>
       </section>
+
+      {/* ─────────── Three tiers — compressed pricing-page cards + expand for full detail ─────────── */}
+      <FullWidthSection className="bg-muted/40 py-16 md:py-20">
+        <div className="mx-auto max-w-5xl px-6">
+          <div className="mb-10 mx-auto max-w-3xl text-center">
+            <H2 className="mb-3 text-center text-3xl font-semibold text-foreground md:text-4xl">
+              The partner programme
+            </H2>
+            <P size="md" className="text-muted-foreground">
+              Three tiers, one path. Tier 3 (Community) is the entry point — show
+              traction and we move up to Tier 2 (Growth) and Tier 1 (Alliance) together.
+            </P>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {PUBLIC_TIERS.map((t, i) => {
+              const Icon = t.icon;
+              const isFeatured = i === 1; // Growth (middle) highlighted
+              const isInvitationOnly = i === 0; // Alliance
+              return (
+                <div
+                  key={t.name}
+                  className="flex flex-col rounded-3xl border border-border bg-background p-7 transition-shadow hover:shadow-md"
+                  style={{
+                    borderColor: isFeatured ? t.accent : "var(--color-border)",
+                    boxShadow: isFeatured ? `0 0 0 1px ${t.accent}40` : undefined,
+                  }}
+                >
+                  {/* Header — tier badge + icon */}
+                  <div className="mb-4 flex items-center justify-between">
+                    <span
+                      className="rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider"
+                      style={{ background: t.bg, color: t.accent }}
+                    >
+                      Tier {i + 1}
+                    </span>
+                    <div
+                      className="flex h-10 w-10 items-center justify-center rounded-xl"
+                      style={{ background: t.bg, color: t.accent }}
+                    >
+                      <Icon className="h-5 w-5" />
+                    </div>
+                  </div>
+
+                  {/* Name + tagline */}
+                  <h3 className="heading-mono-2xl" style={{ color: t.accent }}>
+                    {t.name}
+                  </h3>
+                  <p className="copy-sm mt-2 text-muted-foreground">{t.tagline}</p>
+
+                  {/* Top 3 benefits only */}
+                  <ul className="mt-5 space-y-2 flex-grow">
+                    {t.partnerGets.slice(0, 3).map((g) => (
+                      <li key={g} className="flex gap-2 text-sm leading-snug">
+                        <Check
+                          className="h-4 w-4 shrink-0 mt-0.5"
+                          style={{ color: t.accent }}
+                        />
+                        <span>{g}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* CTA */}
+                  <div className="mt-6">
+                    <Button
+                      href={
+                        isInvitationOnly
+                          ? "mailto:partners@dust.tt?subject=Alliance%20Partnership"
+                          : "/technology-partners/register"
+                      }
+                      variant={isFeatured ? "highlight" : "outline"}
+                      size="md"
+                      className="w-full"
+                    >
+                      {isInvitationOnly
+                        ? "Talk to the partner team"
+                        : isFeatured
+                          ? "Apply for Growth"
+                          : "Start as Community"}
+                    </Button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Expand for full detail */}
+          <details className="group mt-8 rounded-2xl border border-border bg-background">
+            <summary className="flex cursor-pointer list-none items-center justify-between px-6 py-4 text-sm font-medium text-foreground transition-colors hover:bg-muted/40">
+              <span>See the full programme details</span>
+              <span className="text-xs text-muted-foreground transition-transform group-open:rotate-180">▾</span>
+            </summary>
+            <div className="border-t border-border p-6">
+              <div className="overflow-x-auto">
+                <table className="w-full min-w-[640px] text-sm">
+                  <thead>
+                    <tr className="border-b border-border text-left">
+                      <th className="pb-3 pr-4 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Tier</th>
+                      <th className="pb-3 pr-4 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Who it&apos;s for</th>
+                      <th className="pb-3 pr-4 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">How to qualify</th>
+                      <th className="pb-3 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Cadence</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {PUBLIC_TIERS.map((t, i) => (
+                      <tr key={t.name} className="border-b border-border/60 last:border-0">
+                        <td className="py-3 pr-4 align-top">
+                          <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                            Tier {i + 1}
+                          </div>
+                          <div className="mt-0.5 font-semibold" style={{ color: t.accent }}>
+                            {t.name}
+                          </div>
+                        </td>
+                        <td className="py-3 pr-4 align-top text-foreground/85">{t.who}</td>
+                        <td className="py-3 pr-4 align-top text-foreground/85">{t.entry}</td>
+                        <td className="py-3 align-top text-foreground/85">{t.cadence}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </details>
+        </div>
+      </FullWidthSection>
 
       {/* ─────────── How it works ─────────── */}
       <FullWidthSection id="how-it-works" className="bg-muted py-12 md:py-16">
@@ -436,7 +472,7 @@ export default function PartnersPage() {
         config={{
           title: "Ready to be discovered by agent users?",
           subtitle: "Share your app and we'll take it from there.",
-          primaryCTA: { label: "List your app", href: "/partners/register" },
+          primaryCTA: { label: "List your app", href: "/technology-partners/register" },
           secondaryCTA: { label: "Talk to the partner team", href: "mailto:partners@dust.tt" },
         }}
       />
