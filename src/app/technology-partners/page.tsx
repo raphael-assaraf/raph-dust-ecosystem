@@ -203,7 +203,7 @@ export default function PartnersPage() {
                 desc: "Your logo lives inside the Dust app where users browse apps — and on the public marketplace.",
                 bg: "bg-blue-50",
                 accentText: "text-blue-700",
-                badgeBg: "bg-blue-100",
+                badgeBg: "bg-blue-500", // full saturation, white icon
                 Icon: Users,
               },
               {
@@ -211,7 +211,7 @@ export default function PartnersPage() {
                 desc: "One MCP URL is all it takes. No deploys, no engineering on either side once your server is live.",
                 bg: "bg-green-50",
                 accentText: "text-green-700",
-                badgeBg: "bg-green-100",
+                badgeBg: "bg-green-600",
                 Icon: TrendingUp,
               },
               {
@@ -219,14 +219,14 @@ export default function PartnersPage() {
                 desc: "From listed to Alliance — a clear graduation path with shared upside as your traction proves out.",
                 bg: "bg-golden-50",
                 accentText: "text-golden-700",
-                badgeBg: "bg-golden-100",
+                badgeBg: "bg-golden-500",
                 Icon: Handshake,
               },
             ].map((v) => {
               const Icon = v.Icon;
               return (
                 <div key={v.title} className={`rounded-3xl ${v.bg} p-7`}>
-                  <div className={`mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl ${v.badgeBg} ${v.accentText}`}>
+                  <div className={`mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl ${v.badgeBg} text-white`}>
                     <Icon className="h-5 w-5" />
                   </div>
                   <h3 className={`heading-mono-xl ${v.accentText}`}>{v.title}</h3>
@@ -241,16 +241,16 @@ export default function PartnersPage() {
       {/* ─────────── Build your app — moved ABOVE the tiers per Thibault feedback ─────────── */}
       <section className="bg-background py-12 md:py-16">
         <div className="mx-auto max-w-5xl px-6">
-          <div className="mb-10 mx-auto max-w-2xl text-center">
-            <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
+          <div className="mb-8">
+            <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-border bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
               <Code className="h-3 w-3 text-blue-500" />
               For developers
             </span>
-            <H2 className="mb-3 text-center text-3xl font-semibold text-foreground md:text-4xl">
+            <H2 className="text-2xl font-semibold text-foreground md:text-3xl">
               Build your app on Dust
             </H2>
-            <P size="md" className="text-muted-foreground">
-              Everything you need to launch — from MCP basics to real examples and direct help.
+            <P size="sm" className="mt-2 text-muted-foreground">
+              Everything you need to launch — MCP basics, real examples, direct help.
             </P>
           </div>
 
@@ -296,15 +296,14 @@ export default function PartnersPage() {
       </section>
 
       {/* ─────────── Three tiers — compressed pricing-page cards + expand for full detail ─────────── */}
-      <FullWidthSection className="bg-muted/40 py-16 md:py-20">
+      <FullWidthSection className="bg-muted/40 py-12 md:py-16">
         <div className="mx-auto max-w-5xl px-6">
-          <div className="mb-10 mx-auto max-w-3xl text-center">
-            <H2 className="mb-3 text-center text-3xl font-semibold text-foreground md:text-4xl">
+          <div className="mb-8">
+            <H2 className="text-2xl font-semibold text-foreground md:text-3xl">
               The partner programme
             </H2>
-            <P size="md" className="text-muted-foreground">
-              Three tiers, one path. Tier 3 (Community) is the entry point — show
-              traction and we move up to Tier 2 (Growth) and Tier 1 (Alliance) together.
+            <P size="sm" className="mt-2 text-muted-foreground">
+              Three tiers, one path. Community is the entry point — show traction and we move up to Growth and Alliance together.
             </P>
           </div>
 
@@ -322,7 +321,7 @@ export default function PartnersPage() {
                     boxShadow: isFeatured ? `0 0 0 1px ${t.accent}40` : undefined,
                   }}
                 >
-                  {/* Header — tier badge + icon */}
+                  {/* Header — tier badge + full-saturation icon badge with white icon */}
                   <div className="mb-4 flex items-center justify-between">
                     <span
                       className="rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider"
@@ -331,8 +330,8 @@ export default function PartnersPage() {
                       Tier {i + 1}
                     </span>
                     <div
-                      className="flex h-10 w-10 items-center justify-center rounded-xl"
-                      style={{ background: t.bg, color: t.accent }}
+                      className="flex h-10 w-10 items-center justify-center rounded-xl text-white"
+                      style={{ background: t.accent }}
                     >
                       <Icon className="h-5 w-5" />
                     </div>
@@ -422,14 +421,62 @@ export default function PartnersPage() {
         </div>
       </FullWidthSection>
 
+      {/* ─────────── Partner stories — three real public Dust testimonials ─────────── */}
+      {/* Quotes sourced from dust.tt's public homepage. Replace with partner-
+          specific quotes (e.g. from Customer.io, Attio, Granola) once collected. */}
+      <section className="bg-background py-12 md:py-16">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="mb-8">
+            <H2 className="text-2xl font-semibold text-foreground md:text-3xl">
+              What partners say
+            </H2>
+            <P size="sm" className="mt-2 text-muted-foreground">
+              Why teams are building on Dust.
+            </P>
+          </div>
+          <div className="grid gap-5 md:grid-cols-3">
+            {[
+              {
+                quote: "We made a bet on Dust because we knew the team was exceptional. What we didn't expect was how quickly it would transform how we work. Dust became the connective tissue that amplifies what each team does best.",
+                name: "Ryan Wang",
+                role: "CEO, Assembled",
+              },
+              {
+                quote: "Dust is the most impactful software we've adopted since building Clay.",
+                name: "Everett Berry",
+                role: "Clay",
+              },
+              {
+                quote: "We used to do the work. Now we build the agents that do it.",
+                name: "Shashank Khanna",
+                role: "Vanta",
+              },
+            ].map((t) => (
+              <figure
+                key={t.name}
+                className="flex flex-col rounded-2xl border border-border bg-background p-6"
+              >
+                <blockquote className="copy-sm flex-grow text-foreground/85">
+                  &ldquo;{t.quote}&rdquo;
+                </blockquote>
+                <figcaption className="mt-5 border-t border-border pt-4">
+                  <div className="text-sm font-semibold text-foreground">{t.name}</div>
+                  <div className="text-xs text-muted-foreground">{t.role}</div>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ─────────── How it works ─────────── */}
       <FullWidthSection id="how-it-works" className="bg-muted py-12 md:py-16">
         <div className="mx-auto max-w-5xl px-6 py-8">
-          <div className="mb-12 mx-auto max-w-3xl text-center">
-            <H2 className="mb-3 text-center text-3xl font-semibold text-foreground md:text-4xl">
+          <div className="mb-8">
+            <H2 className="text-2xl font-semibold text-foreground md:text-3xl">
               How it works
             </H2>
-            <P size="md" className="text-muted-foreground">
+            <P size="sm" className="mt-2 text-muted-foreground">
               From a first conversation to a featured launch — together, step by step.
             </P>
           </div>

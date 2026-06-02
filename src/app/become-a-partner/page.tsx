@@ -121,8 +121,9 @@ const SMALL_PATHS: SmallPath[] = [
 const accentText = (a: string) =>
   a === "blue" ? "text-blue-700" : a === "green" ? "text-green-700" : "text-foreground";
 
-const accentBgStrong = (a: string) =>
-  a === "blue" ? "bg-blue-100" : a === "green" ? "bg-green-100" : "bg-muted";
+// Full-saturation icon badge — white icon on Dust brand color
+const accentBadge = (a: string) =>
+  a === "blue" ? "bg-blue-500" : a === "green" ? "bg-green-600" : "bg-foreground";
 
 export default function BecomeAPartnerPage() {
   return (
@@ -162,8 +163,8 @@ export default function BecomeAPartnerPage() {
                   key={p.title}
                   className={`flex flex-col rounded-3xl ${p.bg} p-8 md:p-10`}
                 >
-                  <div className={`mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl ${accentBgStrong(p.accent)} ${accentText(p.accent)}`}>
-                    <Icon className="h-7 w-7" />
+                  <div className={`mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl ${accentBadge(p.accent)} text-white`}>
+                    <Icon className="h-6 w-6" />
                   </div>
                   <h2 className={`heading-mono-2xl ${accentText(p.accent)}`}>
                     {p.title}
@@ -173,7 +174,7 @@ export default function BecomeAPartnerPage() {
                   <ul className="mt-6 space-y-2.5">
                     {p.bullets.map((b) => (
                       <li key={b} className="flex gap-2 text-sm leading-snug text-foreground/80">
-                        <span className={`mt-1.5 inline-block h-1 w-1 shrink-0 rounded-full ${accentBgStrong(p.accent)}`} />
+                        <span className={`mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full ${accentBadge(p.accent)}`} />
                         <span>{b}</span>
                       </li>
                     ))}
@@ -196,10 +197,10 @@ export default function BecomeAPartnerPage() {
       </section>
 
       {/* ─────────── Three smaller specialised paths ─────────── */}
-      <section className="bg-background pb-16 md:pb-20">
+      <section className="bg-background pb-12 md:pb-16">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="mb-6 mx-auto max-w-2xl text-center">
-            <H2 className="text-center text-2xl font-semibold text-foreground md:text-3xl">
+          <div className="mb-6">
+            <H2 className="text-2xl font-semibold text-foreground md:text-3xl">
               Specialised programmes
             </H2>
             <P size="sm" className="mt-2 text-muted-foreground">
@@ -207,16 +208,19 @@ export default function BecomeAPartnerPage() {
             </P>
           </div>
           <div className="grid gap-4 md:grid-cols-3">
-            {SMALL_PATHS.map((s) => {
+            {SMALL_PATHS.map((s, i) => {
               const Icon = s.icon;
+              // Saturated icon badge per small path — full Dust colors, white icon
+              const badgeBg =
+                i === 0 ? "bg-golden-500" : i === 1 ? "bg-rose-500" : "bg-foreground";
               return (
                 <a
                   key={s.title}
                   href={s.href}
                   className={`group flex flex-col rounded-2xl ${s.bg} p-6 transition-all hover:translate-y-[-2px] hover:shadow-sm`}
                 >
-                  <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-background">
-                    <Icon className="h-5 w-5 text-foreground" />
+                  <div className={`mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl ${badgeBg} text-white`}>
+                    <Icon className="h-5 w-5" />
                   </div>
                   <h3 className="text-base font-semibold text-foreground">{s.title}</h3>
                   <p className="mt-1.5 flex-grow text-xs leading-relaxed text-foreground/70">
@@ -255,11 +259,59 @@ export default function BecomeAPartnerPage() {
         </div>
       </FullWidthSection>
 
+      {/* ─────────── Partner stories — three real public Dust testimonials ─────────── */}
+      {/* Quotes sourced from dust.tt's public homepage. Replace with partner-
+          specific quotes once we collect them from active partners. */}
+      <section className="bg-background py-12 md:py-16">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="mb-8">
+            <H2 className="text-2xl font-semibold text-foreground md:text-3xl">
+              What partners say
+            </H2>
+            <P size="sm" className="mt-2 text-muted-foreground">
+              Why teams are building on Dust.
+            </P>
+          </div>
+          <div className="grid gap-5 md:grid-cols-3">
+            {[
+              {
+                quote: "We made a bet on Dust because we knew the team was exceptional. What we didn't expect was how quickly it would transform how we work. Dust became the connective tissue that amplifies what each team does best.",
+                name: "Ryan Wang",
+                role: "CEO, Assembled",
+              },
+              {
+                quote: "Dust is the most impactful software we've adopted since building Clay.",
+                name: "Everett Berry",
+                role: "Clay",
+              },
+              {
+                quote: "We used to do the work. Now we build the agents that do it.",
+                name: "Shashank Khanna",
+                role: "Vanta",
+              },
+            ].map((t) => (
+              <figure
+                key={t.name}
+                className="flex flex-col rounded-2xl border border-border bg-background p-6"
+              >
+                <blockquote className="copy-sm flex-grow text-foreground/85">
+                  &ldquo;{t.quote}&rdquo;
+                </blockquote>
+                <figcaption className="mt-5 border-t border-border pt-4">
+                  <div className="text-sm font-semibold text-foreground">{t.name}</div>
+                  <div className="text-xs text-muted-foreground">{t.role}</div>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ─────────── Other ways ─────────── */}
-      <section className="bg-background py-16 md:py-20">
+      <section className="bg-background py-12 md:py-16">
         <div className="mx-auto max-w-5xl px-6">
-          <div className="mb-8 mx-auto max-w-2xl text-center">
-            <H2 className="text-center text-2xl font-semibold text-foreground md:text-3xl">
+          <div className="mb-6">
+            <H2 className="text-2xl font-semibold text-foreground md:text-3xl">
               Other ways to work with us
             </H2>
             <P size="sm" className="mt-2 text-muted-foreground">
