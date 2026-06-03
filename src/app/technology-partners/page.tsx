@@ -33,6 +33,10 @@ export const metadata: Metadata = {
 
 type Tier = {
   name: string;
+  /** Public tier number (1 = highest / Alliance, 3 = entry / Community). */
+  tierNumber: number;
+  /** True for tiers that are invitation-only, not self-serve apply. */
+  isInvitationOnly?: boolean;
   tagline: string;
   icon: typeof Users;
   accent: string;
@@ -65,6 +69,7 @@ const PUBLIC_TIERS: Tier[] = [
 // Tier data (defined separately so we can compose PUBLIC_TIERS in the right order).
 const TIER_COMMUNITY: Tier = {
     name: "Community",
+    tierNumber: 3,
     tagline: "Be discoverable. Reach Dust customers from day one.",
     icon: Users,
     accent: "#1C91FF",
@@ -89,6 +94,7 @@ const TIER_COMMUNITY: Tier = {
 
 const TIER_GROWTH: Tier = {
     name: "Growth",
+    tierNumber: 2,
     tagline: "Warm rep-to-rep motion. Lightweight co-marketing.",
     icon: TrendingUp,
     accent: "#418B5C",
@@ -114,6 +120,8 @@ const TIER_GROWTH: Tier = {
 
 const TIER_ALLIANCE: Tier = {
     name: "Alliance",
+    tierNumber: 1,
+    isInvitationOnly: true,
     tagline: "Co-sell motion. Shared plans. Deep product collab.",
     icon: Handshake,
     accent: "#FE9C1A",
@@ -137,13 +145,18 @@ const TIER_ALLIANCE: Tier = {
     ],
 };
 
-// Tier 1 = highest (Alliance), Tier 3 = entry (Community). Order matters here.
-PUBLIC_TIERS.push(TIER_ALLIANCE, TIER_GROWTH, TIER_COMMUNITY);
+// Display order left-to-right = journey: Community → Growth → Alliance.
+// Tier numbers (1 = Alliance/highest, 3 = Community/entry) are stored on each
+// Tier object so the array order can read as the partner's progression
+// without scrambling the labels.
+PUBLIC_TIERS.push(TIER_COMMUNITY, TIER_GROWTH, TIER_ALLIANCE);
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const INTERNAL_TIERS: Tier[] = [
   {
     name: "Strategic",
+    tierNumber: 0,
+    isInvitationOnly: true,
     tagline: "Bespoke partnership at the executive level.",
     icon: Crown,
     accent: "#D97AB0",
@@ -180,7 +193,7 @@ export default function PartnersPage() {
             Dust App Partner Program
           </span>
           <H1 mono className="mb-4 text-foreground">
-            Build, launch, and grow with Dust
+            Become a Dust technology partner
           </H1>
           <P size="lg" className="mb-8 max-w-2xl text-muted-foreground">
             List your app on Dust and get discovered by thousands of AI agent users — then grow
@@ -308,9 +321,7 @@ export default function PartnersPage() {
           </div>
 
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {PUBLIC_TIERS.map((t, i) => {
-              const isInvitationOnly = i === 0; // Alliance — talk-to-team only
-              return (
+            {PUBLIC_TIERS.map((t) => (
                 <div
                   key={t.name}
                   className={`relative flex flex-col overflow-hidden rounded-2xl p-6 ${t.bg} transition-shadow hover:shadow-md`}
@@ -323,7 +334,7 @@ export default function PartnersPage() {
                     className="mb-3 inline-flex w-fit rounded-full bg-background/70 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider"
                     style={{ color: t.accent }}
                   >
-                    Tier {i + 1}
+                    Tier {t.tierNumber}
                   </span>
 
                   <h4 className="text-lg font-semibold text-foreground">{t.name}</h4>
@@ -346,7 +357,7 @@ export default function PartnersPage() {
                   <div className="mt-5">
                     <Button
                       href={
-                        isInvitationOnly
+                        t.isInvitationOnly
                           ? "mailto:partners@dust.tt?subject=Alliance%20Partnership"
                           : "/technology-partners/register"
                       }
@@ -354,12 +365,11 @@ export default function PartnersPage() {
                       size="sm"
                       className="w-full"
                     >
-                      {isInvitationOnly ? "Talk to the partner team" : "Get in touch"}
+                      {t.isInvitationOnly ? "Talk to the partner team" : "Get in touch"}
                     </Button>
                   </div>
                 </div>
-              );
-            })}
+              ))}
           </div>
 
           {/* Expand for full detail */}
@@ -380,11 +390,11 @@ export default function PartnersPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {PUBLIC_TIERS.map((t, i) => (
+                    {PUBLIC_TIERS.map((t) => (
                       <tr key={t.name} className="border-b border-border/60 last:border-0">
                         <td className="py-3 pr-4 align-top">
                           <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                            Tier {i + 1}
+                            Tier {t.tierNumber}
                           </div>
                           <div className="mt-0.5 font-semibold" style={{ color: t.accent }}>
                             {t.name}
