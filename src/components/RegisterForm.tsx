@@ -82,14 +82,12 @@ export function RegisterForm({ hideIntro = false }: RegisterFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-7">
-      {/* Intro — what Dust's team brings to the partnership */}
+      {/* Intro — one-liner about what this form is for */}
       {!hideIntro && (
-        <ContentMessage variant="info" title="Our team is here to partner with you.">
-          <P size="xs" className="text-blue-900">
-            Two things: getting your app live inside Dust, and growing together
-            through co-marketing, customer stories, and joint events.
-          </P>
-        </ContentMessage>
+        <p className="text-sm text-muted-foreground">
+          Fill this form to get your app listed on our app store. We&apos;ll
+          reach out to discuss go-to-market opportunities.
+        </p>
       )}
 
       {/* Lead question — MCP status */}
