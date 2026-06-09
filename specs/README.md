@@ -9,6 +9,7 @@ Each spec is self-contained: an agent with access to dust-main should be able to
 | Package | What | Status |
 |---|---|---|
 | [`integration-page/`](./integration-page/SPEC.md) | The MCP integration detail page (Attio = reference example). Adds the live chat demo + jobs-to-be-done grid on top of the existing dust.tt page. | Ready |
+| [`technology-partner-page/`](./technology-partner-page/SPEC.md) | The tech-partner program page (`/technology-partners`). Verbatim port — full TSX inlined + a 1:1 copy of `page.tsx` next to the spec. | Ready |
 
 ## Conventions
 
