@@ -248,7 +248,7 @@ export default function McpPartnersPage() {
       <PartnerTable
         id="top-uk-eu"
         title="Top 10 — UK & Europe"
-        subtitle="Reality check: pure UK-HQ + official MCP is short (Attio, Granola, ElevenLabs, Tessl). The strongest GTM pool is continental Europe, so this is a UK+Europe list with HQ flagged on each row."
+        subtitle="UK-first: the four genuine UK names with usable MCPs (Attio, Granola, ElevenLabs, Tessl) lead, then only clear pan-European leaders (Lovable, n8n, Hugging Face, Mistral, Typeform, Planhat). Deliberately not France-skewed — regional French B2B SaaS (Modjo, Lemlist, Brevo, Pigment) moved to 'other candidates'. Modjo is arguably top-10 on merit (your usage data), so it's an easy swap-back."
         partners={TOP_UK_EU}
       />
 
