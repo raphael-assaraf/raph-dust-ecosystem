@@ -22,6 +22,7 @@ export interface Partner {
   status: McpStatus;
   endpoint: string; // remote URL / how to connect / note
   why: string;
+  ukHook?: string; // the UK relationship to leverage (advocate / team pick / UK-HQ)
 }
 
 export const STATUS_LABEL: Record<McpStatus, string> = {
@@ -41,11 +42,14 @@ export const STATUS_COLOR: Record<McpStatus, string> = {
 };
 
 // ─────────────────────────────────────────────────────────────────────────
-// TOP 10 — UK & EUROPE  (GTM-tilted, hype/scaling, MCP-ready)
-// Honest note: pure UK-HQ + official MCP is a short list (Attio, Granola,
-// ElevenLabs, Tessl). The rest of the strong pool is continental Europe.
+// TOP 10 — UK  (UK-FOCUSED & relationship-anchored)
+// Selection rule: has a usable MCP AND a concrete UK hook — either UK-HQ, a
+// UK-team pick, or a tool your UK advocates / Top-40 UK targets already use.
+// Genuinely UK-HQ MCP tools are scarce (Attio, Granola, ElevenLabs, Tessl), so
+// the rest are anchored on the team list + the UK advocate sheet. Rootless EU
+// names live in OTHERS under "Continental EU — no UK hook".
 // ─────────────────────────────────────────────────────────────────────────
-export const TOP_UK_EU: Partner[] = [
+export const TOP_UK: Partner[] = [
   {
     company: "Attio",
     hq: "London, UK",
@@ -53,7 +57,8 @@ export const TOP_UK_EU: Partner[] = [
     category: "AI-native CRM",
     status: "official",
     endpoint: "mcp.attio.com/mcp (OAuth)",
-    why: "The AI-native CRM for GTM teams — top UK pick. Already in Dust docs, so likely partly integrated; deepen the relationship.",
+    ukHook: "UK-HQ · Dust partner · team pick",
+    why: "The AI-native CRM for GTM teams. UK-founded, already in Dust docs — deepen it.",
   },
   {
     company: "Granola",
@@ -62,7 +67,8 @@ export const TOP_UK_EU: Partner[] = [
     category: "AI meeting notes",
     status: "official",
     endpoint: "mcp.granola.ai/mcp (OAuth, GA)",
-    why: "Hot UK AI-native brand, already leveraged + a motivated partner. Meeting context → CRM/notes workflows.",
+    ukHook: "UK-HQ · Dust partner · team pick (already leveraged)",
+    why: "Hot UK AI-native brand and a motivated partner. Meeting context → CRM/notes.",
   },
   {
     company: "ElevenLabs",
@@ -71,7 +77,8 @@ export const TOP_UK_EU: Partner[] = [
     category: "AI voice / audio",
     status: "official",
     endpoint: "github.com/elevenlabs/elevenlabs-mcp (local, API key)",
-    why: "One of the hottest AI-native brands globally; strong UK hype association. (MCP is local/API-key flavour, not remote OAuth.)",
+    ukHook: "UK-HQ · Dust partner · team pick · Top-40 UK target",
+    why: "One of the hottest AI-native brands globally; strong UK hype. (Local/API-key MCP flavour.)",
   },
   {
     company: "Tessl",
@@ -80,61 +87,68 @@ export const TOP_UK_EU: Partner[] = [
     category: "AI software development",
     status: "official",
     endpoint: "tessl mcp start (local/stdio)",
-    why: "Hot UK AI-native brand (Snyk founder, ~$750M val). Dev-tooling not GTM, but a strong UK logo to associate with.",
+    ukHook: "UK-HQ (Snyk founder)",
+    why: "Hot UK AI-native dev brand (~$750M val). Dev-tooling not GTM, but a strong UK logo.",
   },
   {
-    company: "Lovable",
-    hq: "Stockholm, SE",
-    region: "EU",
-    category: "AI app builder",
+    company: "Fathom",
+    hq: "San Francisco, US",
+    region: "US",
+    category: "AI meeting notetaker",
     status: "official",
-    endpoint: "mcp.lovable.dev (OAuth)",
-    why: "Clear EU leader — one of Europe's fastest-scaling AI-native brands ('vibe-coding'). Huge mindshare for co-marketing.",
+    endpoint: "api.fathom.ai/mcp",
+    ukHook: "Dust UK partner · team pick",
+    why: "Team-recommended meeting-intelligence tool; meeting data feeds CRM/sales workflows.",
   },
   {
-    company: "n8n",
-    hq: "Berlin, DE",
-    region: "EU",
-    category: "Workflow automation",
+    company: "Snowflake",
+    hq: "Bozeman MT, US",
+    region: "US",
+    category: "Data platform",
     status: "official",
-    endpoint: "Per-instance/workflow URLs (SSE/HTTP)",
-    why: "Clear EU automation leader and RevOps glue; already installed across Dust customers. Both MCP server and client — very mature.",
+    endpoint: "Snowflake-managed MCP (GA, in-workspace)",
+    ukHook: "Dust UK partner (High Priority) · team pick",
+    why: "Team-recommended; underpins sales/marketing analytics. Warm UK partner relationship.",
   },
   {
-    company: "Hugging Face",
-    hq: "Paris / global",
-    region: "EU",
-    category: "AI model & dataset hub",
+    company: "Clay",
+    hq: "New York, US",
+    region: "US",
+    category: "GTM data / outbound orchestration",
     status: "official",
-    endpoint: "huggingface.co/settings/mcp",
-    why: "Clear EU-rooted AI leader and a genuinely cool logo. (MCP is model/dataset search — association value more than GTM utility.)",
+    endpoint: "Connector in Claude/ChatGPT/Codex",
+    ukHook: "Top-UK-Logo advocate (Dust customer)",
+    why: "AI-native GTM darling AND a flagged UK advocate — warm intro + hype logo. NB: ≠ clay.earth.",
   },
   {
-    company: "Mistral",
-    hq: "Paris, FR",
-    region: "EU",
-    category: "AI platform / Le Chat",
-    status: "none",
-    endpoint: "Le Chat MCP connectors (host/peer — consumes MCPs, doesn't expose one)",
-    why: "THE European AI champion — a clear-leader co-marketing play, not a plug-in integration (it's an MCP client/host, not a server).",
+    company: "Vanta",
+    hq: "San Francisco, US",
+    region: "US",
+    category: "Security & trust management",
+    status: "beta",
+    endpoint: "developer.vanta.com/docs/vanta-mcp (public preview)",
+    ukHook: "Top-UK-Logo advocate (Dust customer)",
+    why: "Flagged UK advocate; trust/procurement signals are GTM-adjacent. Warm relationship to leverage.",
   },
   {
-    company: "Typeform",
-    hq: "Barcelona, ES",
-    region: "EU",
-    category: "Forms / lead capture",
+    company: "Datadog",
+    hq: "New York, US",
+    region: "US",
+    category: "Observability",
     status: "official",
-    endpoint: "api.eu.typeform.com/mcp (OAuth, EU DC)",
-    why: "Clear EU leader, top-of-funnel GTM (lead-gen + customer data). Deliberate public MCP with an EU endpoint.",
+    endpoint: "docs.datadoghq.com (MCP server)",
+    ukHook: "Top-UK-Logo advocate (Dust customer)",
+    why: "Flagged UK advocate with an official MCP — strong logo, warm intro. Infra not GTM.",
   },
   {
-    company: "Planhat",
-    hq: "Stockholm, SE",
-    region: "EU",
-    category: "Customer success platform",
-    status: "in-dust",
-    endpoint: "Installed by Dust customers (13 workspaces, ~196k calls — heaviest usage)",
-    why: "EU customer-success leader; the heaviest per-workspace MCP usage in your own data = validated post-sale GTM demand.",
+    company: "Gong",
+    hq: "San Francisco, US",
+    region: "US",
+    category: "Revenue intelligence",
+    status: "beta",
+    endpoint: "Admin-gated, rolling out (no public URL yet)",
+    ukHook: "Team pick (new name) · GTM-core",
+    why: "Team-flagged revenue-intelligence leader. Confirm MCP is live before promising.",
   },
 ];
 
@@ -238,7 +252,17 @@ export const TOP_US: Partner[] = [
 // OTHER STRONG CANDIDATES  (official/validated MCP, didn't make the top 10)
 // ─────────────────────────────────────────────────────────────────────────
 export const OTHERS: Partner[] = [
-  // US GTM / adjacent
+  // ── Other UK-relevant: UK-HQ, a Dust UK advocate, or a UK-team pick (MCP-capable) ──
+  { company: "Linear", hq: "San Francisco, US", region: "US", category: "Project / issue tracking", status: "official", endpoint: "mcp.linear.app/mcp (OAuth 2.1 + DCR)", ukHook: "Team pick (new name)", why: "Team-flagged; category-defining dev/PM tool, great hype association." },
+  { company: "n8n", hq: "Berlin, DE", region: "EU", category: "Workflow automation", status: "official", endpoint: "Per-instance/workflow URLs (SSE/HTTP)", ukHook: "Team pick (new name) · in Dust installs", why: "Team-flagged RevOps/automation glue; already installed by Dust customers." },
+  { company: "Customer.io", hq: "Portland OR, US", region: "US", category: "Lifecycle / marketing automation", status: "official", endpoint: "docs.customer.io/ai/mcp", ukHook: "Dust UK partner", why: "Also a US top-10 pick; flagged as a UK partner, so warm both ways." },
+  { company: "Cognism", hq: "London, UK", region: "UK", category: "Sales intelligence", status: "community", endpoint: "Third-party/community MCP only", ukHook: "UK-HQ · Top-40 UK target · GTM-core", why: "UK sales-intel leader and a Top-40 target — strong if they ship an official MCP." },
+  { company: "Contentsquare", hq: "Paris, FR", region: "EU", category: "Digital experience analytics", status: "in-dust", endpoint: "Installed by Dust customers (5 workspaces)", ukHook: "Top-UK-Logo advocate (Dust customer)", why: "Flagged UK advocate already running an MCP in Dust — warm relationship." },
+  { company: "Spendesk", hq: "Paris, FR", region: "EU", category: "Spend management", status: "in-dust", endpoint: "Installed by Dust customers (4 workspaces)", ukHook: "UK advocate (Dust customer)", why: "UK advocate with a working MCP; finance-ops, not core GTM." },
+  { company: "Pennylane", hq: "Paris, FR", region: "EU", category: "Accounting / finance", status: "in-dust", endpoint: "Installed by Dust customers (4 workspaces)", ukHook: "UK advocate (Dust customer)", why: "UK advocate with a working MCP; finance-ops." },
+  { company: "Kyriba", hq: "San Diego, US", region: "US", category: "Treasury management", status: "in-dust", endpoint: "Installed by Dust customers (2 workspaces)", ukHook: "Top-UK-Logo advocate (Dust customer)", why: "Flagged UK advocate already running an MCP; treasury/finance-ops." },
+  { company: "Qonto", hq: "Paris, FR", region: "EU", category: "Business banking / spend", status: "official", endpoint: "mcp.qonto.com/mcp (OAuth)", ukHook: "UK advocate (Dust customer)", why: "UK advocate; polished OAuth MCP. Ops-adjacent, not core GTM." },
+  // ── US GTM / adjacent (for the US push) ──
   { company: "Salesforce", hq: "San Francisco, US", region: "US", category: "Enterprise CRM / Agentforce", status: "official", endpoint: "Salesforce-hosted MCP (Enterprise+, org-provisioned)", why: "The 800-lb CRM gorilla. Enterprise-skewed (deprioritised in Thibault's segmentation) but a huge logo." },
   { company: "Salesloft", hq: "Atlanta, US", region: "US", category: "Sales engagement", status: "beta", endpoint: "Customer-provisioned (confirm GA)", why: "Marquee sales-engagement brand, AI-native repositioning post-Clari." },
   { company: "Calendly", hq: "Atlanta, US", region: "US", category: "Scheduling", status: "official", endpoint: "mcp.calendly.com (DCR)", why: "Ubiquitous in sales workflows; clean NL-booking demo." },
@@ -247,22 +271,23 @@ export const OTHERS: Partner[] = [
   { company: "Stripe", hq: "San Francisco, US", region: "US", category: "Payments / billing", status: "official", endpoint: "mcp.stripe.com (OAuth)", why: "Reference AI-era brand; billing/revenue-ops adjacency, huge association value." },
   { company: "Perplexity", hq: "San Francisco, US", region: "US", category: "AI answer engine", status: "official", endpoint: "@perplexity-ai/mcp-server (local, API key)", why: "Major AI-native brand; research/sales-intel use." },
   { company: "Notion", hq: "San Francisco, US", region: "US", category: "Productivity / docs", status: "official", endpoint: "mcp.notion.com/mcp (OAuth)", why: "Large AI-native productivity brand; teams run lightweight CRMs in it." },
-  { company: "Linear", hq: "San Francisco, US", region: "US", category: "Project / issue tracking", status: "official", endpoint: "mcp.linear.app/mcp (OAuth 2.1 + DCR)", why: "Category-defining dev/PM tool; great hype association." },
   { company: "Firecrawl", hq: "San Francisco, US", region: "US", category: "Web data / extraction", status: "official", endpoint: "firecrawl-mcp (local, API key)", why: "AI-native web-data infra; common for lead enrichment / market data." },
   { company: "Browserbase", hq: "San Francisco, US", region: "US", category: "Browser infra for agents", status: "official", endpoint: "mcp.browserbase.com/mcp", why: "Scaling agent-infra startup; agentic web automation for outreach/data." },
   { company: "Glean", hq: "Palo Alto, US", region: "US", category: "Enterprise search / work AI", status: "official", endpoint: "developers.glean.com/guides/mcp", why: "High-growth enterprise-search unicorn; surfaces account/deal context. Also a platform peer." },
-  { company: "Snowflake", hq: "Bozeman MT, US", region: "US", category: "Data platform", status: "official", endpoint: "Snowflake-managed MCP (GA, in-workspace)", why: "Underpins data for sales/marketing analytics; marquee data logo." },
   { company: "Webflow", hq: "San Francisco, US", region: "US", category: "Web / CMS (marketing)", status: "official", endpoint: "mcp.webflow.com/mcp (OAuth)", why: "Marketing-site/landing-page builder; also already in Dust installs." },
   { company: "Twilio", hq: "San Francisco, US", region: "US", category: "Comms / outreach", status: "beta", endpoint: "twilio.com/docs/ai/mcp (hosted = docs-only; action MCP self-hosted)", why: "Comms backbone for outbound/notifications." },
-  // EU / UK  — strong French GTM names live here (moved out of the top 10 for
-  // geographic balance, not because they're weak; Modjo especially is validated).
-  { company: "Modjo", hq: "Paris, FR", region: "EU", category: "Conversation / revenue intelligence", status: "in-dust", endpoint: "Installed by Dust customers (21 workspaces, ~88k calls)", why: "The French Gong — one of the highest-usage MCPs across Dust customers. Top-10 on merit; demoted only for geo balance — easy swap-back." },
-  { company: "Lemlist", hq: "Paris, FR", region: "EU", category: "Sales engagement / outbound", status: "official", endpoint: "app.lemlist.com/mcp", why: "Core outbound/RevOps category, big EU brand. Run sequences, search the 450M-lead DB, analyse performance." },
+  // ── Continental EU — strong MCP but NO UK hook (these are for the EU motion, not the UK list) ──
+  { company: "Lovable", hq: "Stockholm, SE", region: "EU", category: "AI app builder", status: "official", endpoint: "mcp.lovable.dev (OAuth)", why: "Europe's fastest-scaling 'vibe-coding' brand. Team's 'hot EU' pick — co-marketing, no UK hook." },
+  { company: "Mistral", hq: "Paris, FR", region: "EU", category: "AI platform / Le Chat", status: "none", endpoint: "Le Chat MCP connectors (host/peer, not a connect-to server)", why: "European AI champion, but an MCP client/host — co-marketing peer, not an integration." },
+  { company: "Hugging Face", hq: "Paris / global", region: "EU", category: "AI model & dataset hub", status: "official", endpoint: "huggingface.co/settings/mcp", why: "Cool EU-rooted AI leader; MCP is model/dataset search (association value, not GTM)." },
+  { company: "Typeform", hq: "Barcelona, ES", region: "EU", category: "Forms / lead capture", status: "official", endpoint: "api.eu.typeform.com/mcp (OAuth, EU DC)", why: "EU lead-capture leader with a clean public MCP. No specific UK hook." },
+  { company: "Planhat", hq: "Stockholm, SE", region: "EU", category: "Customer success platform", status: "in-dust", endpoint: "Installed by Dust customers (13 ws, ~196k calls — heaviest usage)", why: "Heaviest per-workspace MCP usage in your data; Swedish, no specific UK hook." },
+  { company: "Modjo", hq: "Paris, FR", region: "EU", category: "Conversation / revenue intelligence", status: "in-dust", endpoint: "Installed by Dust customers (21 ws, ~88k calls)", why: "The French Gong — highest-usage EU GTM MCP in your data. Strong for the FR/EU motion." },
+  { company: "Lemlist", hq: "Paris, FR", region: "EU", category: "Sales engagement / outbound", status: "official", endpoint: "app.lemlist.com/mcp", why: "Big EU outbound brand; sequences + 450M-lead DB. FR/EU motion." },
   { company: "Brevo", hq: "Paris, FR", region: "EU", category: "Marketing automation + CRM", status: "official", endpoint: "mcp.brevo.com/v1/brevo/mcp", why: "All-in-one marketing/CRM, ~600k customers. One of the most complete EU marketing MCPs." },
-  { company: "Pigment", hq: "Paris, FR", region: "EU", category: "Business planning / RevOps", status: "official", endpoint: "Per-workspace endpoint (Workspace › Integrations › MCP)", why: "Well-funded French enterprise scale-up ($397M); native per-tenant MCP. Sales/RevOps planning adjacency." },
-  { company: "Qonto", hq: "Paris, FR", region: "EU", category: "Business banking / spend", status: "official", endpoint: "mcp.qonto.com/mcp (OAuth)", why: "Major EU fintech; polished OAuth MCP with curated write-ops. Ops-adjacent, not core GTM." },
-  { company: "Storyblok", hq: "Linz, AT", region: "EU", category: "Headless CMS (marketing)", status: "official", endpoint: "mcp.labs.storyblok.com", why: "Notable EU CMS scale-up; 'agent-ready content' marketing narrative." },
-  { company: "Pleo", hq: "Copenhagen, DK", region: "EU", category: "Spend management", status: "beta", endpoint: "Announced Jun 2026, 'launching this summer'", why: "Big Nordic fintech making a loud agentic push. Verify GA before featuring." },
+  { company: "Pigment", hq: "Paris, FR", region: "EU", category: "Business planning / RevOps", status: "official", endpoint: "Per-workspace endpoint", why: "Well-funded French scale-up ($397M); native per-tenant MCP. RevOps planning." },
+  { company: "Storyblok", hq: "Linz, AT", region: "EU", category: "Headless CMS (marketing)", status: "official", endpoint: "mcp.labs.storyblok.com", why: "Austrian CMS scale-up; 'agent-ready content' narrative." },
+  { company: "Pleo", hq: "Copenhagen, DK", region: "EU", category: "Spend management", status: "beta", endpoint: "Announced Jun 2026", why: "Nordic fintech with a loud agentic push; verify GA. Also a Top-40 UK target." },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────

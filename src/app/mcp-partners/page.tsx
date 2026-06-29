@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import {
-  TOP_UK_EU,
+  TOP_UK,
   TOP_US,
   OTHERS,
   NO_MCP_TARGETS,
@@ -45,22 +45,32 @@ function CopyButton({ getText }: { getText: () => string }) {
   );
 }
 
-const PARTNER_HEADERS = [
-  "Company",
-  "HQ",
-  "Category",
-  "MCP status",
-  "Endpoint / how to connect",
-  "Why it's a fit",
-];
+function headersFor(hasHook: boolean): string[] {
+  return [
+    "Company",
+    "HQ",
+    "Category",
+    ...(hasHook ? ["UK hook"] : []),
+    "MCP status",
+    "Endpoint / how to connect",
+    "Why it's a fit",
+  ];
+}
 
 function partnersToTsv(partners: Partner[]): string {
+  const hasHook = partners.some((p) => p.ukHook);
   const rows = partners.map((p) =>
-    [p.company, p.hq, p.category, STATUS_LABEL[p.status], p.endpoint, p.why].join(
-      "\t"
-    )
+    [
+      p.company,
+      p.hq,
+      p.category,
+      ...(hasHook ? [p.ukHook ?? ""] : []),
+      STATUS_LABEL[p.status],
+      p.endpoint,
+      p.why,
+    ].join("\t")
   );
-  return [PARTNER_HEADERS.join("\t"), ...rows].join("\n");
+  return [headersFor(hasHook).join("\t"), ...rows].join("\n");
 }
 
 function PartnerTable({
@@ -74,6 +84,7 @@ function PartnerTable({
   subtitle?: string;
   partners: Partner[];
 }) {
+  const hasHook = partners.some((p) => p.ukHook);
   return (
     <section id={id} className="mb-14 scroll-mt-20">
       <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
@@ -92,7 +103,7 @@ function PartnerTable({
           <thead>
             <tr className="bg-zinc-50 text-left text-zinc-600">
               <th className="w-12 px-3 py-2 font-medium">#</th>
-              {PARTNER_HEADERS.map((h) => (
+              {headersFor(hasHook).map((h) => (
                 <th key={h} className="px-3 py-2 font-medium">
                   {h}
                 </th>
@@ -113,6 +124,11 @@ function PartnerTable({
                   {p.hq}
                 </td>
                 <td className="px-3 py-3 text-zinc-600">{p.category}</td>
+                {hasHook && (
+                  <td className="px-3 py-3 text-xs font-medium text-blue-800">
+                    {p.ukHook ?? "—"}
+                  </td>
+                )}
                 <td className="px-3 py-3">
                   <StatusBadge status={p.status} />
                 </td>
@@ -196,7 +212,7 @@ function InstalledTable() {
 }
 
 const NAV = [
-  ["top-uk-eu", "Top 10 · UK & EU"],
+  ["top-uk", "Top 10 · UK"],
   ["top-us", "Top 10 · US"],
   ["others", "Other candidates"],
   ["no-mcp", "No MCP yet"],
@@ -213,7 +229,7 @@ export default function McpPartnersPage() {
           Dust · MCP Partnerships
         </p>
         <h1 className="mt-2 text-3xl font-bold tracking-tight">
-          MCP partner shortlist — UK/EU &amp; US
+          MCP partner shortlist — UK &amp; US
         </h1>
         <p className="mt-3 max-w-3xl text-zinc-600">
           Hype B2B-SaaS / GTM-tech and AI-native brands (scaling, not small)
@@ -246,10 +262,10 @@ export default function McpPartnersPage() {
       </header>
 
       <PartnerTable
-        id="top-uk-eu"
-        title="Top 10 — UK & Europe"
-        subtitle="UK-first: the four genuine UK names with usable MCPs (Attio, Granola, ElevenLabs, Tessl) lead, then only clear pan-European leaders (Lovable, n8n, Hugging Face, Mistral, Typeform, Planhat). Deliberately not France-skewed — regional French B2B SaaS (Modjo, Lemlist, Brevo, Pigment) moved to 'other candidates'. Modjo is arguably top-10 on merit (your usage data), so it's an easy swap-back."
-        partners={TOP_UK_EU}
+        id="top-uk"
+        title="Top 10 — UK (relationship-anchored)"
+        subtitle="UK-focused, not EU-generic. Each row earns its place via a concrete UK hook (shown): UK-HQ (Attio, Granola, ElevenLabs, Tessl), a UK-team pick (Fathom, Snowflake, Gong), or a tool your UK advocates already use (Clay, Vanta, Datadog — flagged 'Top UK Logo' in your contact sheet). Genuinely UK-HQ MCP tools are scarce, so the list leans on the team list + advocate relationships rather than padding with rootless EU names (those sit in 'other candidates' → Continental EU)."
+        partners={TOP_UK}
       />
 
       <PartnerTable
@@ -261,8 +277,8 @@ export default function McpPartnersPage() {
 
       <PartnerTable
         id="others"
-        title="Other strong candidates (US + EU)"
-        subtitle="Official or Dust-validated MCP, but a notch below the top 10 on GTM fit / hype, or more enterprise/infra-flavoured. Easy swap-ins."
+        title="Other strong candidates"
+        subtitle="Grouped: (1) other UK-relevant — UK-HQ, a UK advocate, or a team pick (Linear, n8n, Cognism, Contentsquare, Spendesk, Pennylane, Kyriba, Qonto); (2) US GTM/adjacent for the US push; (3) Continental EU — strong MCPs with no UK hook (Lovable, Mistral, Hugging Face, Typeform, Planhat, Modjo, Lemlist, Brevo…), kept for the EU motion, not the UK list."
         partners={OTHERS}
       />
 
