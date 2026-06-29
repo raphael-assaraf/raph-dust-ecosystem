@@ -206,7 +206,8 @@ const NAV = [
 
 export default function McpPartnersPage() {
   return (
-    <main className="mx-auto max-w-7xl px-5 py-12 text-zinc-900">
+    <main className="h-[100dvh] overflow-y-auto bg-white">
+      <div className="mx-auto max-w-7xl px-5 py-12 text-zinc-900">
       <header className="mb-10">
         <p className="text-xs font-semibold uppercase tracking-widest text-zinc-400">
           Dust · MCP Partnerships
@@ -310,6 +311,7 @@ export default function McpPartnersPage() {
         GTM <strong>Clay</strong> ≠ clay.earth, and <strong>Apollo.io</strong> ≠
         Apollo GraphQL.
       </footer>
+      </div>
     </main>
   );
 }
