@@ -13,6 +13,12 @@ function b64url(bytes: Uint8Array): string {
 }
 
 export async function GET(req: Request) {
+  const key = new URL(req.url).searchParams.get("key");
+  if (!process.env.EL_MCP_BASIC_PASS || key !== process.env.EL_MCP_BASIC_PASS) {
+    return new Response("Missing or wrong ?key= (use the wrapper's Bearer secret).", {
+      status: 403,
+    });
+  }
   const verifier = b64url(crypto.getRandomValues(new Uint8Array(32)));
   const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(verifier));
   const challenge = b64url(new Uint8Array(digest));

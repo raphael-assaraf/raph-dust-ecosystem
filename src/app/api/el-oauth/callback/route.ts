@@ -1,6 +1,12 @@
-// OAuth callback: exchanges the code and displays the refresh token to store
-// as the ELEVENLABS_REFRESH_TOKEN env var in Vercel. One-time use.
-import { EL_MCP_URL, EL_TOKEN_URL, clientId, redirectUri } from "@/lib/el-oauth";
+// OAuth callback: exchanges the code and persists the refresh token in the
+// private Blob store. Reaching here requires the ?key=-gated /start cookie.
+import {
+  EL_MCP_URL,
+  EL_TOKEN_URL,
+  clientId,
+  redirectUri,
+  storeRefreshToken,
+} from "@/lib/el-oauth";
 
 export async function GET(req: Request) {
   const url = new URL(req.url);
@@ -36,17 +42,16 @@ export async function GET(req: Request) {
     return new Response(`Token exchange failed (${res.status}):\n${body}`, { status: 502 });
   }
   const data = JSON.parse(body);
+  await storeRefreshToken(data.refresh_token);
 
   return new Response(
     [
       "ElevenLabs OAuth bootstrap complete.",
       "",
-      "1. In Vercel, set this env var (then redeploy):",
+      "The refresh token has been stored securely — nothing else to do.",
+      "The MCP wrapper at /api/el-mcp is ready for Dust.",
       "",
-      `ELEVENLABS_REFRESH_TOKEN=${data.refresh_token}`,
-      "",
-      "2. Delete this browser tab; the token above is a credential.",
-      `   (access token expires in ${data.expires_in}s; scope: ${data.scope ?? "n/a"})`,
+      `(access token expires in ${data.expires_in}s; scope: ${data.scope ?? "n/a"})`,
     ].join("\n"),
     { headers: { "Content-Type": "text/plain", "Cache-Control": "no-store" } }
   );
