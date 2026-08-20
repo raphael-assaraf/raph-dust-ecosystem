@@ -4,23 +4,27 @@ import { EL_MCP_URL, getAccessToken } from "@/lib/el-oauth";
 
 export const maxDuration = 120;
 
-function checkBasicAuth(req: Request): boolean {
+// Dust's MCP dialog offers "Bearer token"; Basic kept for curl convenience.
+function checkAuth(req: Request): boolean {
+  const secret = process.env.EL_MCP_BASIC_PASS;
+  if (!secret) return false;
   const header = req.headers.get("authorization") ?? "";
-  if (!header.startsWith("Basic ")) return false;
-  const decoded = Buffer.from(header.slice(6), "base64").toString("utf8");
-  const [user, pass] = decoded.split(":");
-  return (
-    !!process.env.EL_MCP_BASIC_USER &&
-    user === process.env.EL_MCP_BASIC_USER &&
-    pass === process.env.EL_MCP_BASIC_PASS
-  );
+  if (header.startsWith("Bearer ")) {
+    return header.slice(7).trim() === secret;
+  }
+  if (header.startsWith("Basic ")) {
+    const decoded = Buffer.from(header.slice(6), "base64").toString("utf8");
+    const [user, pass] = decoded.split(":");
+    return user === process.env.EL_MCP_BASIC_USER && pass === secret;
+  }
+  return false;
 }
 
 async function proxy(req: Request): Promise<Response> {
-  if (!checkBasicAuth(req)) {
+  if (!checkAuth(req)) {
     return new Response("Unauthorized", {
       status: 401,
-      headers: { "WWW-Authenticate": 'Basic realm="el-mcp"' },
+      headers: { "WWW-Authenticate": 'Bearer realm="el-mcp"' },
     });
   }
 
